@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My Fairy Wings</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <style>
+      h1 {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+      button {
+        font-family: 'EB Garamond', serif;
+        font-size: 16px;
+        border-radius: 8px;
+        border: 0;
+        background-color: #c6daf7;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-bottom: 20px;
+      }
+      button:hover {
+        background-color: #dce8ff;
+        transform: transformY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, .12);
+      }
+      button:active {
+        transform: transformY(0);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>My Fairy Wings</h1>
+    <div class="container">
+      <div id="sketch" class="canvas">
+        <!-- p5.js core + p5.sound for audio -->
+        <script src="https://cdn.jsdelivr.net/npm/p5@1.11.9/lib/p5.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.9/addons/p5.sound.min.js"></script>
+
+        <script src="/sketch.js" defer></script>
+      </div>
+      <div class="buttons">
+        <!--<button id="muteBtn">Mute On/Off</button>-->
+        <button id="playBtn">Pause/Play</button>
+        <!--<button id="suppBtn">Support</button>-->
+        <!--<button id="circleBtn">Change Circle Color</button>-->
+        <button id="hintBtn">Turn On Hints</button>
+      </div>
+      <!--MAT111WN Start-->
+      <!--<label>
+        Text Size:
+        <input id="text-size" type="range" min="50" max="300" value="150" />
+        <span id="textSizeVal">150</span>
+      </label>
+      <label>
+        Text Color:
+        <input id="text-color" type="color" value="#fffff" />
+      </label>
+      <label>
+        Shape:
+        <select id="shape-select">
+          <option value="circle" selected>Circle</option>
+          <option value="rectangle" selected>Rectangle</option>
+          <option value="triangle" selected>Triangle</option>
+        </select>
+      </label>
+      MAT111WN End-->
+    </div>
+  </body>
+
+</html>
