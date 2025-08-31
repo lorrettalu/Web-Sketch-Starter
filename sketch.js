@@ -93,14 +93,6 @@ const assets = [
 ];
 let food = false;
 let nap = false;
-// MAT111WN
-/*
-let circleColor;
-let textSizeVal = 50;
-let textColor = "#ffffff";
-let selectedShape = 'circle';
-let scrollPos = 0;
-*/
 
 function preload() {
   morningBg = loadImage("assets/Untitled_Artwork 5.png");
