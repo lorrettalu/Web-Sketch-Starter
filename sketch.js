@@ -54,12 +54,25 @@ let night = false;
 let showMenu = false;
 let makeFood = false;
 let napping = false;
+let intro = true;
+let change = true;
 
 // Integer Variables
 let eventNum = 0;
+let clickNum = 0;
+let introState = 0;
+let monChatState = 0;
+let tuesChatState = 0;
+let wedChatState = 0;
+let thursChatState = 0;
+let friChatState = 0;
+let satChatState = 0;
+let sunChatState = 0;
 
 // Array Variables
 let particles = []; // Array to hold all particles
+let gameState = ["intro", "monday", "tuesday", "wednesday", "thursday", "friday", 
+  "saturday", "sunday", "ending1", "ending2"];
 
 // Sound
 let chime;
@@ -77,6 +90,7 @@ let menuOptions = [
   {label: "Make Food", x: 20, y: 368, w: 70, h: 60 },
   {label: "Nap", x: 128, y: 368, w: 70, h: 60}
 ];
+let label;
 
 // Website/HTML
 let c;
@@ -140,32 +154,6 @@ function setup() {
   //document.getElementById('suppBtn').addEventListener('click', openSupport);
   document.getElementById('hintBtn').addEventListener('click', showHints);
 
-  let canvas = document.createElement("canvas");
-  let ctx = canvas.getContext("2d", { willReadFrequently: true});
-
-  // MAT111WN
-  /*
-  document.getElementById('circleBtn').addEventListener('click', ()=> {
-    circleColor = color(random(255), random(255), random(255), 200);
-  });
-  const textSizeSlider = document.getElementById('text-size');
-  const textSizeDisplay = document.getElementById('textSizeVal');
-  textSizeSlider.addEventListener('input', ()=> {
-    textSizeVal = parseInt(textSizeSlider.value);
-    textSizeDisplay.textContent = textSizeVal;
-  });
-  const textColorPicker = document.getElementById('text-color');
-  textColorPicker.addEventListener('input', ()=> {
-    textColor = textColorPicker.value;
-  });
-  const shapeSelect = document.getElementById('shape-select');
-  shapeSelect.addEventListener('change', ()=> {
-    selectedShape = shapeSelect.value;
-  });
-  window.addEventListener('scroll', ()=> {
-    scrollPos = window.scrollY;
-  });
-  */
 }
 
 function draw() {
@@ -243,6 +231,7 @@ function draw() {
   if (cottageClick) {
     event = true;
     textEvent = true;
+    change = false;
     drawMenu();
   }
   
@@ -256,7 +245,28 @@ function draw() {
     textEvent = true;
   }
   
-  if (eventNum == 0) {
+  masterFunction();
+  
+  if (textEvent || intro) {
+    dialogueText();
+  } else {
+    event = false;
+  }
+  
+  // Cursor
+  push();
+  imageMode(CENTER);
+  image(cursor, mouseX, mouseY, 30, 30);
+  pop();
+}
+
+function masterFunction() {
+  if (eventNum == -1) {
+    mondayMorning = true;
+    textEvent = true;
+    event = true;
+  }
+  else if (eventNum == 0) {
     mondayMorning = true;
     mondayAfternoon = false;
     mondayNight = false;
@@ -349,64 +359,80 @@ function draw() {
     sundayNight = true;
     textEvent = false;
   }
-  
-  if (textEvent) {
-    dialogueText();
-  }
-  
-  // Cursor
-  push();
-  imageMode(CENTER);
-  image(cursor, mouseX, mouseY, 30, 30);
-  pop();
 }
 
-function cottageHover(x, y) {
-  push();
-  if ((x > 41 && x < 170) && (y > 299 && y < 429)) {
-    if (morning) {
-      image(cottage, 0, 0, 360, 640);
-      cottage.filter(GRAY);
-    } else if (afternoon) {
-      image(afternoonCottage, 0, 0, 360, 640);
-      afternoonCottage.filter(GRAY);
-    } else if (night) {
-      image(nightCottage, 0, 0, 360, 640);
-      nightCottage.filter(GRAY);
+// Text
+function dialogueText() {
+  image(dialogue, 0, 0, 360, 640);
+
+  if (mondayMorning) {
+    mondayDialogue();
+  } else {
+    // Default Dialogue
+    if (waterClick) {
+      text("I'll go get some water!", 40, 510);
+    } else if (cottageClick) {
+      text("I can make food or nap at home.", 40, 510);
+      text("Which one should I do?", 40, 540);
+    } else if (gardenClick) {
+      text("I'll go tend to my flowers!", 40, 510);
     }
   }
-  pop();
+
+  // Intro Dialogue
+  if (intro) {
+    event = true;
+    switch (introState) {
+      case 0:
+        text("I've been on my own for so long. I really", 40, 510);
+        text("miss my friends and family.", 40, 540);
+        break;
+      case 1:
+        text("But maybe this week will be different.", 40, 510);
+        text("Seven days and just three small steps", 40, 540);
+        text("each day.", 40, 570);
+        break;
+      case 2:
+        text("If I can just take care of myself, maybe", 40, 510);
+        text("I'll meet some new friends. I think my", 40, 540);
+        text("heart could really use that.", 40, 570);
+        break;
+      default:
+        intro = false;
+        event = false;
+    }
+  }
 }
 
-function gardenHover(x, y) {
-  push();
-  if ((x > 20 && x < 129) && (y > 441 && y < 615)) {
-    if (morning) {
-      image(garden, 0, 0, 360, 640);
-      garden.filter(GRAY);
-    } else if (afternoon) {
-      image(afternoonGarden, 0, 0, 360, 640);
-      afternoonGarden.filter(GRAY);
-    } else if (night) {
-      image(nightGarden, 0, 0, 360, 640);
-      nightGarden.filter(GRAY);
+function mondayDialogue() {
+  if (mondayMorning) {
+    if (cottageClick || showMenu) {
+      showMenu = true;
+      switch (monChatState) {
+        case 0:
+          text("I can make food or nap at home.", 40, 510);
+          text("Which one should I do?", 40, 540);
+          break;
+        case 1:
+          text("I nap.", 40, 510);
+          break;
+        case 10:
+          text("I make food.", 40, 510);
+          break;
+        case 20:
+          text("Test", 40, 510);
+          break;
+        default:
+          text("I finish my task.", 40, 510);
+          change = true;
+          event = false;
+      }
+    } else if (waterClick) {
+      text("It is Monday morning and I got water.", 40, 510);
+    } else if (gardenClick) {
+      text("It is Monday morning and I garden.", 40, 510);
     }
   }
-  pop();
-}
-
-function waterHover(x, y) {
-  push();
-  if ((x > 221 && x < 317) && (y > 173 && y < 411)) {
-    if (morning || afternoon) {
-      image(water, 0, 0, 360, 640);
-      water.filter(GRAY);
-    } else if (night) {
-      image(nightWater, 0, 0, 360, 640);
-      nightWater.filter(GRAY);
-    }
-  }
-  pop();
 }
 
 function timeText() {
@@ -526,48 +552,7 @@ function timeText() {
   }
 }
 
-function timeSound() {
-  if (eventNum == 4 || eventNum == 10 || eventNum == 16 || eventNum == 22 || eventNum == 28 || eventNum == 34 || eventNum == 40) {
-    if (forestSound.isPlaying()) {
-      forestSound.stop();
-    }
-    forestNightSound.play();
-  } else {
-    if (forestNightSound.isPlaying()) {
-      forestNightSound.stop();
-    }
-    forestSound.play();
-  }
-}
-
-function runEventNum() {
-  if (cottageClick || waterClick || gardenClick) {
-    eventNum += 1;
-  }
-}
-
 function mousePressed() {
-  
-  if ((mouseX > 41 && mouseX < 170) && (mouseY > 299 && mouseY < 429)) {
-    cottageClick = !cottageClick;
-    event = !event;
-    plop.play();
-    eventNum += 1;
-  }
-  
-  if ((mouseX > 221 && mouseX < 317) && (mouseY > 173 && mouseY < 411)) {
-    waterClick = !waterClick;
-    event = !event;
-    plop.play();
-    eventNum += 1;
-  }
-  
-  if ((mouseX > 20 && mouseX < 129) && (mouseY > 441 && mouseY < 615)) {
-    gardenClick = !gardenClick;
-    event = !event;
-    plop.play();
-    eventNum += 1;
-  }
   
   timeSound();
 
@@ -575,167 +560,65 @@ function mousePressed() {
   if (showMenu) {
     if ((mouseX < menuOptions[0].w + 17 && mouseX > menuOptions[0].x) && (mouseY > menuOptions[0].y - 7 && mouseY < menuOptions[0].y + 20)) {
       handleOption("Make Food");
+      monChatState += 10;
     } else if ((mouseX > menuOptions[1].w + 50 && mouseX < menuOptions[1].x + 78) && (mouseY > menuOptions[1].y - 7 && mouseY < menuOptions[1].y + 20)) {
       handleOption("Nap");
+      monChatState++;
+    } else {
+      change = false;
     }
   }
 
+  if (intro == false) {
+    clicks();
+  }
+
+  // Intro Dialogue
+  if (intro) {
+    introState++;
+    plop.play();
+  }
+
 }
 
-class Particle {
-  constructor() {
-    this.x = random(0, 400);
-    this.y = -5;
-    this.vy = random(-2, -10); // random upward velocity
-    this.alpha = 255; // full opacity
-  }
-
-  update() {
-    this.y -= this.vy; // move the particle upward
-    this.alpha -= 2; // fade out 
-  }
-
-  show() {
-    noStroke();
-    fill(0, 150, 255, this.alpha);
-    ellipse(this.x, this.y, 3, 5);
-  }
-
-  isFinished() {
-    return this.alpha <= 0; // Particle is finished when it's fully transparent
-  }
-}
-
-function rain() {
-  push();
-  // add a new particle to the system every frame
-  particles.push(new Particle());
-  
-  for (let n = 0; n < 2; n++) {
-    particles.push(new Particle());
-  }
-
-  // loop through each particle in reverse order
-  for (let i = particles.length - 1; i >= 0; i--) {
-    particles[i].update(); // update the particle's position
-    particles[i].show(); // display the particle
-
-    // remove the particle from the array if it's finished
-    if (particles[i].isFinished()) {
-      particles.splice(i, 1);
+function clicks() {
+  if ((mouseX > 41 && mouseX < 170) && (mouseY > 299 && mouseY < 429)) {
+    if (change) {
+      eventNum += 1;
+      cottageClick = !cottageClick;
+      event = !event;
+      plop.play();
+    } else {
+      eventNum = eventNum;
+      cottageClick = cottageClick;
+      event = event;
     }
   }
   
-  for (let i = particles.length - 1; i >= 0; i--) {
-    particles[i].update();
-    particles[i].show();
-  }
-  pop();
-}
-
-function enableSound() {
-  //bgmusic.muted = false;
-  //bgmusic.volume = 0.8;
-}
-
-function toggleMute() {
-  //enableSound();
-  const btn = document.getElementById('muteBtn');
-  isMuted = !isMuted;
-  if (isMuted) {
-    c.muted = true;
-    c.volume = 0;
-    btn.textContent = 'Unmute';
-  } else {
-    c.muted = false;
-    c.volume = 0.8;
-    btn.textContent = 'Mute';
-  }
-  btn.textContent = isMuted ? 'Unmute' : 'Mute';
-}
-
-function togglePause() {
-  isPaused = !isPaused;
-  const btn = document.getElementById('playBtn');
-  if (isPaused) {
-    noLoop();
-    btn.textContent = 'Play';
-  } else {
-    loop();
-    btn.textContent = 'Pause';
-  }
-}
-
-function openSupport() {
-  window.open('https://wwww.lorrettalu.github.io', '_blank');
-}
-
-
-function showHints() {
-  showHint = !showHint;
-
-  const btn = document.getElementById('hintBtn');
-
-  if (showHint) {
-    btn.textContent = 'Turn Off Hints';
-  } else {
-    btn.textContent = 'Turn On Hints';
-  }
-}
-
-function sparkleEvent(a) {
-  for (let i = 0; i < 1; i++) {
-    const px = a.x + random(-8, a.w + 8);
-    const py = a.y + random(-8, a.h + 8);
-    const ang = random(TWO_PI);
-    const speed = random(0.4, 1.6);
-    const vx = cos(ang) * speed * 0.8;
-    const vy = sin(ang) * speed * 0.3 - random(0.2, 0.6);
-    sparkles.push(new Sparkle(px, py, vx, vy));
-  }
-}
-
-class Sparkle {
-  constructor(x, y, vx, vy) {
-    this.pos = createVector(x, y);
-    this.vel = createVector(vx, vy);
-    this.size = random(3, 6);
-    this.hue = random(40, 60);
-    this.life = this.maxLife = random(35, 65);
-    this.twirl = random(-0.06, 0.06);
-  }
-  update() {
-    this.vel.x *= 0.98;
-    this.vel.y = this.vel.y * 0.98 - 0.004;
-    this.pos.add(this.vel);
-    this.size *= 0.994;
-    this.hue += this.twirl * 180 / PI;
-    this.life--;
-  }
-  display() {
-    push();
-    const a = map(this.life, 0, this.maxLife, 0, 255);
-    noStroke();
-    if (food) {
-      fill(255, 255, 255, a * 0.35);
-    } else if (nap) {
-      fill(0, 0, 255, a * 0.35);
+  if ((mouseX > 221 && mouseX < 317) && (mouseY > 173 && mouseY < 411)) {
+    if (change) {
+      eventNum += 1;
+      waterClick = !waterClick;
+      event = !event;
+      plop.play();
     } else {
-      fill(255, 215, 0, a * 0.35);
+      eventNum = eventNum;
+      waterClick = waterClick;
+      event = event;
     }
-    ellipse(this.pos.x, this.pos.y, this.size * 3, this.size * 3);
-    if (food) {
-      fill(255, 255, 255, a);
-    } else if (nap) {
-      fil(0, 0, 255, a);
-    } else {
-      fill(218, 165, 32, 100, a);
-    }
-    ellipse(this.pos.x, this.pos.y, this.size, this.size);
-    pop();
   }
-  isDead() {
-    return this.life <= 0 || this.size < 0.5;
+  
+  if ((mouseX > 20 && mouseX < 129) && (mouseY > 441 && mouseY < 615)) {
+    if (change) {
+      eventNum += 1;
+      gardenClick = !gardenClick;
+      event = !event;
+      plop.play();
+    } else {
+      eventNum = eventNum;
+      gardenClick = gardenClick;
+      event = event;
+    }
   }
 }
 
@@ -801,19 +684,211 @@ function drawMenu() {
 function handleOption(label) {
   if (label === "Make Food") {
     makeFood = true;
-    showMenu = false;
     napping = false;
   }
   if (label === "Nap") {
     napping = true;
-    showMenu = false;
-    napping = false;
+    makeFood = false;
   }
 }
 
-function dialogueText() {
-  image(dialogue, 0, 0, 360, 640);
-    if (waterClick) {
-      text("I can't do this right now.", 40, 510);
+function timeSound() {
+  if (eventNum == 3 || eventNum == 9 || eventNum == 15 || eventNum == 20 || eventNum == 27 || eventNum == 33 || eventNum == 39) {
+    if (forestSound.isPlaying()) {
+      forestSound.stop();
     }
+    forestNightSound.play();
+  } else {
+    if (forestNightSound.isPlaying()) {
+      forestNightSound.stop();
+    }
+    forestSound.play();
+  }
+}
+
+// Asset Hovers
+function cottageHover(x, y) {
+  push();
+  if ((x > 41 && x < 170) && (y > 299 && y < 429)) {
+    if (morning) {
+      image(cottage, 0, 0, 360, 640);
+      cottage.filter(GRAY);
+    } else if (afternoon) {
+      image(afternoonCottage, 0, 0, 360, 640);
+      afternoonCottage.filter(GRAY);
+    } else if (night) {
+      image(nightCottage, 0, 0, 360, 640);
+      nightCottage.filter(GRAY);
+    }
+  }
+  pop();
+}
+
+function gardenHover(x, y) {
+  push();
+  if ((x > 20 && x < 129) && (y > 441 && y < 615)) {
+    if (morning) {
+      image(garden, 0, 0, 360, 640);
+      garden.filter(GRAY);
+    } else if (afternoon) {
+      image(afternoonGarden, 0, 0, 360, 640);
+      afternoonGarden.filter(GRAY);
+    } else if (night) {
+      image(nightGarden, 0, 0, 360, 640);
+      nightGarden.filter(GRAY);
+    }
+  }
+  pop();
+}
+
+function waterHover(x, y) {
+  push();
+  if ((x > 221 && x < 317) && (y > 173 && y < 411)) {
+    if (morning || afternoon) {
+      image(water, 0, 0, 360, 640);
+      water.filter(GRAY);
+    } else if (night) {
+      image(nightWater, 0, 0, 360, 640);
+      nightWater.filter(GRAY);
+    }
+  }
+  pop();
+}
+
+// Particle Classes & Functions
+class Particle {
+  constructor() {
+    this.x = random(0, 400);
+    this.y = -5;
+    this.vy = random(-2, -10); // random upward velocity
+    this.alpha = 255; // full opacity
+  }
+
+  update() {
+    this.y -= this.vy; // move the particle upward
+    this.alpha -= 2; // fade out 
+  }
+
+  show() {
+    noStroke();
+    fill(0, 150, 255, this.alpha);
+    ellipse(this.x, this.y, 3, 5);
+  }
+
+  isFinished() {
+    return this.alpha <= 0; // Particle is finished when it's fully transparent
+  }
+}
+
+function rain() {
+  push();
+  // add a new particle to the system every frame
+  particles.push(new Particle());
+  
+  for (let n = 0; n < 2; n++) {
+    particles.push(new Particle());
+  }
+
+  // loop through each particle in reverse order
+  for (let i = particles.length - 1; i >= 0; i--) {
+    particles[i].update(); // update the particle's position
+    particles[i].show(); // display the particle
+
+    // remove the particle from the array if it's finished
+    if (particles[i].isFinished()) {
+      particles.splice(i, 1);
+    }
+  }
+  
+  for (let i = particles.length - 1; i >= 0; i--) {
+    particles[i].update();
+    particles[i].show();
+  }
+  pop();
+}
+
+class Sparkle {
+  constructor(x, y, vx, vy) {
+    this.pos = createVector(x, y);
+    this.vel = createVector(vx, vy);
+    this.size = random(3, 6);
+    this.hue = random(40, 60);
+    this.life = this.maxLife = random(35, 65);
+    this.twirl = random(-0.06, 0.06);
+  }
+  update() {
+    this.vel.x *= 0.98;
+    this.vel.y = this.vel.y * 0.98 - 0.004;
+    this.pos.add(this.vel);
+    this.size *= 0.994;
+    this.hue += this.twirl * 180 / PI;
+    this.life--;
+  }
+  display() {
+    push();
+    const a = map(this.life, 0, this.maxLife, 0, 255);
+    noStroke();
+    if (food) {
+      fill(255, 255, 255, a * 0.35);
+    } else if (nap) {
+      fill(0, 0, 255, a * 0.35);
+    } else {
+      fill(255, 215, 0, a * 0.35);
+    }
+    ellipse(this.pos.x, this.pos.y, this.size * 3, this.size * 3);
+    if (food) {
+      fill(255, 255, 255, a);
+    } else if (nap) {
+      fil(0, 0, 255, a);
+    } else {
+      fill(218, 165, 32, 100, a);
+    }
+    ellipse(this.pos.x, this.pos.y, this.size, this.size);
+    pop();
+  }
+  isDead() {
+    return this.life <= 0 || this.size < 0.5;
+  }
+}
+
+function showHints() {
+  showHint = !showHint;
+
+  const btn = document.getElementById('hintBtn');
+
+  if (showHint) {
+    btn.textContent = 'Turn Off Hints';
+  } else {
+    btn.textContent = 'Turn On Hints';
+  }
+}
+
+function sparkleEvent(a) {
+  for (let i = 0; i < 1; i++) {
+    const px = a.x + random(-8, a.w + 8);
+    const py = a.y + random(-8, a.h + 8);
+    const ang = random(TWO_PI);
+    const speed = random(0.4, 1.6);
+    const vx = cos(ang) * speed * 0.8;
+    const vy = sin(ang) * speed * 0.3 - random(0.2, 0.6);
+    sparkles.push(new Sparkle(px, py, vx, vy));
+  }
+}
+
+// Other HTML Buttons
+
+function togglePause() {
+  isPaused = !isPaused;
+  const btn = document.getElementById('playBtn');
+  if (isPaused) {
+    noLoop();
+    btn.textContent = 'Play';
+  } else {
+    loop();
+    btn.textContent = 'Pause';
+  }
+}
+
+function openSupport() {
+  window.open('https://wwww.lorrettalu.github.io', '_blank');
 }
