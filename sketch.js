@@ -369,6 +369,7 @@ function dialogueText() {
     mondayDialogue();
   } else {
     // Default Dialogue
+    change = true;
     if (waterClick) {
       text("I'll go get some water!", 40, 510);
     } else if (cottageClick) {
@@ -428,8 +429,10 @@ function mondayDialogue() {
           event = false;
       }
     } else if (waterClick) {
+      change = true;
       text("It is Monday morning and I got water.", 40, 510);
     } else if (gardenClick) {
+      change = true;
       text("It is Monday morning and I garden.", 40, 510);
     }
   }
@@ -564,8 +567,6 @@ function mousePressed() {
     } else if ((mouseX > menuOptions[1].w + 50 && mouseX < menuOptions[1].x + 78) && (mouseY > menuOptions[1].y - 7 && mouseY < menuOptions[1].y + 20)) {
       handleOption("Nap");
       monChatState++;
-    } else {
-      change = false;
     }
   }
 
