@@ -252,12 +252,26 @@ function draw() {
   } else {
     event = false;
   }
+
+  dialogueChoices();
+  dialogueHover();
   
   // Cursor
   push();
   imageMode(CENTER);
   image(cursor, mouseX, mouseY, 30, 30);
   pop();
+
+  // Floating Text by Cursor
+  if (cottageClick) {
+    floatingCursorCottage();
+  }
+  if (waterClick) {
+    floatingCursorWater();
+  }
+  if (gardenClick) {
+    floatingCursorGarden();
+  }
 }
 
 function masterFunction() {
@@ -417,11 +431,13 @@ function mondayDialogue() {
         case 1:
           text("I nap.", 40, 510);
           break;
-        case 10:
-          text("I make food.", 40, 510);
-          break;
         case 20:
-          text("Test", 40, 510);
+          text("Squirrel: That smell... is it pancakes?", 40, 510);
+          text("It's pancakes, right?", 40, 540);
+          break;
+        case 10:
+          text("As I prepare breakfast, I see a squirrel", 40, 510);
+          text("approach me!", 40, 540);
           break;
         default:
           text("I finish my task.", 40, 510);
@@ -436,6 +452,43 @@ function mondayDialogue() {
       text("It is Monday morning and I garden.", 40, 510);
     }
   }
+}
+
+// Floating Cursor Text
+function floatingCursorCottage() {
+  push();
+  fill(200, 220, 255);
+  noStroke();
+  rect(mouseX + 5, mouseY + 10, 70, 25, 6);
+  fill(0);
+  textSize(8);
+  text("Click on an option", mouseX + 12, mouseY + 20);
+  text("to continue.", mouseX + 20, mouseY + 28);
+  pop();
+}
+
+function floatingCursorWater() {
+  push();
+  fill(200, 220, 255);
+  noStroke();
+  rect(mouseX + 5, mouseY + 10, 75, 25, 6);
+  fill(0);
+  textSize(8);
+  text("Click on the waterfall", mouseX + 9, mouseY + 20);
+  text("to continue.", mouseX + 20, mouseY + 28);
+  pop();
+}
+
+function floatingCursorGarden() {
+  push();
+  fill(200, 220, 255);
+  noStroke();
+  rect(mouseX + 5, mouseY + 10, 70, 25, 6);
+  fill(0);
+  textSize(8);
+  text("Click on the left", mouseX + 15, mouseY + 20);
+  text("bush to continue.", mouseX + 14, mouseY + 28);
+  pop();
 }
 
 function timeText() {
@@ -563,7 +616,9 @@ function mousePressed() {
   if (showMenu) {
     if ((mouseX < menuOptions[0].w + 17 && mouseX > menuOptions[0].x) && (mouseY > menuOptions[0].y - 7 && mouseY < menuOptions[0].y + 20)) {
       handleOption("Make Food");
-      monChatState += 10;
+      if (monChatState != 20) {
+        monChatState += 10;
+      }
     } else if ((mouseX > menuOptions[1].w + 50 && mouseX < menuOptions[1].x + 78) && (mouseY > menuOptions[1].y - 7 && mouseY < menuOptions[1].y + 20)) {
       handleOption("Nap");
       monChatState++;
@@ -583,7 +638,7 @@ function mousePressed() {
 }
 
 function clicks() {
-  if ((mouseX > 41 && mouseX < 170) && (mouseY > 299 && mouseY < 429)) {
+  if ((mouseX > 39 && mouseX < 170) && (mouseY > 299 && mouseY < 429)) {
     if (change) {
       eventNum += 1;
       cottageClick = !cottageClick;
@@ -621,23 +676,21 @@ function clicks() {
       event = event;
     }
   }
+
+  // Dialogue Options
+  if (mondayMorning) {
+    if (monChatState == 20) {
+      if ((mouseX > 48 && mouseX < (270 + 48)) && (mouseY > 97 && mouseY < 197)) {
+        monChatState += 10;
+      }
+      if ((mouseX > 48 && mouseX < (270 + 48)) && (mouseY > 220 && mouseY < (220 + 100))) {
+        monChatState += 10;
+      }
+    }
+  }
+
 }
 
-function dayStates() {
-  if (mondayMorning || tuesdayMorning || wednesdayMorning || thursdayMorning || fridayMorning || saturdayMorning || sundayMorning) {
-    morning = true;
-    afternoon = false;
-    night = false;
-  } else if (mondayAfternoon || tuesdayAfternoon || wednesdayAfternoon || thursdayAfternoon || fridayAfternoon || saturdayAfternoon || sundayAfternoon) {
-    morning = false;
-    afternoon = true;
-    night = false;
-  } else if (mondayNight || tuesdayNight || wednesdayNight || thursdayNight || fridayNight || saturdayNight || sundayNight) {
-    morning = false;
-    afternoon = false;
-    night = true;
-  }
-}
 
 function drawMenu() {
   push();
@@ -690,6 +743,68 @@ function handleOption(label) {
   if (label === "Nap") {
     napping = true;
     makeFood = false;
+  }
+}
+
+function dialogueChoices() {
+  push();
+
+  // Monday Morning Chat Event
+  if (mondayMorning) {
+    if (monChatState == 20) {
+      fill(200, 220, 255);
+      noStroke();
+      rect(48, 97, 270, 100, 8);
+      rect(48, 220, 270, 100, 8);
+      fill(0);
+      text("Yes, want some?", 120, 150);
+      text("Nope, no pancakes. Maybe it's just", 60, 260);
+      text("the flowers clinging to me today.", 63, 290);
+    }
+  }
+
+  pop();
+}
+
+function dialogueHover() {
+  push();
+
+  if (mondayMorning) {
+    if (monChatState == 20) {
+      if ((mouseX > 48 && mouseX < (270 + 48)) && (mouseY > 97 && mouseY < (97 + 100))) {
+        fill(80, 100, 255);
+        noStroke();
+        rect(48, 97, 270, 100, 8);
+        fill(0);
+        text("Yes, want some?", 120, 150);
+      }
+      if ((mouseX > 48 && mouseX < (270 + 48)) && (mouseY > 220 && mouseY < (220 + 100))) {
+        fill(80, 100, 255);
+        noStroke();
+        rect(48, 220, 270, 100, 8);
+        fill(0);
+        text("Nope, no pancakes. Maybe it's just", 60, 260);
+        text("the flowers clinging to me today.", 63, 290);
+      }
+    }
+  }
+
+  pop();
+}
+
+function dayStates() {
+  if (mondayMorning || tuesdayMorning || wednesdayMorning || thursdayMorning || fridayMorning || saturdayMorning || sundayMorning) {
+    morning = true;
+    afternoon = false;
+    night = false;
+  } else if (mondayAfternoon || tuesdayAfternoon || wednesdayAfternoon || thursdayAfternoon || fridayAfternoon || saturdayAfternoon || sundayAfternoon) {
+    morning = false;
+    afternoon = true;
+    night = false;
+  } else if (mondayNight || tuesdayNight || wednesdayNight || thursdayNight || fridayNight || saturdayNight || sundayNight) {
+    morning = false;
+    afternoon = false;
+    night = true;
   }
 }
 
