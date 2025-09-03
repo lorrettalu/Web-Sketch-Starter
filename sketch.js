@@ -83,6 +83,11 @@ let wed4ChatState = 0;
 let wed5ChatState = 0;
 
 let thursChatState = 0;
+let thurs2ChatState = 0;
+let thurs3ChatState = 0;
+let thurs4ChatState = 0;
+let thurs5ChatState = 0;
+
 let friChatState = 0;
 let satChatState = 0;
 let sunChatState = 0;
@@ -416,6 +421,8 @@ function dialogueText() {
     wednesdayDialogue();
   } else if (wednesdayNight) {
     wednesdayDialogue();
+  } else if (thursdayMorning) {
+    thursdayDialogue();
   } else {
     // Default Dialogue
     change = true;
@@ -780,6 +787,40 @@ function wednesdayDialogue() {
   }
 }
 
+function thursdayDialogue() {
+  if (thursdayMorning) {
+    if (cottageClick || showMenu) {
+      showMenu = true;
+      switch (thursChatState) {
+        case 0:
+          text("I can make food or nap at home.", 40, 510);
+          text("Which one should I do?", 40, 540);
+          break;
+        case 1:
+          text("I nap.", 40, 510);
+          break;
+        case 10:
+          text("I make food.", 40, 510);
+          break;
+        case 20:
+          text("Something special happens.", 40, 510);
+          break;
+        default:
+          text("I finish my task.", 40, 510);
+          change = true;
+          event = false;
+          showMenu = false;
+      }
+    } else if (waterClick) {
+      change = true;
+      text("It is Thursday morning and I got water.", 40, 510);
+    } else if (gardenClick) {
+      change = true;
+      text("It is Thursday morning and I garden.", 40, 510);
+    }
+  }
+}
+
 // Floating Cursor Text
 function floatingCursorCottage() {
   push();
@@ -975,6 +1016,7 @@ function mousePressed() {
         wed2ChatState += 0;
         wed3ChatState += 0;
         wed4ChatState += 0;
+        thursChatState += 0;
       }
       clickedFood = false;
       
@@ -1019,6 +1061,11 @@ function mousePressed() {
       if (wednesdayNight) {
         wed4ChatState += 10;
       }
+
+      // Thursday Morning
+      if (thursdayMorning) {
+        thursChatState += 10;
+      }
   
     } else if (clickedFood == false && ((mouseX > menuOptions[1].w + 50 && mouseX < menuOptions[1].x + 78) && (mouseY > menuOptions[1].y - 7 && mouseY < menuOptions[1].y + 20))) {
       handleOption("Nap");
@@ -1046,6 +1093,9 @@ function mousePressed() {
       }
       if (wednesdayNight) {
         wed4ChatState++;
+      }
+      if (thursdayMorning) {
+        thursChatState++;
       }
     }
   } else {
@@ -1240,6 +1290,19 @@ function clicks() {
       }
     }
   }
+
+  if (thursdayMorning) {
+    if (thursChatState == 20) {
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
+        thursChatState++;
+        plop.play();
+      }
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
+        thursChatState++;
+        plop.play();
+      }
+    }
+  }
   
 
 }
@@ -1423,6 +1486,19 @@ function dialogueChoices() {
       text("Option 2", 120, 260);
     }
   }
+
+  // Thursday Morning Chat Event
+  if (thursdayMorning) {
+    if (thursChatState == 20) {
+      fill(200, 220, 255);
+      noStroke();
+      rect(48, 97, 270, 100, 8);
+      rect(48, 220, 270, 100, 8);
+      fill(0);
+      text("Option 1", 120, 150);
+      text("Option 2", 120, 260);
+    }
+  }
   
 
   pop();
@@ -1587,6 +1663,25 @@ function dialogueHover() {
 
   if (wednesdayNight) {
     if (wed4ChatState == 20) {
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
+        fill(80, 100, 255);
+        noStroke();
+        rect(48, 97, 270, 100, 8);
+        fill(0);
+        text("Option 1", 120, 150);
+      }
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
+        fill(80, 100, 255);
+        noStroke();
+        rect(48, 220, 270, 100, 8);
+        fill(0);
+        text("Option 2", 120, 260);
+      }
+    }
+  }
+
+  if (thursdayMorning) {
+    if (thursChatState == 20) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
         fill(80, 100, 255);
         noStroke();
