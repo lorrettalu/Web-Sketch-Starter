@@ -318,6 +318,7 @@ function masterFunction() {
     tuesdayMorning = true;
     textEvent = false;
   } else if (eventNum == 8) {
+    mondayNight = false;
     tuesdayAfternoon = true;
     tuesdayMorning = false;
     textEvent = false;
@@ -400,6 +401,11 @@ function dialogueText() {
     mondayDialogue();
   } else if (tuesdayMorning) {
     tuesdayDialogue();
+  } else if (tuesdayAfternoon) {
+    tuesdayDialogue();
+  } else if (tuesdayNight) {
+    tuesdayDialogue();
+    
   } else {
     // Default Dialogue
     change = true;
@@ -535,7 +541,7 @@ function mondayDialogue() {
       change = false;
       switch(mon5ChatState) {
         case 0:
-          text("It is Monday night and I garden.", 40, 510);
+          text("It is Monday night and I got water.", 40, 510);
           break;
         case 1:
           text("Which option will you choose?", 40, 510);
@@ -593,6 +599,69 @@ function tuesdayDialogue() {
           change = true;
           event = false;
       }
+    }
+  }
+  if (tuesdayAfternoon) {
+    if (cottageClick || showMenu) {
+      showMenu = true;
+      switch (tues4ChatState) {
+        case 0:
+          text("I can make food or nap at home.", 40, 510);
+          text("Which one should I do?", 40, 540);
+          break;
+        case 1:
+          text("I nap.", 40, 510);
+          break;
+        case 10:
+          text("I make food.", 40, 510);
+          break;
+        case 20:
+          text("Something special happens.", 40, 510);
+          break;
+        default:
+          text("I finish my task.", 40, 510);
+          change = true;
+          event = false;
+          showMenu = false;
+      }
+    } else if (waterClick) {
+      change = true;
+      text("It is Tuesday afternoon and I got water.", 40, 510);
+    } else if (gardenClick) {
+      change = true;
+      text("It is Tuesday afternoon and I garden.", 40, 510);
+    }
+  }
+
+  if (tuesdayNight) {
+    if (cottageClick || showMenu) {
+      showMenu = true;
+      switch (tues2ChatState) {
+        case 0:
+          text("I can make food or nap at home.", 40, 510);
+          text("Which one should I do?", 40, 540);
+          break;
+        case 1:
+          text("I nap.", 40, 510);
+          break;
+        case 2:
+          text("Something special happens.", 40, 510);
+          break;
+        case 10:
+          text("I make food.", 40, 510);
+          break;
+        default:
+          text("I finish my task.", 40, 510);
+          change = true;
+          event = false;
+          showMenu = false;
+      }
+    } else if (waterClick) {
+      change = true;
+      text("It is Tuesday afternoon and I got water.", 40, 510);
+    } else if (gardenClick) {
+      change = true;
+      text("It is Tuesday afternoon and I garden.", 40, 510);
     }
   }
 }
@@ -786,7 +855,10 @@ function mousePressed() {
         mon2ChatState += 0;
         mon4ChatState += 0;
         tuesChatState += 0;
+        tues4ChatState += 0;
+        tues2ChatState += 0;
       }
+      clickedFood = false;
       
       // Monday Morning
       if (monChatState != 20) {
@@ -804,6 +876,17 @@ function mousePressed() {
       if (tuesdayMorning) {
         tuesChatState += 10;
       }
+      
+      // Tuesday Afternoon
+      if (tuesdayAfternoon && tues4ChatState != 20) {
+        tues4ChatState += 10;
+      }
+      
+      // Tuesday Night
+      if (tuesdayNight) {
+        tues2ChatState += 10;
+      }
+  
     } else if (clickedFood == false && ((mouseX > menuOptions[1].w + 50 && mouseX < menuOptions[1].x + 78) && (mouseY > menuOptions[1].y - 7 && mouseY < menuOptions[1].y + 20))) {
       handleOption("Nap");
       monChatState++;
@@ -816,6 +899,21 @@ function mousePressed() {
       if (tuesdayMorning) {
         tuesChatState++;
       }
+      if (tuesdayAfternoon) {
+        tues4ChatState++;
+      }
+      if (tuesdayNight && tues2ChatState != 2) {
+        tues2ChatState++;
+      }
+    }
+  } else {
+    if ((mouseX < menuOptions[0].w + 17 && mouseX > menuOptions[0].x) && (mouseY > menuOptions[0].y - 7 && mouseY < menuOptions[0].y + 20)) {
+      monChatState += 0;
+      mon2ChatState += 0;
+      mon4ChatState += 0;
+      tuesChatState += 0;
+      tues4ChatState += 0;
+      tues2ChatState += 0;
     }
   }
 
@@ -845,7 +943,7 @@ function clicks() {
     }
   }
   
-  if ((mouseX > 221 && mouseX < 317) && (mouseY > 173 && mouseY < 411)) {
+  if ((mouseX > 220 && mouseX < 323) && (mouseY > 162 && mouseY < 413)) {
     if (change) {
       eventNum += 1;
       waterClick = !waterClick;
@@ -932,6 +1030,33 @@ function clicks() {
       }
     }
   }
+
+  if (tuesdayAfternoon) {
+    if (tues4ChatState == 20) {
+      if ((mouseX > 48 && mouseX < (270 + 48)) && (mouseY > 97 && mouseY < 197)) {
+        tues4ChatState += 10;
+        plop.play();
+      }
+      if ((mouseX > 48 && mouseX < (270 + 48)) && (mouseY > 220 && mouseY < (220 + 100))) {
+        tues4ChatState += 10;
+        plop.play();
+      }
+    }
+  }
+
+  if (tuesdayNight) {
+    if (tues2ChatState == 2) {
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
+        tues2ChatState++;
+        plop.play();
+      }
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
+        tues2ChatState++;
+        plop.play();
+      }
+    }
+  }
+  
 
 }
 
@@ -1034,6 +1159,7 @@ function dialogueChoices() {
       text("Option 2", 120, 260);
     }
   }
+  
 
   // Tuesday Morning Chat Event
   if (tuesdayMorning) {
@@ -1048,6 +1174,31 @@ function dialogueChoices() {
       text("Option 2", 120, 260);
     }
   }
+
+  if (tuesdayAfternoon) {
+    if (tues4ChatState == 20) {
+      fill(200, 220, 255);
+      noStroke();
+      rect(48, 97, 270, 100, 8);
+      rect(48, 220, 270, 100, 8);
+      fill(0);
+      text("Option 1", 120, 150);
+      text("Option 2", 120, 260);
+    }
+  }
+
+  if (tuesdayNight) {
+    if (tues2ChatState == 2) {
+      fill(200, 220, 255);
+      noStroke();
+      rect(48, 97, 270, 100, 8);
+      rect(48, 220, 270, 100, 8);
+      fill(0);
+      text("Option 1", 120, 150);
+      text("Option 2", 120, 260);
+    }
+  }
+  
 
   pop();
 }
@@ -1112,9 +1263,48 @@ function dialogueHover() {
       }
     }
   }
+  
 
   if (tuesdayMorning) {
     if (tues3ChatState == 1) {
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
+        fill(80, 100, 255);
+        noStroke();
+        rect(48, 97, 270, 100, 8);
+        fill(0);
+        text("Option 1", 120, 150);
+      }
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
+        fill(80, 100, 255);
+        noStroke();
+        rect(48, 220, 270, 100, 8);
+        fill(0);
+        text("Option 2", 120, 260);
+      }
+    }
+  }
+
+  if (tuesdayAfternoon) {
+    if (tues4ChatState == 20) {
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
+        fill(80, 100, 255);
+        noStroke();
+        rect(48, 97, 270, 100, 8);
+        fill(0);
+        text("Option 1", 120, 150);
+      }
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
+        fill(80, 100, 255);
+        noStroke();
+        rect(48, 220, 270, 100, 8);
+        fill(0);
+        text("Option 2", 120, 260);
+      }
+    }
+  }
+
+  if (tuesdayNight) {
+    if (tues2ChatState == 2) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
         fill(80, 100, 255);
         noStroke();

@@ -12,6 +12,8 @@ body {
   flex-direction: column; /* stack header, content, footer vertically */
   /* min-height: 100vh; fill the viewport height */
   margin: 0;
+  transform: scale(0.9);
+  transform-origin: top center;
 }
 
 #sketch {
