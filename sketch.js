@@ -101,6 +101,10 @@ let sat4ChatState = 0;
 let sat5ChatState = 0;
 
 let sunChatState = 0;
+let sun2ChatState = 0;
+let sun3ChatState = 0;
+let sun4ChatState = 0;
+let sun5ChatState = 0;
 
 // Array Variables
 let particles = []; // Array to hold all particles
@@ -449,6 +453,8 @@ function dialogueText() {
     saturdayDialogue();
   } else if (saturdayNight) {
     saturdayDialogue();
+  } else if (sundayMorning) {
+    sundayDialogue();
   } else {
     // Default Dialogue
     change = true;
@@ -1133,6 +1139,48 @@ function saturdayDialogue() {
   }
 }
 
+function sundayDialogue() {
+  if (sundayMorning) {
+    if (cottageClick || showMenu) {
+      showMenu = true;
+      switch (sunChatState) {
+        case 0:
+          text("I can make food or nap at home.", 40, 510);
+          text("Which one should I do?", 40, 540);
+          break;
+        case 1:
+          text("I nap.", 40, 510);
+          break;
+        case 10:
+          text("I make food.", 40, 510);
+          break;
+        default:
+          text("I finish my task.", 40, 510);
+          change = true;
+          event = false;
+      }
+    } else if (waterClick) {
+      change = false;
+      switch (sun2ChatState) {
+        case 0:
+          text("It is Sunday morning and I got water.", 40, 510);
+          break;
+        case 1:
+          text("Which option will you choose?", 40, 510);
+          break;
+        default:
+          text("I chose this option", 40, 510);
+          chatEvent = false;
+          change = true;
+          event = false;
+      }
+    } else if (gardenClick) {
+      change = true;
+      text("It is Sunday morning and I garden.", 40, 510);
+    }
+  }
+}
+
 // Floating Cursor Text
 function floatingCursorCottage() {
   push();
@@ -1337,6 +1385,7 @@ function mousePressed() {
         satChatState += 0;
         sat3ChatState += 0;
         sat5ChatState += 0;
+        sunChatState += 0;
       }
       clickedFood = false;
       
@@ -1426,6 +1475,11 @@ function mousePressed() {
       if (saturdayNight) {
         sat5ChatState += 10;
       }
+
+      // Sunday Morning
+      if (sundayMorning) {
+        sunChatState += 10;
+      }
   
     } else if (clickedFood == false && ((mouseX > menuOptions[1].w + 50 && mouseX < menuOptions[1].x + 78) && (mouseY > menuOptions[1].y - 7 && mouseY < menuOptions[1].y + 20))) {
       handleOption("Nap");
@@ -1480,6 +1534,9 @@ function mousePressed() {
       }
       if (saturdayNight) {
         sat5ChatState++;
+      }
+      if (sundayMorning) {
+        sunChatState++;
       }
     }
   } else {
@@ -1540,6 +1597,9 @@ function clicks() {
       }
       if (saturdayAfternoon) {
         sat4ChatState++;
+      }
+      if (sundayMorning) {
+        sun2ChatState++;
       }
     }
   }
@@ -1799,6 +1859,19 @@ function clicks() {
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         sat5ChatState++;
+        plop.play();
+      }
+    }
+  }
+
+  if (sundayMorning) {
+    if (sun2ChatState == 1) {
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
+        sun2ChatState++;
+        plop.play();
+      }
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
+        sun2ChatState++;
         plop.play();
       }
     }
@@ -2094,6 +2167,19 @@ function dialogueChoices() {
   // Saturday Night Chat Event
   if (saturdayNight) {
     if (sat5ChatState == 20) {
+      fill(200, 220, 255);
+      noStroke();
+      rect(48, 97, 270, 100, 8);
+      rect(48, 220, 270, 100, 8);
+      fill(0);
+      text("Option 1", 120, 150);
+      text("Option 2", 120, 260);
+    }
+  }
+
+  // Sunday Morning Chat Event
+  if (sundayMorning) {
+    if (sun2ChatState == 1) {
       fill(200, 220, 255);
       noStroke();
       rect(48, 97, 270, 100, 8);
@@ -2438,6 +2524,25 @@ function dialogueHover() {
 
   if (saturdayNight) {
     if (sat5ChatState == 20) {
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
+        fill(80, 100, 255);
+        noStroke();
+        rect(48, 97, 270, 100, 8);
+        fill(0);
+        text("Option 1", 120, 150);
+      }
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
+        fill(80, 100, 255);
+        noStroke();
+        rect(48, 220, 270, 100, 8);
+        fill(0);
+        text("Option 2", 120, 260);
+      }
+    }
+  }
+
+  if (sundayMorning) {
+    if (sun2ChatState == 1) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
         fill(80, 100, 255);
         noStroke();
