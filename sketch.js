@@ -557,31 +557,46 @@ function mondayDialogue() {
           text("Which one should I do?", 40, 540);
           break;
         case 1:
-          text("I nap.", 40, 510);
+          text("I will take a tiny sleep.", 40, 510);
           break;
         case 10:
-          text("I make food.", 40, 510);
+          text("I'll hum a little tune while I cook.", 40, 510);
           break;
         default:
-          text("I finish my task.", 40, 510);
+          text("The fairy finished her task, and on the", 40, 510);
+          text("day went.", 40, 540);
           change = true;
           event = false;
       }
     } else if (waterClick) {
       change = true;
-      text("It is Monday afternoon and I got water.", 40, 510);
+      text("Ah, I love how the water cools my hands.", 40, 510);
       
     } else if (gardenClick) {
       change = false;
       switch(mon3ChatState) {
         case 0:
-          text("It is Monday afternoon and I garden.", 40, 510);
+          text("Looks like my carrots are ready!", 40, 510);
           break;
         case 1:
-          text("Which option will you choose?", 40, 510);
+          text("Mmm, are those carrots? Can I have", 40, 510);
+          text("some?", 40, 540);
+          break;
+        case 2:
+          text("Yes! You're the best, Miss Fairy!", 40, 510);
+          break;
+        case 3:
+          text("You won't regret this, Miss Fairy. I assure", 40, 510);
+          text("you, I have the best seed collection in", 40, 540);
+          text("the world! I'll be sure to give you some.", 40, 570);
+          break;
+        case 11:
+          text("Aww. That makes sense, they are your", 40, 510);
+          text("carrots after all.", 40, 540);
           break;
         default:
-          text("I chose this option", 40, 510);
+          text("Well, good luck with your garden, Miss", 40, 510);
+          text("Fairy!", 40, 540);
           chatEvent = false;
           change = true;
           event = false;
@@ -1762,7 +1777,7 @@ function clicks() {
         plop.play();
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
-        mon3ChatState++;
+        mon3ChatState += 10;
         plop.play();
       }
     }
@@ -2099,8 +2114,8 @@ function dialogueChoices() {
       rect(48, 97, 270, 100, 8);
       rect(48, 220, 270, 100, 8);
       fill(0);
-      text("Option 1", 120, 150);
-      text("Option 2", 120, 260);
+      text("Of course, you can have some!", 73, 150);
+      text("Nope, they're for me.", 110, 270);
     }
   }
 
@@ -2388,14 +2403,14 @@ function dialogueHover() {
         noStroke();
         rect(48, 97, 270, 100, 8);
         fill(0);
-        text("Option 1", 120, 150);
+        text("Of course, you can have some!", 73, 150);
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("Option 2", 120, 260);
+        text("Nope, they're for me.", 110, 270);
       }
     }
   }
