@@ -510,42 +510,42 @@ function mondayDialogue() {
           text("I'll just close my eyes... only for a minute.", 40, 510);
           break;
         case 20:
-          text("Squirrel: That smell... is it pancakes?", 40, 510);
-          text("It's pancakes, right?", 40, 540);
+          text("That smell... is it pancakes? It's pancakes,", 40, 510);
+          text("right?", 40, 540);
           break;
         case 10:
           text("As I prepare breakfast, I see a squirrel", 40, 510);
           text("approach me!", 40, 540);
           break;
         case 30:
-          text("Squirrel: Pancakes?! For me?! You're the", 40, 510);
-          text("best!", 40, 540);
+          text("Pancakes?! For me?! You're the best!", 40, 510);
           break;
         case 40:
           text("The squirrel happily munches on the", 40, 510);
           text("pancakes.", 40, 540);
           break;
         case 50:
-          text("Squirrel: This is so delicious! I'm", 40, 510);
-          text("definitely coming back!!", 40, 540);
+          text("This is so delicious! I'm definitely", 40, 510);
+          text("coming back!!", 40, 540);
           break;
         case 21:
-          text("Squirrel: Flowers smell like pancakes now?", 40, 510);
-          text("What a crazy kind of magic!", 40, 540);
+          text("Flowers smell like pancakes now? What a", 40, 510);
+          text("crazy kind of magic!", 40, 540);
           break;
         default:
-          text("Squirrel: Well, thanks for talking to me.", 40, 510);
-          text("See you soon, fairy friend!", 40, 540);
+          text("Well, thanks for talking to me. See you", 40, 510);
+          text("soon, fairy friend!", 40, 540);
           change = true;
           event = false;
           showMenu = false;
       }
     } else if (waterClick) {
       change = true;
-      text("It is Monday morning and I got water.", 40, 510);
+      text("Every drop of water counts!", 40, 510);
     } else if (gardenClick) {
       change = true;
-      text("It is Monday morning and I garden.", 40, 510);
+      text("These sprouts look so proud of", 40, 510);
+      text("themselves.", 40, 540);
     }
   }
   if (mondayAfternoon) {
