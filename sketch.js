@@ -507,7 +507,7 @@ function mondayDialogue() {
           text("Which one should I do?", 40, 540);
           break;
         case 1:
-          text("I nap.", 40, 510);
+          text("I'll just close my eyes... only for a minute.", 40, 510);
           break;
         case 20:
           text("Squirrel: That smell... is it pancakes?", 40, 510);
@@ -517,8 +517,25 @@ function mondayDialogue() {
           text("As I prepare breakfast, I see a squirrel", 40, 510);
           text("approach me!", 40, 540);
           break;
+        case 30:
+          text("Squirrel: Pancakes?! For me?! You're the", 40, 510);
+          text("best!", 40, 540);
+          break;
+        case 40:
+          text("The squirrel happily munches on the", 40, 510);
+          text("pancakes.", 40, 540);
+          break;
+        case 50:
+          text("Squirrel: This is so delicious! I'm", 40, 510);
+          text("definitely coming back!!", 40, 540);
+          break;
+        case 21:
+          text("Squirrel: Flowers smell like pancakes now?", 40, 510);
+          text("What a crazy kind of magic!", 40, 540);
+          break;
         default:
-          text("I finish my task.", 40, 510);
+          text("Squirrel: Well, thanks for talking to me.", 40, 510);
+          text("See you soon, fairy friend!", 40, 540);
           change = true;
           event = false;
           showMenu = false;
@@ -1732,7 +1749,7 @@ function clicks() {
         plop.play();
       }
       if ((mouseX > 48 && mouseX < (270 + 48)) && (mouseY > 220 && mouseY < (220 + 100))) {
-        monChatState += 10;
+        monChatState++;
         plop.play();
       }
     }
