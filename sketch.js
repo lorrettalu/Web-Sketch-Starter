@@ -511,7 +511,7 @@ function mondayDialogue() {
           break;
         case 20:
           text("That smell... is it pancakes? It's pancakes,", 40, 510);
-          text("right?", 40, 540);
+          text("right?", 40, 540); // squirrel
           break;
         case 10:
           text("As I prepare breakfast, I see a squirrel", 40, 510);
@@ -584,7 +584,7 @@ function mondayDialogue() {
           break;
         case 1:
           text("Mmm, are those carrots? Can I have", 40, 510);
-          text("some?", 40, 540);
+          text("some?", 40, 540); // bunny
           break;
         case 2:
           text("Yes! You're the best, Miss Fairy!", 40, 510);
@@ -636,7 +636,7 @@ function mondayDialogue() {
           text("by accident.", 40, 540);
           break;
         case 1:
-          text("Be careful with that.", 40, 510);
+          text("Be careful with that.", 40, 510); // fox
           break;
         case 2:
           text("Maybe.", 40, 510);
@@ -683,8 +683,8 @@ function tuesdayDialogue() {
       }
     } else if (waterClick) {
       change = true;
-      text("There's extra water in my bucket because of the", 40, 510);
-      text("rain. Free water!", 40, 540);
+      text("There's extra water in my bucket because", 40, 510);
+      text("of the rain. Free water!", 40, 540);
     } else if (gardenClick) {
       change = false;
       switch(tues3ChatState) {
@@ -728,26 +728,34 @@ function tuesdayDialogue() {
           text("Which one should I do?", 40, 540);
           break;
         case 1:
-          text("I nap.", 40, 510);
+          text("Time for some sweet dreams.", 40, 510);
           break;
         case 10:
-          text("I make food.", 40, 510);
+          text("I'll make a sandwich today!", 40, 510);
           break;
         case 20:
-          text("Something special happens.", 40, 510);
+          text("Wow, that sandwich is bigger than", 40, 510);
+          text("my head.", 40, 540); // bunny
+          break;
+        case 30:
+          text("Don't mind if I do!", 40, 510);
+          break;
+        case 21:
+          text("Fair enough.", 40, 510);
           break;
         default:
-          text("I finish my task.", 40, 510);
+          text("The sandwich was gone in an instant.", 40, 510);
           change = true;
           event = false;
           showMenu = false;
       }
     } else if (waterClick) {
       change = true;
-      text("It is Tuesday afternoon and I got water.", 40, 510);
+      text("The stream always sings the same song.", 40, 510);
+      text("It's comforting.", 40, 540);
     } else if (gardenClick) {
       change = true;
-      text("It is Tuesday afternoon and I garden.", 40, 510);
+      text("My lovely little flowers are growing!", 40, 510);
     }
   }
 
@@ -1794,7 +1802,7 @@ function clicks() {
     if (monChatState == 20) {
       if ((mouseX > 48 && mouseX < (270 + 48)) && (mouseY > 97 && mouseY < 197)) {
         monChatState += 10;
-        plop.play();
+        chime.play();
       }
       if ((mouseX > 48 && mouseX < (270 + 48)) && (mouseY > 220 && mouseY < (220 + 100))) {
         monChatState++;
@@ -1807,7 +1815,7 @@ function clicks() {
     if (mon3ChatState == 1) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
         mon3ChatState++;
-        plop.play();
+        chime.play();
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         mon3ChatState += 10;
@@ -1850,7 +1858,7 @@ function clicks() {
         plop.play();
       }
       if ((mouseX > 48 && mouseX < (270 + 48)) && (mouseY > 220 && mouseY < (220 + 100))) {
-        tues4ChatState += 10;
+        tues4ChatState += 1;
         plop.play();
       }
     }
@@ -2191,8 +2199,8 @@ function dialogueChoices() {
       rect(48, 97, 270, 100, 8);
       rect(48, 220, 270, 100, 8);
       fill(0);
-      text("Option 1", 120, 150);
-      text("Option 2", 120, 260);
+      text("You can help me finish it!", 80, 150);
+      text("That's the point.", 120, 280);
     }
   }
 
@@ -2497,14 +2505,14 @@ function dialogueHover() {
         noStroke();
         rect(48, 97, 270, 100, 8);
         fill(0);
-        text("Option 1", 120, 150);
+        text("You can help me finish it!", 80, 150);
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("Option 2", 120, 260);
+        text("That's the point.", 120, 280);
       }
     }
   }
