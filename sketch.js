@@ -813,13 +813,14 @@ function wednesdayDialogue() {
           text("Which one should I do?", 40, 540);
           break;
         case 1:
-          text("I nap.", 40, 510);
+          text("I'm gonna sleep in, as good as a bear.", 40, 510);
           break;
         case 10:
-          text("I make food.", 40, 510);
+          text("Gonna start my day right with breakfast!", 40, 510);
           break;
         default:
-          text("I finish my task.", 40, 510);
+          text("The fairy finished her task and the", 40, 510);
+          text("day went on.", 40, 540);
           change = true;
           event = false;
       }
@@ -827,20 +828,36 @@ function wednesdayDialogue() {
       change = false;
       switch (wed2ChatState) {
         case 0:
-          text("It is Wednesday morning and I got water.", 40, 510);
+          text("I'll head to the stream and fetch some", 40, 510);
+          text("water to be prepared for the day.", 40, 540);
           break;
         case 1:
-          text("Which option will you choose?", 40, 510);
+          text("Careful, if you lean in too far, the", 40, 510);
+          text("fish can steal your reflection.", 40, 540); // squirrel
+          break;
+        case 2:
+          text("Probably trade it in for some pancakes", 40, 510);
+          text("Fish love yummy things, you know.", 40, 540);
+          break;
+        case 3:
+          text("...Do they really?", 40, 510); // fairy
+          break;
+        case 4:
+          text("Well...they might. Better safe than sorry!", 40, 510);
+          break;
+        case 11:
+          text("I'm not! You better not try it though.", 40, 510);
           break;
         default:
-          text("I chose this option", 40, 510);
+          text("The squirrel gave a cheeky grin and ran", 40, 510);
+          text("off into the woods.", 40, 540);
           chatEvent = false;
           change = true;
           event = false;
       }
     } else if (gardenClick) {
       change = true;
-      text("It is Wednesday morning and I garden.", 40, 510);
+      text("Now, you guys can grow as tall as me!", 40, 510);
     }
   }
   if (wednesdayAfternoon) {
@@ -1765,7 +1782,7 @@ function clicks() {
       if (mondayNight && mon5ChatState != 1) {
         mon5ChatState++;
       }
-      if (wednesdayMorning) {
+      if (wednesdayMorning && wed2ChatState != 1) {
         wed2ChatState++;
       }
       if (thursdayAfternoon) {
@@ -1892,11 +1909,11 @@ function clicks() {
   if (wednesdayMorning) {
     if (wed2ChatState == 1) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
-        tues2ChatState++;
-        plop.play();
+        wed2ChatState++;
+        chime.play();
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
-        tues2ChatState++;
+        wed2ChatState += 10;
         plop.play();
       }
     }
@@ -2237,8 +2254,9 @@ function dialogueChoices() {
       rect(48, 97, 270, 100, 8);
       rect(48, 220, 270, 100, 8);
       fill(0);
-      text("Option 1", 120, 150);
-      text("Option 2", 120, 260);
+      text("My reflection? What would they", 80, 140);
+      text("do with it?", 140, 170);
+      text("You're kidding.", 130, 270);
     }
   }
 
@@ -2555,14 +2573,15 @@ function dialogueHover() {
         noStroke();
         rect(48, 97, 270, 100, 8);
         fill(0);
-        text("Option 1", 120, 150);
+        text("My reflection? What would they", 80, 140);
+        text("do with it?", 140, 170);
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("Option 2", 120, 260);
+        text("You're kidding.", 130, 270);
       }
     }
   }
