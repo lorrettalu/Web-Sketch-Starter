@@ -106,6 +106,8 @@ let sun3ChatState = 0;
 let sun4ChatState = 0;
 let sun5ChatState = 0;
 
+let foxCount = 0;
+
 // Array Variables
 let particles = []; // Array to hold all particles
 let gameState = ["intro", "monday", "tuesday", "wednesday", "thursday", "friday", 
@@ -667,31 +669,50 @@ function tuesdayDialogue() {
           text("Which one should I do?", 40, 540);
           break;
         case 1:
-          text("I nap.", 40, 510);
+          text("I love sleeping to the sound of rain.", 40, 510);
           break;
         case 10:
-          text("I make food.", 40, 510);
+          text("Soup and rain sounds so pleasant!", 40, 510);
           break;
         default:
-          text("I finish my task.", 40, 510);
+          text("The fairy finished her task, and the day", 40, 510);
+          text("went on.", 40, 540);
           change = true;
           event = false;
           showMenu = false;
       }
     } else if (waterClick) {
       change = true;
-      text("It is Tuesday morning and I got water.", 40, 510);
+      text("There's extra water in my bucket because of the", 40, 510);
+      text("rain. Free water!", 40, 540);
     } else if (gardenClick) {
       change = false;
       switch(tues3ChatState) {
         case 0:
-          text("It is Tuesday morning and I garden.", 40, 510);
+          text("I love the smell of the earth when it rains.", 40, 510);
           break;
         case 1:
-          text("Which option will you choose?", 40, 510);
+          text("Mmm, your flowers smell super nice with", 40, 510);
+          text("the rain today.", 40, 540); // bunny;
+          break;
+        case 2:
+          text("Yes, like the flowers just took a bath!", 40, 510); // bunny;
+          break;
+        case 3:
+          text("Mmm, smells like pancakes...", 40, 510); // squirrel
+          break;
+        case 4:
+          text("Where'd you come from?! And you're", 40, 510);
+          text("always thinking of food.", 40, 540); // bunny
+          break;
+        case 5:
+          text("...Is that bad?", 40, 510); // squirrel
+          break;
+        case 11:
+          text("We're on the same wavelength!", 40, 510); // bunny
           break;
         default:
-          text("I chose this option", 40, 510);
+          text("Haha, let's water the flowers together!", 40, 510);
           chatEvent = false;
           change = true;
           event = false;
@@ -1756,7 +1777,7 @@ function clicks() {
       if (mondayAfternoon && mon3ChatState != 1) {
         mon3ChatState++;
       }
-      if (tuesdayMorning) {
+      if (tuesdayMorning && tues3ChatState != 1) {
         tues3ChatState++;
       }
       if (thursdayNight) {
@@ -1799,6 +1820,7 @@ function clicks() {
     if (mon5ChatState == 1) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
         mon5ChatState++;
+        foxCount++;
         chime.play();
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
@@ -1811,12 +1833,12 @@ function clicks() {
   if (tuesdayMorning) {
     if (tues3ChatState == 1) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
-        tues3ChatState++;
+        tues3ChatState += 10;
         plop.play();
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         tues3ChatState++;
-        plop.play();
+        chime.play();
       }
     }
   }
@@ -2156,8 +2178,8 @@ function dialogueChoices() {
       rect(48, 97, 270, 100, 8);
       rect(48, 220, 270, 100, 8);
       fill(0);
-      text("Option 1", 120, 150);
-      text("Option 2", 120, 260);
+      text("I was just thinking the same thing!", 63, 150);
+      text("Thank you, Mr. Bunny!", 100, 270);
     }
   }
 
@@ -2456,14 +2478,14 @@ function dialogueHover() {
         noStroke();
         rect(48, 97, 270, 100, 8);
         fill(0);
-        text("Option 1", 120, 150);
+        text("I was just thinking the same thing!", 63, 150);
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("Option 2", 120, 260);
+        text("Thank you, Mr. Bunny!", 100, 270);
       }
     }
   }
