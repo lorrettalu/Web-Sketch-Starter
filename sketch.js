@@ -118,6 +118,8 @@ let hasPlayed = false;
 let forestSound;
 let forestNightSound;
 let forestRainSound;
+let twitter;
+let unbound;
 
 // Troubleshooting
 let osc;
@@ -168,6 +170,8 @@ function preload() {
   forestSound = loadSound("assets/forest.mp3");
   forestNightSound = loadSound("assets/forest-night.mp3");
   forestRainSound = loadSound("assets/forest-rain.mp3");
+  twitter = loadSound("assets/twitter.mp3");
+  unbound = createAudio("assets/unbound.mp3");
 }
 
 function setup() {
@@ -177,12 +181,6 @@ function setup() {
   
   // Ambience
   timeSound();
-
-  // Website: Sound
-  if (typeof masterVolume === 'function') masterVolume(masterLevel);
-
-  // MAT111WN
-  circleColor = color(255, 165, 0, 200);
   
   // Buttons
   
@@ -528,13 +526,17 @@ function mondayDialogue() {
           text("This is so delicious! I'm definitely", 40, 510);
           text("coming back!!", 40, 540);
           break;
+        case 60:
+          text("Well, thanks for talking to me. See you", 40, 510);
+          text("soon, fairy friend!", 40, 540);
+          break;
         case 21:
           text("Flowers smell like pancakes now? What a", 40, 510);
           text("crazy kind of magic!", 40, 540);
           break;
         default:
-          text("Well, thanks for talking to me. See you", 40, 510);
-          text("soon, fairy friend!", 40, 540);
+          text("The fairy finished her task and the day", 40, 510);
+          text("went on.", 40, 540);
           change = true;
           event = false;
           showMenu = false;
@@ -563,8 +565,8 @@ function mondayDialogue() {
           text("I'll hum a little tune while I cook.", 40, 510);
           break;
         default:
-          text("The fairy finished her task, and on the", 40, 510);
-          text("day went.", 40, 540);
+          text("The fairy finished her task, and the day", 40, 510);
+          text("went on.", 40, 540);
           change = true;
           event = false;
       }
@@ -612,13 +614,15 @@ function mondayDialogue() {
           text("Which one should I do?", 40, 540);
           break;
         case 1:
-          text("I nap.", 40, 510);
+          text("The pillow's calling my name again.", 40, 510);
           break;
         case 10:
-          text("I make food.", 40, 510);
+          text("Maybe I'll make a warm soup to", 40, 510);
+          text("end the day off with.", 40, 540);
           break;
         default:
-          text("I finish my task.", 40, 510);
+          text("The fairy finished her task, and the day", 40, 510);
+          text("went on.", 40, 540);
           change = true;
           event = false;
       }
@@ -626,13 +630,21 @@ function mondayDialogue() {
       change = false;
       switch(mon5ChatState) {
         case 0:
-          text("It is Monday night and I got water.", 40, 510);
+          text("Oof, I put a lot of water in this bucket", 40, 510);
+          text("by accident.", 40, 540);
           break;
         case 1:
-          text("Which option will you choose?", 40, 510);
+          text("Be careful with that.", 40, 510);
+          break;
+        case 2:
+          text("Maybe.", 40, 510);
+          break;
+        case 11:
+          text("If you say so.", 40, 510);
           break;
         default:
-          text("I chose this option", 40, 510);
+          text("After making sure you get the water", 40, 510);
+          text("inside, the fox disappears into the night.", 40, 540);
           chatEvent = false;
           change = true;
           event = false;
@@ -640,7 +652,7 @@ function mondayDialogue() {
       
     } else if (gardenClick) {
       change = true;
-      text("It is Monday night and I garden.", 40, 510);
+      text("Weeds are very evil.", 40, 510);
     }
   }
 }
@@ -1710,7 +1722,7 @@ function clicks() {
       eventNum = eventNum;
       waterClick = waterClick;
       event = event;
-      if (mondayNight) {
+      if (mondayNight && mon5ChatState != 1) {
         mon5ChatState++;
       }
       if (wednesdayMorning) {
@@ -1741,7 +1753,7 @@ function clicks() {
       eventNum = eventNum;
       gardenClick = gardenClick;
       event = event;
-      if (mondayAfternoon) {
+      if (mondayAfternoon && mon3ChatState != 1) {
         mon3ChatState++;
       }
       if (tuesdayMorning) {
@@ -1787,10 +1799,10 @@ function clicks() {
     if (mon5ChatState == 1) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
         mon5ChatState++;
-        plop.play();
+        chime.play();
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
-        mon5ChatState++;
+        mon5ChatState += 10;
         plop.play();
       }
     }
@@ -2128,8 +2140,9 @@ function dialogueChoices() {
       rect(48, 97, 270, 100, 8);
       rect(48, 220, 270, 100, 8);
       fill(0);
-      text("Option 1", 120, 150);
-      text("Option 2", 120, 260);
+      text("Then I'll trust that you'll help me.", 70, 150);
+      text("I'm pretty strong, you know. I'll", 75, 260);
+      text("manage just fine on my own!", 76, 290);
     }
   }
   
@@ -2422,14 +2435,15 @@ function dialogueHover() {
         noStroke();
         rect(48, 97, 270, 100, 8);
         fill(0);
-        text("Option 1", 120, 150);
+        text("Then I'll trust that you'll help me.", 70, 150);
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("Option 2", 120, 260);
+        text("I'm pretty strong, you know. I'll", 75, 260);
+        text("manage just fine on my own!", 76, 290);
       }
     }
   }
@@ -2811,6 +2825,11 @@ function timeSound() {
   }
     */
   // forestNightSound.play();
+  // twitter.play();
+  // twitter.loop();
+  unbound.play();
+  unbound.loop();
+  unbound.volume(0.5);
 }
 
 // Asset Hovers
