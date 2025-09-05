@@ -744,7 +744,7 @@ function tuesdayDialogue() {
           text("Fair enough.", 40, 510);
           break;
         default:
-          text("The sandwich was gone in an instant.", 40, 510);
+          text("The day went on.", 40, 510);
           change = true;
           event = false;
           showMenu = false;
@@ -768,26 +768,37 @@ function tuesdayDialogue() {
           text("Which one should I do?", 40, 540);
           break;
         case 1:
-          text("I nap.", 40, 510);
+          text("I'll sleep a little early tonight.", 40, 510);
           break;
         case 2:
-          text("Something special happens.", 40, 510);
+          text("Sleeping early?", 40, 510); // fox
+          break;
+        case 3:
+          text("...Can't argue with that.", 40, 510); // fox
+          break;
+        case 4:
+          text("...", 40, 510); // fairy
+          break;
+        case 12:
+          text("Then rest well.", 40, 510);
           break;
         case 10:
-          text("I make food.", 40, 510);
+          text("I'll have some hot curry under", 40, 510);
+          text("the moon.", 40, 540);
           break;
         default:
-          text("I finish my task.", 40, 510);
+          text("The night changed into day.", 40, 510);
           change = true;
           event = false;
           showMenu = false;
       }
     } else if (waterClick) {
       change = true;
-      text("It is Tuesday afternoon and I got water.", 40, 510);
+      text("I wonder if I woke the fishies up.", 40, 510);
     } else if (gardenClick) {
       change = true;
-      text("It is Tuesday afternoon and I garden.", 40, 510);
+      text("The flowers change so much during the", 40, 510);
+      text("day.", 40, 540);
     }
   }
 }
@@ -1871,8 +1882,9 @@ function clicks() {
         plop.play();
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
-        tues2ChatState++;
-        plop.play();
+        tues2ChatState += 10;
+        foxCount++;
+        chime.play();
       }
     }
   }
@@ -2212,8 +2224,8 @@ function dialogueChoices() {
       rect(48, 97, 270, 100, 8);
       rect(48, 220, 270, 100, 8);
       fill(0);
-      text("Option 1", 120, 150);
-      text("Option 2", 120, 260);
+      text("I need my beauty sleep.", 95, 150);
+      text("I'm not feeling well.", 110, 270);
     }
   }
 
@@ -2524,14 +2536,14 @@ function dialogueHover() {
         noStroke();
         rect(48, 97, 270, 100, 8);
         fill(0);
-        text("Option 1", 120, 150);
+        text("I need my beauty sleep.", 95, 150);
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("Option 2", 120, 260);
+        text("I'm not feeling well.", 110, 270);
       }
     }
   }
