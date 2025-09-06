@@ -1225,26 +1225,37 @@ function fridayDialogue() {
           text("Which one should I do?", 40, 540);
           break;
         case 1:
-          text("I nap.", 40, 510);
+          text("I'll sleep early. Maybe I'll catch a nice", 40, 510);
+          text("dream!", 40, 540); // fairy
           break;
         case 10:
-          text("I make food.", 40, 510);
+          text("Ooh, I hope this isn't overcooked!", 40, 510); // fairy
           break;
         case 2:
-          text("Something special happens.", 40, 510);
+          text("...I'm a dreamcatcher. I can help.", 40, 510); // fox
+          break;
+        case 12:
+          text("You're a talented fairy, it seems.", 40, 510); // fox
+          break;
+        case 3:
+          text("Then, of course. I hope you enjoy your", 40, 510);
+          text("dream. Good night.", 40, 540); // fox
           break;
         default:
-          text("I finish my task.", 40, 510);
+          text("The fairy dreamt a dream filled with", 40, 510);
+          text("comfort and magic.", 40, 540);
           change = true;
           event = false;
           showMenu = false;
       }
     } else if (waterClick) {
       change = true;
-      text("It is Friday night and I got water.", 40, 510);
+      text("I'd love to learn a spell to control water one", 40, 510);
+      text("day, so I don't have to collect water with a bucket", 40, 540);
+      text("every time.", 40, 570);
     } else if (gardenClick) {
       change = true;
-      text("It is Friday night and I garden.", 40, 510);
+      text("I love the color my garden brings.", 40, 510);
     }
   }
 }
@@ -1751,7 +1762,7 @@ function mousePressed() {
       }
 
       // Friday Night
-      if (fridayNight) {
+      if (fridayNight && fri3ChatState != 2) {
         fri3ChatState += 10;
       }
 
@@ -1827,7 +1838,7 @@ function mousePressed() {
       if (fridayAfternoon && fri2ChatState != 20) {
         fri2ChatState++;
       }
-      if (fridayNight) {
+      if (fridayNight && fri3ChatState != 2) {
         fri3ChatState++;
       }
       if (saturdayMorning) {
@@ -2131,12 +2142,12 @@ function clicks() {
   if (fridayNight) {
     if (fri3ChatState == 2) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
-        fri3ChatState++;
+        fri3ChatState += 10;
         plop.play();
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fri3ChatState++;
-        plop.play();
+        chime.play();
       }
     }
   }
@@ -2484,8 +2495,9 @@ function dialogueChoices() {
       rect(48, 97, 270, 100, 8);
       rect(48, 220, 270, 100, 8);
       fill(0);
-      text("Option 1", 120, 150);
-      text("Option 2", 120, 260);
+      text("No thanks, I have a dreamcatching", 63, 140);
+      text("spell!", 160, 170);
+      text("Really? That'd be very nice!", 90, 270);
     }
   }
 
@@ -2859,14 +2871,15 @@ function dialogueHover() {
         noStroke();
         rect(48, 97, 270, 100, 8);
         fill(0);
-        text("Option 1", 120, 150);
+        text("No thanks, I have a dreamcatching", 63, 140);
+        text("spell!", 160, 170);
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("Option 2", 120, 260);
+        text("Really? That'd be very nice!", 90, 270);
       }
     }
   }
