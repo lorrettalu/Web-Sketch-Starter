@@ -1180,26 +1180,40 @@ function fridayDialogue() {
           text("Which one should I do?", 40, 540);
           break;
         case 1:
-          text("I nap.", 40, 510);
+          text("I want to feel as cozy as a bunny!", 40, 510);
           break;
         case 10:
-          text("I make food.", 40, 510);
+          text("I'll probably make some salad.", 40, 510); // fairy
           break;
         case 20:
-          text("Something special happens.", 40, 510);
+          text("Ooh, a salad would be very yummy!", 40, 510);
+          text("I found some super yummy lettuce the", 40, 540);
+          text("other day. Do you want some?", 40, 570); // bunny
+          break;
+        case 21:
+          text("If you say so. You're missing out!", 40, 510); // bunny
+          break;
+        case 30:
+          text("Great! I'll go get them. Stay right here!", 40, 510);
+          text("I'll be right back.", 40, 540); // bunny
+          break;
+        case 40:
+          text("The bunny came back with lots of lettuces", 40, 510);
+          text("and the salad was a huge success!", 40, 540);
           break;
         default:
-          text("I finish my task.", 40, 510);
+          text("After awhile, the sun began to set.", 40, 510);
           change = true;
           event = false;
           showMenu = false;
       }
     } else if (waterClick) {
       change = true;
-      text("It is Friday afternoon and I got water.", 40, 510);
+      text("Sitting and listening to water is really", 40, 510);
+      text("relaxing.", 40, 540);
     } else if (gardenClick) {
       change = true;
-      text("It is Friday afternoon and I garden.", 40, 510);
+      text("The soil feels ever so soft!", 40, 510);
     }
   }
   if (fridayNight) {
@@ -1732,7 +1746,7 @@ function mousePressed() {
       }
 
       // Friday Afternoon
-      if (fridayAfternoon) {
+      if (fridayAfternoon && fri2ChatState != 20) {
         fri2ChatState += 10;
       }
 
@@ -1810,7 +1824,7 @@ function mousePressed() {
       if (fridayMorning && friChatState != 2) {
         friChatState++;
       }
-      if (fridayAfternoon) {
+      if (fridayAfternoon && fri2ChatState != 20) {
         fri2ChatState++;
       }
       if (fridayNight) {
@@ -2108,8 +2122,8 @@ function clicks() {
         plop.play();
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
-        fri2ChatState++;
-        plop.play();
+        fri2ChatState += 10;
+        chime.play();
       }
     }
   }
@@ -2455,8 +2469,10 @@ function dialogueChoices() {
       rect(48, 97, 270, 100, 8);
       rect(48, 220, 270, 100, 8);
       fill(0);
-      text("Option 1", 120, 150);
-      text("Option 2", 120, 260);
+      text("No thanks, I like using my own", 80, 140);
+      text("recipe.", 150, 170);
+      text("Ooh, yes please! I'd love to try", 80, 260);
+      text("some.", 150, 290);
     }
   }
 
@@ -2790,8 +2806,8 @@ function dialogueHover() {
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("Sometimes, I wonder if all this effort", 80, 260);
-        text("really matters.", 110, 290);
+        text("Sometimes, I wonder if all this", 80, 260);
+        text("effort really matters.", 110, 290);
       }
     }
   }
@@ -2822,14 +2838,16 @@ function dialogueHover() {
         noStroke();
         rect(48, 97, 270, 100, 8);
         fill(0);
-        text("Option 1", 120, 150);
+        text("No thanks, I like using my own", 80, 140);
+        text("recipe.", 150, 170);
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("Option 2", 120, 260);
+        text("Ooh, yes please! I'd love to try", 80, 260);
+        text("some.", 150, 290);
       }
     }
   }
