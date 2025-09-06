@@ -1079,7 +1079,7 @@ function thursdayDialogue() {
       }
     } else if (waterClick) {
       change = true;
-      text("The fish are especially frisky today.", 40, 510);
+      text("The fish are especially frisky tonight.", 40, 510);
     } else if (gardenClick) {
       change = false;
       switch (thurs5ChatState) {
@@ -1124,26 +1124,51 @@ function fridayDialogue() {
           text("Which one should I do?", 40, 540);
           break;
         case 1:
-          text("I nap.", 40, 510);
+          text("I'll sleep in today. I'm more sleepy than", 40, 510);
+          text("usual.", 40, 540); // fairy
           break;
         case 10:
-          text("I make food.", 40, 510);
+          text("The pan always makes such cheerful", 40, 510);
+          text("little sizzles", 40, 540);
           break;
         case 2:
-          text("Something special happens.", 40, 510);
+          text("Hey, hey! You're still in bed. The sun's", 40, 510);
+          text("been up forever. We have to go play", 40, 540);
+          text("together!", 40, 570); // squirrel
+          break;
+        case 12:
+          text("But I don't want to wait! ...Fine, I'll", 40, 510);
+          text("wait. But we'll play after!", 40, 540); // squirrel
+          break;
+        case 3:
+          text("Okay, just five more minutes and by", 40, 510);
+          text("then, we should both be out the door!", 40, 540); // squirrel
+          break;
+        case 4:
+          text("Well, that's not much time now, is it?", 40, 510); // fairy
+          break;
+        case 5:
+          text("It's enough time for me!", 40, 510); // squirrel
+          break;
+        case 6:
+          text("Oh, alright!", 40, 510); // fairy
           break;
         default:
-          text("I finish my task.", 40, 510);
+          text("The fairy and the squirrel have a short", 40, 510);
+          text("adventure together outside and find", 40, 540);
+          text("some maple syrup together!", 40, 570);
           change = true;
           event = false;
           showMenu = false;
       }
     } else if (waterClick) {
       change = true;
-      text("It is Friday morning and I got water.", 40, 510);
+      text("Gotta be careful...I have to make sure I", 40, 510);
+      text("don't get wet!", 40, 540);
     } else if (gardenClick) {
       change = true;
-      text("It is Friday morning and I garden.", 40, 510);
+      text("Gardening feels like taking care of the", 40, 510);
+      text("forest too.", 40, 540);
     }
   }
   if (fridayAfternoon) {
@@ -1702,7 +1727,7 @@ function mousePressed() {
       }
 
       // Friday Morning
-      if (fridayMorning) {
+      if (fridayMorning && friChatState != 2) {
         friChatState += 10;
       }
 
@@ -1782,7 +1807,7 @@ function mousePressed() {
       if (thursdayNight) {
         thurs4ChatState++;
       }
-      if (fridayMorning) {
+      if (fridayMorning && friChatState != 2) {
         friChatState++;
       }
       if (fridayAfternoon) {
@@ -2067,10 +2092,10 @@ function clicks() {
     if (friChatState == 2) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
         friChatState++;
-        plop.play();
+        chime.play();
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
-        friChatState++;
+        friChatState += 10;
         plop.play();
       }
     }
@@ -2417,8 +2442,8 @@ function dialogueChoices() {
       rect(48, 97, 270, 100, 8);
       rect(48, 220, 270, 100, 8);
       fill(0);
-      text("Option 1", 120, 150);
-      text("Option 2", 120, 260);
+      text("Mmm...5 more minutes.", 110, 150);
+      text("Just wait please, Mr. Squirrel!", 80, 270);
     }
   }
 
@@ -2778,14 +2803,14 @@ function dialogueHover() {
         noStroke();
         rect(48, 97, 270, 100, 8);
         fill(0);
-        text("Option 1", 120, 150);
+        text("Mmm...5 more minutes.", 110, 150);
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("Option 2", 120, 260);
+        text("Just wait please, Mr. Squirrel!", 80, 270);
       }
     }
   }
