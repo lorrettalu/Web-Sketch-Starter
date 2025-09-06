@@ -1270,30 +1270,54 @@ function saturdayDialogue() {
           text("Which one should I do?", 40, 540);
           break;
         case 1:
-          text("I nap.", 40, 510);
+          text("I'm going to tuck back into", 40, 510);
+          text("my pillows...", 40, 540);
           break;
         case 10:
-          text("I make food.", 40, 510);
+          text("Ooh, I think I made too much. I'll", 40, 510);
+          text("share it with the critters.", 40, 540);
           break;
         default:
-          text("I finish my task.", 40, 510);
+          text("The fairy finished her task and", 40, 510);
+          text("time passed by quickly.", 40, 540);
           change = true;
           event = false;
       }
     } else if (waterClick) {
       change = true;
-      text("It is Saturday morning and I got water.", 40, 510);
+      text("Water is so beautiful!", 40, 510);
     } else if (gardenClick) {
       change = false;
       switch (sat2ChatState) {
         case 0:
-          text("It is Saturday morning and I garden.", 40, 510);
+          text("These flowers are beautiful!", 40, 510); // bunny
           break;
         case 1:
-          text("Which option will you choose?", 40, 510);
+          text("And edible!", 40, 510); // squirrel
+          break;
+        case 11:
+          text("Yeah, squirrel. Don't eat their flowers!", 40, 510); // bunny
+          break;
+        case 2:
+          text("Oh, can I? Can I?", 40, 510); // squirrel
+          break;
+        case 3:
+          text("You're always eating, that's why you're", 40, 510); // bunny
+          text("so big.", 40, 540); // bunny
+          break;
+        case 4:
+          text("You're so mean, Bunbun!!", 40, 510); // squirrel
+          break;
+        case 5:
+          text("Now, now. You can have some too, Mr.", 40, 510); // fairy
+          text("Bunny.", 40, 540); // fairy
+          break;
+        case 6:
+          text("The bunny didn't say anything but he", 40, 510);
+          text("hid a small smile.", 40, 540);
           break;
         default:
-          text("I chose this option", 40, 510);
+          text("Some flowers were eaten that day.", 40, 510);
           chatEvent = false;
           change = true;
           event = false;
@@ -1947,7 +1971,7 @@ function clicks() {
       if (thursdayNight && thurs5ChatState != 1) {
         thurs5ChatState++;
       }
-      if (saturdayMorning) {
+      if (saturdayMorning && sat2ChatState != 1) {
         sat2ChatState++;
       }
     }
@@ -2155,12 +2179,12 @@ function clicks() {
   if (saturdayMorning) {
     if (sat2ChatState == 1) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
-        sat2ChatState++;
+        sat2ChatState += 10;
         plop.play();
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         sat2ChatState++;
-        plop.play();
+        chime.play();
       }
     }
   }
@@ -2509,8 +2533,8 @@ function dialogueChoices() {
       rect(48, 97, 270, 100, 8);
       rect(48, 220, 270, 100, 8);
       fill(0);
-      text("Option 1", 120, 150);
-      text("Option 2", 120, 260);
+      text("Don't you dare!", 120, 150);
+      text("You can have my old flowers.", 88, 270);
     }
   }
 
@@ -2891,14 +2915,14 @@ function dialogueHover() {
         noStroke();
         rect(48, 97, 270, 100, 8);
         fill(0);
-        text("Option 1", 120, 150);
+        text("Don't you dare!", 120, 150);
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("Option 2", 120, 260);
+        text("You can have my old flowers.", 88, 270);
       }
     }
   }
