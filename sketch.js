@@ -1013,13 +1013,15 @@ function thursdayDialogue() {
           text("Which one should I do?", 40, 540);
           break;
         case 1:
-          text("I nap.", 40, 510);
+          text("The sandman has arrived.", 40, 510);
           break;
         case 10:
-          text("I make food.", 40, 510);
+          text("This pot feels like a little cauldron", 40, 510);
+          text("of happiness.", 40, 540);
           break;
         default:
-          text("I finish my task.", 40, 510);
+          text("The fairy finished her task, and the", 40, 510);
+          text("day went on.", 40, 540);
           change = true;
           event = false;
       }
@@ -1027,20 +1029,30 @@ function thursdayDialogue() {
       change = false;
       switch (thurs3ChatState) {
         case 0:
-          text("It is Thursday afternoon and I got water.", 40, 510);
+          text("Oops, I'll go refill my watering can.", 40, 510); // fairy
           break;
         case 1:
-          text("Which option will you choose?", 40, 510);
+          text("Hi Miss Fairy! Do you think there are", 40, 510);
+          text("secret caves behind the waterfall?", 40, 540); // bunny
+          break;
+        case 11:
+          text("What are video games?", 40, 510); // bunny
+          break;
+        case 2:
+          text("I'll go if you go!", 40, 510); // bunny
+          break;
+        case 3:
+          text("Okay! Let's go on an adventure!", 40, 510); // fairy
           break;
         default:
-          text("I chose this option", 40, 510);
+          text("Time passed by.", 40, 510);
           chatEvent = false;
           change = true;
           event = false;
       }
     } else if (gardenClick) {
       change = true;
-      text("It is Thursday afternoon and I garden.", 40, 510);
+      text("I love everything about my garden.", 40, 510);
     }
   }
   if (thursdayNight) {
@@ -1833,7 +1845,7 @@ function clicks() {
       if (wednesdayMorning && wed2ChatState != 1) {
         wed2ChatState++;
       }
-      if (thursdayAfternoon) {
+      if (thursdayAfternoon && thurs3ChatState != 1) {
         thurs3ChatState++;
       }
       if (saturdayAfternoon) {
@@ -2011,10 +2023,10 @@ function clicks() {
     if (thurs3ChatState == 1) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
         thurs3ChatState++;
-        plop.play();
+        chime.play();
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
-        thurs3ChatState++;
+        thurs3ChatState += 10;
         plop.play();
       }
     }
@@ -2358,8 +2370,10 @@ function dialogueChoices() {
       rect(48, 97, 270, 100, 8);
       rect(48, 220, 270, 100, 8);
       fill(0);
-      text("Option 1", 120, 150);
-      text("Option 2", 120, 260);
+      text("I think so. Do you want to go", 80, 140);
+      text("look together?", 130, 170);
+      text("Yup, at least in the video games", 70, 260);
+      text("I play.", 150, 290);
     }
   }
 
@@ -2703,14 +2717,16 @@ function dialogueHover() {
         noStroke();
         rect(48, 97, 270, 100, 8);
         fill(0);
-        text("Option 1", 120, 150);
+        text("I think so. Do you want to go", 80, 140);
+        text("look together?", 130, 170);
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("Option 2", 120, 260);
+        text("Yup, at least in the video games", 70, 260);
+        text("I play.", 150, 290);
       }
     }
   }
