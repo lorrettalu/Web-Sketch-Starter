@@ -1250,9 +1250,9 @@ function fridayDialogue() {
       }
     } else if (waterClick) {
       change = true;
-      text("I'd love to learn a spell to control water one", 40, 510);
-      text("day, so I don't have to collect water with a bucket", 40, 540);
-      text("every time.", 40, 570);
+      text("I'd love to learn a spell to control water", 40, 510);
+      text("one day, so I don't have to collect water with", 40, 540);
+      text("a bucket every time.", 40, 570);
     } else if (gardenClick) {
       change = true;
       text("I love the color my garden brings.", 40, 510);
@@ -1333,13 +1333,14 @@ function saturdayDialogue() {
           text("Which one should I do?", 40, 540);
           break;
         case 1:
-          text("I nap.", 40, 510);
+          text("My bed just looks so comfortable.", 40, 510);
           break;
         case 10:
-          text("I make food.", 40, 510);
+          text("Food makes me so happy!", 40, 510);
           break;
         default:
-          text("I finish my task.", 40, 510);
+          text("The fairy finished her task, and the", 40, 510);
+          text("day went on.", 40, 540);
           change = true;
           event = false;
       }
@@ -1347,20 +1348,38 @@ function saturdayDialogue() {
       change = false;
       switch (sat4ChatState) {
         case 0:
-          text("It is Saturday afternoon and I got water.", 40, 510);
+          text("...It feels peaceful here.", 40, 510); // bunny
           break;
         case 1:
-          text("Which option will you choose?", 40, 510);
+          text("Peaceful? It feels so alive! Look at all", 40, 510);
+          text("the water ripples!", 40, 540); // squirrel
+          break;
+        case 2:
+          text("You don't mind us bickering all the time?", 40, 510); // bunny
+          break;
+        case 3:
+          text("Not at all! I love your friendship.", 40, 510); // fairy
+          text("It makes me happy to see you two.", 40, 540); // fairy
+          break;
+        case 4:
+          text("...", 40, 510); // squirrel
+          break;
+        case 5:
+          text("Are you crying?", 40, 510); // bunny
+          break;
+        case 6:
+          text("No!", 40, 510); // squirrel
           break;
         default:
-          text("I chose this option", 40, 510);
+          text("The fairy, squirrel, and bunny sit together", 40, 510);
+          text("contentedly.", 40, 540);
           chatEvent = false;
           change = true;
           event = false;
       }
     } else if (gardenClick) {
       change = true;
-      text("It is Saturday afternoon and I garden.", 40, 510);
+      text("Each petal is just so soft!", 40, 510);
     }
   }
   if (saturdayNight) {
@@ -1940,7 +1959,7 @@ function clicks() {
       if (thursdayAfternoon && thurs3ChatState != 1) {
         thurs3ChatState++;
       }
-      if (saturdayAfternoon) {
+      if (saturdayAfternoon && sat4ChatState != 1) {
         sat4ChatState++;
       }
       if (sundayMorning) {
@@ -2192,12 +2211,12 @@ function clicks() {
   if (saturdayAfternoon) {
     if (sat4ChatState == 1) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
-        sat4ChatState++;
+        sat4ChatState += 10;
         plop.play();
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         sat4ChatState++;
-        plop.play();
+        chime.play();
       }
     }
   }
@@ -2541,13 +2560,18 @@ function dialogueChoices() {
   // Saturday Afternoon Chat Event
   if (saturdayAfternoon) {
     if (sat4ChatState == 1) {
+      push();
       fill(200, 220, 255);
       noStroke();
       rect(48, 97, 270, 100, 8);
       rect(48, 220, 270, 100, 8);
       fill(0);
-      text("Option 1", 120, 150);
-      text("Option 2", 120, 260);
+      text("This place is really beautiful.", 80, 150);
+      textSize(14);
+      text("I like it when you're both here. You", 80, 245);
+      text("two see the world so differently. It's", 80, 275);
+      text("refreshing.", 140, 305);
+      pop();
     }
   }
 
@@ -2929,20 +2953,25 @@ function dialogueHover() {
 
   if (saturdayAfternoon) {
     if (sat4ChatState == 1) {
+      push();
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 97, 270, 100, 8);
         fill(0);
-        text("Option 1", 120, 150);
+        text("This place is really beautiful.", 80, 150);
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("Option 2", 120, 260);
+        textSize(14);
+        text("I like it when you're both here. You", 80, 245);
+        text("two see the world so differently. It's", 80, 275);
+        text("refreshing.", 140, 305);
       }
+    pop();
     }
   }
 
