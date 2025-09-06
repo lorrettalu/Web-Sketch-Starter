@@ -1064,30 +1064,48 @@ function thursdayDialogue() {
           text("Which one should I do?", 40, 540);
           break;
         case 1:
-          text("I nap.", 40, 510);
+          text("My pillows and blankets look so", 40, 510);
+          text("cozy!", 40, 540);
           break;
         case 10:
-          text("I make food.", 40, 510);
+          text("Bread, butter, soup, and all things", 40, 510);
+          text("delicious!", 40, 540);
           break;
         default:
-          text("I finish my task.", 40, 510);
+          text("The time passed quickly, and morning", 40, 510);
+          text("came.", 40, 540);
           change = true;
           event = false;
       }
     } else if (waterClick) {
       change = true;
-      text("It is Thursday night and I got water.", 40, 510);
+      text("The fish are especially frisky today.", 40, 510);
     } else if (gardenClick) {
       change = false;
       switch (thurs5ChatState) {
         case 0:
-          text("It is Thursday night and I garden.", 40, 510);
+          text("The fox is already at the garden, for some", 40, 510);
+          text("reason.", 40, 540);
           break;
         case 1:
-          text("Which option will you choose?", 40, 510);
+          text("My flowers are drooping a little today.", 40, 510);
+          text("I wonder why.", 40, 540); // fairy
+          break;
+        case 2:
+          text("It does. If you stop, the garden will die.", 40, 510); // fox
+          break;
+        case 3:
+          text("That's true.", 40, 510); // fairy
+          break;
+        case 4:
+          text("You care for it. That matters.", 40, 510); // fox
+          break;
+        case 11:
+          text("...Really?", 40, 510); // fox
           break;
         default:
-          text("I chose this option", 40, 510);
+          text("The flowers perk up a little. Then,", 40, 510);
+          text("morning came.", 40, 540);
           chatEvent = false;
           change = true;
           event = false;
@@ -1876,7 +1894,7 @@ function clicks() {
       if (tuesdayMorning && tues3ChatState != 1) {
         tues3ChatState++;
       }
-      if (thursdayNight) {
+      if (thursdayNight && thurs5ChatState != 1) {
         thurs5ChatState++;
       }
       if (saturdayMorning) {
@@ -2035,12 +2053,12 @@ function clicks() {
   if (thursdayNight) {
     if (thurs5ChatState == 1) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
-        thurs5ChatState++;
+        thurs5ChatState += 10;
         plop.play();
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         thurs5ChatState++;
-        plop.play();
+        chime.play();
       }
     }
   }
@@ -2385,8 +2403,9 @@ function dialogueChoices() {
       rect(48, 97, 270, 100, 8);
       rect(48, 220, 270, 100, 8);
       fill(0);
-      text("Option 1", 120, 150);
-      text("Option 2", 120, 260);
+      text("Was it because of you?", 100, 150);
+      text("Sometimes, I wonder if all this", 80, 260);
+      text("effort really matters.", 110, 290);
     }
   }
 
@@ -2738,14 +2757,16 @@ function dialogueHover() {
         noStroke();
         rect(48, 97, 270, 100, 8);
         fill(0);
-        text("Option 1", 120, 150);
+        text("Was it because of you?", 100, 150);
+
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("Option 2", 120, 260);
+        text("Sometimes, I wonder if all this effort", 80, 260);
+        text("really matters.", 110, 290);
       }
     }
   }
