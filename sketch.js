@@ -888,9 +888,11 @@ function wednesdayDialogue() {
           text("The squirrel and the bunny look at each", 40, 510);
           text("other before curling up beside the fairy.", 40, 540);
           break;
+        case 5:
+          text("The fairy slept very well.", 40, 510);
+          break;
         default:
-          text("The fairy had a pretty good nap", 40, 510);
-          text("afterwards.", 40, 540);
+          text("The fairy had a good afternoon.", 40, 510);
           change = true;
           event = false;
           showMenu = false;
@@ -913,26 +915,37 @@ function wednesdayDialogue() {
           text("Which one should I do?", 40, 540);
           break;
         case 1:
-          text("I nap.", 40, 510);
+          text("I'm sure the forest will protect", 40, 510);
+          text("me while I sleep.", 40, 540);
           break;
         case 10:
-          text("I make food.", 40, 510);
+          text("Mmm, smells like home. Even if it's", 40, 510);
+          text("just me here.", 40, 540);
           break;
         case 20:
-          text("Something special happens.", 40, 510);
+          text("Home doesn't have to be crowded to", 40, 510);
+          text("mean something.", 40, 540); // fox
+          break;
+        case 21:
+          text("Fair enough.", 40, 510); // fox
+          break;
+        case 30:
+          text("If you'd like.", 40, 510);
           break;
         default:
-          text("I finish my task.", 40, 510);
+          text("By the end of the night, the smell", 40, 510);
+          text("of the food has wafted across the", 40, 540);
+          text("whole forest.", 40, 570);
           change = true;
           event = false;
           showMenu = false;
       }
     } else if (waterClick) {
       change = true;
-      text("It is Wednesday night and I got water.", 40, 510);
+      text("I love the sound of water at night especially.", 40, 510);
     } else if (gardenClick) {
       change = true;
-      text("It is Wednesday night and I garden.", 40, 510);
+      text("This garden is my pride and joy.", 40, 510);
     }
   }
 }
@@ -1617,7 +1630,7 @@ function mousePressed() {
       }
 
       // Wednesday Night
-      if (wednesdayNight) {
+      if (wednesdayNight && wed4ChatState != 20) {
         wed4ChatState += 10;
       }
 
@@ -1705,7 +1718,7 @@ function mousePressed() {
       if (wednesdayAfternoon && wed3ChatState != 3) {
         wed3ChatState++;
       }
-      if (wednesdayNight) {
+      if (wednesdayNight && wed4ChatState != 20) {
         wed4ChatState++;
       }
       if (thursdayMorning) {
@@ -1896,7 +1909,7 @@ function clicks() {
     if (tues4ChatState == 20) {
       if ((mouseX > 48 && mouseX < (270 + 48)) && (mouseY > 97 && mouseY < 197)) {
         tues4ChatState += 10;
-        plop.play();
+        chime.play();
       }
       if ((mouseX > 48 && mouseX < (270 + 48)) && (mouseY > 220 && mouseY < (220 + 100))) {
         tues4ChatState += 1;
@@ -1948,8 +1961,9 @@ function clicks() {
   if (wednesdayNight) {
     if (wed4ChatState == 20) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
-        wed4ChatState++;
-        plop.play();
+        wed4ChatState += 10;
+        foxCount++;
+        chime.play();
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         wed4ChatState++;
@@ -2241,8 +2255,8 @@ function dialogueChoices() {
       rect(48, 97, 270, 100, 8);
       rect(48, 220, 270, 100, 8);
       fill(0);
-      text("You can help me finish it!", 80, 150);
-      text("That's the point.", 120, 280);
+      text("You can help me finish it!", 90, 150);
+      text("That's the point.", 120, 270);
     }
   }
 
@@ -2294,8 +2308,10 @@ function dialogueChoices() {
       rect(48, 97, 270, 100, 8);
       rect(48, 220, 270, 100, 8);
       fill(0);
-      text("Option 1", 120, 150);
-      text("Option 2", 120, 260);
+      text("True! Now that you're here, we", 80, 140);
+      text("can share the food.", 110, 170);
+      text("You're right. Quiet company is", 80, 260);
+      text("enough.", 150, 290);
     }
   }
 
@@ -2548,14 +2564,14 @@ function dialogueHover() {
         noStroke();
         rect(48, 97, 270, 100, 8);
         fill(0);
-        text("You can help me finish it!", 80, 150);
+        text("You can help me finish it!", 90, 150);
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("That's the point.", 120, 280);
+        text("That's the point.", 120, 270);
       }
     }
   }
@@ -2625,14 +2641,16 @@ function dialogueHover() {
         noStroke();
         rect(48, 97, 270, 100, 8);
         fill(0);
-        text("Option 1", 120, 150);
+        text("True! Now that you're here, we", 80, 140);
+        text("can share the food.", 110, 170);
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("Option 2", 120, 260);
+        text("You're right. Quiet company is", 80, 260);
+        text("enough.", 150, 290);
       }
     }
   }
