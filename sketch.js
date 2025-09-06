@@ -960,26 +960,48 @@ function thursdayDialogue() {
           text("Which one should I do?", 40, 540);
           break;
         case 1:
-          text("I nap.", 40, 510);
+          text("Maybe I'll dream of pancakes.", 40, 510);
           break;
         case 10:
-          text("I make food.", 40, 510);
+          text("I'll make some pancakes this morning.", 40, 510); // fairy
           break;
         case 20:
-          text("Something special happens.", 40, 510);
+          text("Did I hear pancakes?!", 40, 510); // squirrel
+          break;
+        case 30:
+          text("Oh boy! I'll go find us some maple syrup", 40, 510);
+          text("for us.", 40, 540); // squirrel
+          break;
+        case 40:
+          text("Aww, thanks! I'm excited! I know it'll be", 40, 510);
+          text("super delicious.", 40, 540); // fairy
+          break;
+        case 50:
+          text("The fairy and the squirrel shared a meal", 40, 510);
+          text("together.", 40, 540);
+          break;
+        case 60:
+          text("It was the yummiest pancakes ever", 40, 510);
+          text("made!", 40, 540);
+          break;
+        case 21:
+          text("Aww. I could've sworn you said pancakes.", 40, 510);
+          text("Oh well.", 40, 540); // squirrel
           break;
         default:
-          text("I finish my task.", 40, 510);
+          text("After the squirrel left, time passed by.", 40, 510);
           change = true;
           event = false;
           showMenu = false;
       }
     } else if (waterClick) {
       change = true;
-      text("It is Thursday morning and I got water.", 40, 510);
+      text("My flowers will be so happy when they", 40, 510);
+      text("get a taste of this fresh water!", 40, 540);
     } else if (gardenClick) {
       change = true;
-      text("It is Thursday morning and I garden.", 40, 510);
+      text("I wonder what kind of flowers the animals", 40, 510);
+      text("like.", 40, 540);
     }
   }
   if (thursdayAfternoon) {
@@ -1635,7 +1657,7 @@ function mousePressed() {
       }
 
       // Thursday Morning
-      if (thursdayMorning) {
+      if (thursdayMorning && thursChatState != 20) {
         thursChatState += 10;
       }
 
@@ -1721,7 +1743,7 @@ function mousePressed() {
       if (wednesdayNight && wed4ChatState != 20) {
         wed4ChatState++;
       }
-      if (thursdayMorning) {
+      if (thursdayMorning && thursChatState != 20) {
         thursChatState++;
       }
       if (thursdayAfternoon) {
@@ -1975,8 +1997,8 @@ function clicks() {
   if (thursdayMorning) {
     if (thursChatState == 20) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
-        thursChatState++;
-        plop.play();
+        thursChatState += 10;
+        chime.play();
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         thursChatState++;
@@ -2323,8 +2345,8 @@ function dialogueChoices() {
       rect(48, 97, 270, 100, 8);
       rect(48, 220, 270, 100, 8);
       fill(0);
-      text("Option 1", 120, 150);
-      text("Option 2", 120, 260);
+      text("Yes, you did!", 130, 150);
+      text("Nope, you didn't.", 120, 270);
     }
   }
 
@@ -2662,14 +2684,14 @@ function dialogueHover() {
         noStroke();
         rect(48, 97, 270, 100, 8);
         fill(0);
-        text("Option 1", 120, 150);
+        text("Yes, you did!", 130, 150);
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("Option 2", 120, 260);
+        text("Nope, you didn't.", 120, 270);
       }
     }
   }
