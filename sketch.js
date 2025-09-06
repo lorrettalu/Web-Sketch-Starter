@@ -869,26 +869,39 @@ function wednesdayDialogue() {
           text("Which one should I do?", 40, 540);
           break;
         case 1:
-          text("I nap.", 40, 510);
+          text("I'm pretty sleepy...I'll just take", 40, 510);
+          text("a quick nap!", 40, 540);
           break;
         case 10:
-          text("I make food.", 40, 510);
+          text("I'll make a delicious lunch!", 40, 510);
           break;
         case 2:
-          text("Something special happens.", 40, 510);
+          text("You're already sleeping?", 40, 510); // squirrel
+          break;
+        case 3:
+          text("Shh..don't ruin their nap!", 40, 510); // bunny
+          break;
+        case 13:
+          text("Well, I hope you feel better!", 40, 510); // bunny
+          break;
+        case 4:
+          text("The squirrel and the bunny look at each", 40, 510);
+          text("other before curling up beside the fairy.", 40, 540);
           break;
         default:
-          text("I finish my task.", 40, 510);
+          text("The fairy had a pretty good nap", 40, 510);
+          text("afterwards.", 40, 540);
           change = true;
           event = false;
           showMenu = false;
       }
     } else if (waterClick) {
       change = true;
-      text("It is Wednesday afternoon and I got water.", 40, 510);
+      text("I've always loved how sparkly water", 40, 510);
+      text("is under the sun.", 40, 540);
     } else if (gardenClick) {
       change = true;
-      text("It is Wednesday afternoon and I garden.", 40, 510);
+      text("When I hum, the flowers dance along!", 40, 510);
     }
   }
   if (wednesdayNight) {
@@ -1599,7 +1612,7 @@ function mousePressed() {
       }
 
       // Wednesday Afternoon
-      if (wednesdayAfternoon) {
+      if (wednesdayAfternoon && wed3ChatState != 3) {
         wed3ChatState += 10;
       }
 
@@ -1689,7 +1702,7 @@ function mousePressed() {
       if (wednesdayMorning) {
         wedChatState++;
       }
-      if (wednesdayAfternoon && wed3ChatState != 10) {
+      if (wednesdayAfternoon && wed3ChatState != 3) {
         wed3ChatState++;
       }
       if (wednesdayNight) {
@@ -1920,13 +1933,13 @@ function clicks() {
   }
 
   if (wednesdayAfternoon) {
-    if (wed3ChatState == 2) {
+    if (wed3ChatState == 3) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
         wed3ChatState++;
-        plop.play();
+        chime.play();
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
-        wed3ChatState++;
+        wed3ChatState += 10;
         plop.play();
       }
     }
@@ -2262,14 +2275,14 @@ function dialogueChoices() {
 
   // Wednesday Afternoon Chat Event
   if (wednesdayAfternoon) {
-    if (wed3ChatState == 2) {
+    if (wed3ChatState == 3) {
       fill(200, 220, 255);
       noStroke();
       rect(48, 97, 270, 100, 8);
       rect(48, 220, 270, 100, 8);
       fill(0);
-      text("Option 1", 120, 150);
-      text("Option 2", 120, 260);
+      text("Join me.", 150, 150);
+      text("I'm feeling pretty tired.", 100, 270);
     }
   }
 
@@ -2587,20 +2600,20 @@ function dialogueHover() {
   }
 
   if (wednesdayAfternoon) {
-    if (wed3ChatState == 2) {
+    if (wed3ChatState == 3) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 97, 270, 100, 8);
         fill(0);
-        text("Option 1", 120, 150);
+        text("Join me.", 150, 150);
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("Option 2", 120, 260);
+        text("I'm feeling pretty tired.", 100, 270);
       }
     }
   }
