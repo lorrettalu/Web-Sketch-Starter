@@ -58,6 +58,8 @@ let intro = true;
 let change = true;
 let clickedFood = false;
 let chatEvent = false;
+let ending1 = false;
+let ending2 = false;
 
 // Integer Variables
 let eventNum = 0;
@@ -107,6 +109,9 @@ let sun4ChatState = 0;
 let sun5ChatState = 0;
 
 let foxCount = 0;
+
+let ending1ChatState = 0;
+let ending2ChatState = 0;
 
 // Array Variables
 let particles = []; // Array to hold all particles
@@ -203,13 +208,17 @@ function draw() {
     image(afternoonBg, 0, 0, 360, 640);
   } else if (mondayNight || tuesdayNight || wednesdayNight || thursdayNight || fridayNight || saturdayNight || sundayNight) {
     image(nightBg, 0, 0, 360, 640);
+  } else if (ending1 || ending2) {
+    image(morningBg, 0, 0, 360, 640); // changeEnding
   }
 
   // Day States
   dayStates();
 
   // Time
-  image(timeImage, 0, 0, 360, 640);
+  if (ending1 == false && ending2 == false) {
+    image(timeImage, 0, 0, 360, 640);
+  }
   
   // Font
   textFont(font);
@@ -259,7 +268,7 @@ function draw() {
   //runEventNum();
   //print(showHint);
   
-  if (event == false) {
+  if (event == false && (ending1 == false && ending2 == false)) {
     cottageHover(mouseX, mouseY);
     gardenHover(mouseX, mouseY);
     waterHover(mouseX, mouseY);
@@ -284,7 +293,7 @@ function draw() {
   
   masterFunction();
   
-  if (textEvent || intro) {
+  if (textEvent || intro || ending1 || ending2) {
     dialogueText();
   } else {
     event = false;
@@ -410,6 +419,14 @@ function masterFunction() {
     sundayAfternoon = false;
     sundayNight = true;
     textEvent = false;
+  } else if (eventNum == 42) {
+    sundayNight = false; // changeEnding
+    textEvent = false;
+    if (foxCount >= 4) {
+      ending2 = true;
+    } else {
+      ending1 = true;
+    }
   }
 }
 
@@ -460,7 +477,7 @@ function dialogueText() {
   } else if (sundayNight) {
     sundayDialogue();
   } else {
-    // Default Dialogue
+    /*// Default Dialogue
     change = true;
     if (waterClick) {
       text("I'll go get some water!", 40, 510);
@@ -469,7 +486,36 @@ function dialogueText() {
       text("Which one should I do?", 40, 540);
     } else if (gardenClick) {
       text("I'll go tend to my flowers!", 40, 510);
+    } */
+
+
+  if (ending1) {
+    event = true;
+    switch (ending1ChatState) {
+      case 0:
+        text("Test 1", 40, 510);
+        break;
+      case 1:
+        text("Test 2", 40, 510);
+        break;
+      default:
+        text("The End! Please restart the game.", 40, 510);
     }
+  }
+
+  if (ending2) {
+    event = true;
+    switch (ending2ChatState) {
+      case 0:
+        text("Test Ending 1", 40, 510);
+        break;
+      case 1:
+        text("Test Ending 2", 40, 510);
+        break;
+      default:
+        text("The End! Please restart the game.", 40, 510);
+    }
+  }
   }
 
   // Intro Dialogue
@@ -2004,7 +2050,7 @@ function mousePressed() {
     }
   }
 
-  if (intro == false) {
+  if (intro == false && ending1 == false && ending2 == false) {
     clicks();
   }
 
@@ -2012,6 +2058,20 @@ function mousePressed() {
   if (intro) {
     introState++;
     plop.play();
+  }
+
+  // Ending Dialogue
+  if (ending1) {
+    ending1ChatState++;
+    if (ending1ChatState <= 1) {
+      plop.play();
+    }
+  }
+  if (ending2) {
+    ending2ChatState++;
+    if (ending2ChatState <= 1) {
+      plop.play();
+    }
   }
 
 }
