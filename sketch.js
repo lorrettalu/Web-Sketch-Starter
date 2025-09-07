@@ -13,6 +13,7 @@ let nightGarden;
 let cursor;
 let timeImage;
 let dialogue;
+let squirrel;
 
 // Font
 let font;
@@ -169,6 +170,7 @@ function preload() {
   cursor = loadImage("assets/butterflyahh.png");
   timeImage = loadImage("assets/Untitled_Artwork 7.png");
   dialogue = loadImage("assets/Untitled_Artwork 17.png");
+  squirrel = loadImage("assets/Untitled_Artwork 19.png");
   
   font = loadFont("assets/IndieFlower-Regular.ttf");
   
@@ -533,7 +535,7 @@ function dialogueText() {
         break;
       case 2:
         text("If you would like this experience to be", 40, 510);
-        text("easier, please turn on hints down below.", 40, 540);
+        text("smoother, please turn on hints down below.", 40, 540);
         break;
       case 3:
         text("Enjoy!", 40, 510);
@@ -572,6 +574,7 @@ function mondayDialogue() {
           text("I'll just close my eyes... only for a minute.", 40, 510);
           break;
         case 20:
+          image(squirrel, 0, 0, 360, 640);
           text("That smell... is it pancakes? It's pancakes,", 40, 510);
           text("right?", 40, 540); // squirrel
           break;
@@ -580,6 +583,7 @@ function mondayDialogue() {
           text("approach me!", 40, 540);
           break;
         case 30:
+          image(squirrel, 0, 0, 360, 640);
           text("Pancakes?! For me?! You're the best!", 40, 510);
           break;
         case 40:
@@ -587,14 +591,17 @@ function mondayDialogue() {
           text("pancakes.", 40, 540);
           break;
         case 50:
+          image(squirrel, 0, 0, 360, 640);
           text("This is so delicious! I'm definitely", 40, 510);
           text("coming back!!", 40, 540);
           break;
         case 60:
+          image(squirrel, 0, 0, 360, 640);
           text("Well, thanks for talking to me. See you", 40, 510);
           text("soon, fairy friend!", 40, 540);
           break;
         case 21:
+          image(squirrel, 0, 0, 360, 640);
           text("Flowers smell like pancakes now? What a", 40, 510);
           text("crazy kind of magic!", 40, 540);
           break;
@@ -761,6 +768,7 @@ function tuesdayDialogue() {
           text("Yes, like the flowers just took a bath!", 40, 510); // bunny;
           break;
         case 3:
+          image(squirrel, 0, 0, 360, 640);
           text("Mmm, smells like pancakes...", 40, 510); // squirrel
           break;
         case 4:
@@ -768,6 +776,7 @@ function tuesdayDialogue() {
           text("always thinking of food.", 40, 540); // bunny
           break;
         case 5:
+          image(squirrel, 0, 0, 360, 640);
           text("...Is that bad?", 40, 510); // squirrel
           break;
         case 11:
@@ -894,10 +903,12 @@ function wednesdayDialogue() {
           text("water to be prepared for the day.", 40, 540);
           break;
         case 1:
+          image(squirrel, 0, 0, 360, 640);
           text("Careful, if you lean in too far, the", 40, 510);
           text("fish can steal your reflection.", 40, 540); // squirrel
           break;
         case 2:
+          image(squirrel, 0, 0, 360, 640);
           text("Probably trade it in for some pancakes", 40, 510);
           text("Fish love yummy things, you know.", 40, 540);
           break;
@@ -905,9 +916,11 @@ function wednesdayDialogue() {
           text("...Do they really?", 40, 510); // fairy
           break;
         case 4:
+          image(squirrel, 0, 0, 360, 640);
           text("Well...they might. Better safe than sorry!", 40, 510);
           break;
         case 11:
+          image(squirrel, 0, 0, 360, 640);
           text("I'm not! You better not try it though.", 40, 510);
           break;
         default:
@@ -938,6 +951,7 @@ function wednesdayDialogue() {
           text("I'll make a delicious lunch!", 40, 510);
           break;
         case 2:
+          image(squirrel, 0, 0, 360, 640);
           text("You're already sleeping?", 40, 510); // squirrel
           break;
         case 3:
@@ -1028,9 +1042,11 @@ function thursdayDialogue() {
           text("I'll make some pancakes this morning.", 40, 510); // fairy
           break;
         case 20:
+          image(squirrel, 0, 0, 360, 640);
           text("Did I hear pancakes?!", 40, 510); // squirrel
           break;
         case 30:
+          image(squirrel, 0, 0, 360, 640);
           text("Oh boy! I'll go find us some maple syrup", 40, 510);
           text("for us.", 40, 540); // squirrel
           break;
@@ -1043,10 +1059,12 @@ function thursdayDialogue() {
           text("together.", 40, 540);
           break;
         case 60:
+          image(squirrel, 0, 0, 360, 640);
           text("It was the yummiest pancakes ever", 40, 510);
           text("made!", 40, 540);
           break;
         case 21:
+          image(squirrel, 0, 0, 360, 640);
           text("Aww. I could've sworn you said pancakes.", 40, 510);
           text("Oh well.", 40, 540); // squirrel
           break;
@@ -1194,15 +1212,18 @@ function fridayDialogue() {
           text("little sizzles", 40, 540);
           break;
         case 2:
+          image(squirrel, 0, 0, 360, 640);
           text("Hey, hey! You're still in bed. The sun's", 40, 510);
           text("been up forever. We have to go play", 40, 540);
           text("together!", 40, 570); // squirrel
           break;
         case 12:
+          image(squirrel, 0, 0, 360, 640);
           text("But I don't want to wait! ...Fine, I'll", 40, 510);
           text("wait. But we'll play after!", 40, 540); // squirrel
           break;
         case 3:
+          image(squirrel, 0, 0, 360, 640);
           text("Okay, just five more minutes and by", 40, 510);
           text("then, we should both be out the door!", 40, 540); // squirrel
           break;
@@ -1210,6 +1231,7 @@ function fridayDialogue() {
           text("Well, that's not much time now, is it?", 40, 510); // fairy
           break;
         case 5:
+          image(squirrel, 0, 0, 360, 640);
           text("It's enough time for me!", 40, 510); // squirrel
           break;
         case 6:
@@ -1355,12 +1377,14 @@ function saturdayDialogue() {
           text("These flowers are beautiful!", 40, 510); // bunny
           break;
         case 1:
+          image(squirrel, 0, 0, 360, 640);
           text("And edible!", 40, 510); // squirrel
           break;
         case 11:
           text("Yeah, squirrel. Don't eat their flowers!", 40, 510); // bunny
           break;
         case 2:
+          image(squirrel, 0, 0, 360, 640);
           text("Oh, can I? Can I?", 40, 510); // squirrel
           break;
         case 3:
@@ -1368,6 +1392,7 @@ function saturdayDialogue() {
           text("so big.", 40, 540); // bunny
           break;
         case 4:
+          image(squirrel, 0, 0, 360, 640);
           text("You're so mean, Bunbun!!", 40, 510); // squirrel
           break;
         case 5:
@@ -1413,6 +1438,7 @@ function saturdayDialogue() {
           text("...It feels peaceful here.", 40, 510); // bunny
           break;
         case 1:
+          image(squirrel, 0, 0, 360, 640);
           text("Peaceful? It feels so alive! Look at all", 40, 510);
           text("the water ripples!", 40, 540); // squirrel
           break;
@@ -1424,12 +1450,14 @@ function saturdayDialogue() {
           text("It makes me happy to see you two.", 40, 540); // fairy
           break;
         case 4:
+          image(squirrel, 0, 0, 360, 640);
           text("...", 40, 510); // squirrel
           break;
         case 5:
           text("Are you crying?", 40, 510); // bunny
           break;
         case 6:
+          image(squirrel, 0, 0, 360, 640);
           text("No!", 40, 510); // squirrel
           break;
         default:
@@ -1522,6 +1550,7 @@ function sundayDialogue() {
           text("Oh, the squirrel and the fox are here!", 40, 510); // fairy
           break;
         case 1:
+          image(squirrel, 0, 0, 360, 640);
           text("Do you think fish tastes like pancakes?", 40, 510); // squirrel
           break;
         case 11:
@@ -1532,6 +1561,7 @@ function sundayDialogue() {
           text("...Probably shouldn't.", 40, 510); // fox
           break;
         case 3:
+          image(squirrel, 0, 0, 360, 640);
           text("I think I'll try it! Pancake fishies, here", 40, 510);
           text("I come!", 40, 540); // squirrel
           break;
@@ -1539,6 +1569,7 @@ function sundayDialogue() {
           text("...Let me help you.", 40, 510); // fox
           break;
         case 5:
+          image(squirrel, 0, 0, 360, 640);
           text("Aww, thanks fox!", 40, 510); // squirrel
           break;
         case 6:
