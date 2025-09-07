@@ -1995,7 +1995,8 @@ function mousePressed() {
   // Cottage Menu
   if (showMenu) {
     if ((mouseX < menuOptions[0].w + 17 && mouseX > menuOptions[0].x) && (mouseY > menuOptions[0].y - 7 && mouseY < menuOptions[0].y + 20)) {
-      handleOption("Make Food");
+      makeFood = true;
+      napping = false;
       clickedFood = true;
 
       if (clickedFood && ((mouseX > menuOptions[1].w + 50 && mouseX < menuOptions[1].x + 78) && (mouseY > menuOptions[1].y - 7 && mouseY < menuOptions[1].y + 20))) {
@@ -2127,7 +2128,8 @@ function mousePressed() {
       }
   
     } else if (clickedFood == false && ((mouseX > menuOptions[1].w + 50 && mouseX < menuOptions[1].x + 78) && (mouseY > menuOptions[1].y - 7 && mouseY < menuOptions[1].y + 20))) {
-      handleOption("Nap");
+      makeFood = false;
+      napping = true;
       monChatState++;
       if (mondayAfternoon) {
         mon2ChatState++;
@@ -2233,6 +2235,8 @@ function clicks() {
       eventNum += 1;
       cottageClick = !cottageClick;
       event = !event;
+      napping = false;
+      makeFood = false;
       plop.play();
     } else {
       eventNum = eventNum;
@@ -2589,52 +2593,53 @@ function drawMenu() {
 
   fill(200, 220, 255);
   noStroke();
-  rect(menuOptions[0].x, menuOptions[0].y, menuOptions[0].w, menuOptions[0].h/2, 8);
-  rect(menuOptions[1].x, menuOptions[1].y, menuOptions[1].w, menuOptions[1].h/2, 8);
+  if (napping == false) {
+    rect(menuOptions[0].x, menuOptions[0].y, menuOptions[0].w, menuOptions[0].h/2, 8);
+  }
+  if (makeFood == false) {
+    rect(menuOptions[1].x, menuOptions[1].y, menuOptions[1].w, menuOptions[1].h/2, 8);
+  }
   fill(0);
   textSize(13);
-  text(menuOptions[0].label, menuOptions[0].x + 8, menuOptions[0].y + 17);
-  text(menuOptions[1].label, menuOptions[1].x + 23, menuOptions[1].y + 17);
-
-  pop();
-
-  // Hover: Make Food
-  push();
-
-  if ((mouseX < menuOptions[0].w + 17 && mouseX > menuOptions[0].x) && (mouseY > menuOptions[0].y - 7 && mouseY < menuOptions[0].y + 20)) {
-    fill(80, 100, 255);
-    noStroke();
-    rect(menuOptions[0].x, menuOptions[0].y, menuOptions[0].w, menuOptions[0].h/2, 8);
-    fill(0);
-    textSize(13);
+  if (napping == false) {
     text(menuOptions[0].label, menuOptions[0].x + 8, menuOptions[0].y + 17);
   }
-
-  pop();
-
-  // Hover: Nap
-  push();
-
-  if ((mouseX > menuOptions[1].w + 50 && mouseX < menuOptions[1].x + 78) && (mouseY > menuOptions[1].y - 7 && mouseY < menuOptions[1].y + 20)) {
-    fill(80, 80, 180);
-    noStroke();
-    rect(menuOptions[1].x, menuOptions[1].y, menuOptions[1].w, menuOptions[1].h/2, 8);
-    fill(0);
-    textSize(13);
+  if (makeFood == false) {
     text(menuOptions[1].label, menuOptions[1].x + 23, menuOptions[1].y + 17);
   }
 
   pop();
-}
 
-function handleOption(label) {
-  if (label === "Make Food") {
-    makeFood = true;
-    napping = false;
+  // Hover: Make Food
+  if (napping == false) {
+    push();
+
+    if ((mouseX < menuOptions[0].w + 17 && mouseX > menuOptions[0].x) && (mouseY > menuOptions[0].y - 7 && mouseY < menuOptions[0].y + 20)) {
+      fill(80, 100, 255);
+      noStroke();
+      rect(menuOptions[0].x, menuOptions[0].y, menuOptions[0].w, menuOptions[0].h/2, 8);
+      fill(0);
+      textSize(13);
+      text(menuOptions[0].label, menuOptions[0].x + 8, menuOptions[0].y + 17);
+    }
+
+    pop();
   }
-  if (label === "Nap") {
-    napping = true;
-    makeFood = false;
+
+  // Hover: Nap
+  if (makeFood == false) {
+    push();
+
+    if ((mouseX > menuOptions[1].w + 50 && mouseX < menuOptions[1].x + 78) && (mouseY > menuOptions[1].y - 7 && mouseY < menuOptions[1].y + 20)) {
+      fill(80, 80, 180);
+      noStroke();
+      rect(menuOptions[1].x, menuOptions[1].y, menuOptions[1].w, menuOptions[1].h/2, 8);
+      fill(0);
+      textSize(13);
+      text(menuOptions[1].label, menuOptions[1].x + 23, menuOptions[1].y + 17);
+    }
+
+    pop();
   }
 }
 
