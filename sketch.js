@@ -14,6 +14,7 @@ let cursor;
 let timeImage;
 let dialogue;
 let squirrel;
+let fairy;
 
 // Font
 let font;
@@ -171,6 +172,7 @@ function preload() {
   timeImage = loadImage("assets/Untitled_Artwork 7.png");
   dialogue = loadImage("assets/Untitled_Artwork 17.png");
   squirrel = loadImage("assets/Untitled_Artwork 19.png");
+  fairy = loadImage("assets/Untitled_Artwork 20.png");
   
   font = loadFont("assets/IndieFlower-Regular.ttf");
   
@@ -531,7 +533,7 @@ function dialogueText() {
       case 1:
         text("You will select a task to do and get a", 40, 510);
         text("chance to encounter a friend. This is your", 40, 540);
-        text("goal.", 40, 570);
+        text("goal. Also, the game ends on Sunday.", 40, 570);
         break;
       case 2:
         text("If you would like this experience to be", 40, 510);
@@ -541,15 +543,18 @@ function dialogueText() {
         text("Enjoy!", 40, 510);
         break;
       case 4:
+        image(fairy, 0, 0, 360, 640);
         text("I've been on my own for so long. I really", 40, 510);
         text("miss my friends and family.", 40, 540); // fairy
         break;
       case 5:
+        image(fairy, 0, 0, 360, 640);
         text("But maybe this week will be different.", 40, 510);
         text("Seven days and just three small steps", 40, 540);
         text("each day.", 40, 570);
         break;
       case 6:
+        image(fairy, 0, 0, 360, 640);
         text("If I can just take care of myself, maybe", 40, 510);
         text("I'll meet some new friends. I think my", 40, 540);
         text("heart could really use that.", 40, 570);
@@ -567,10 +572,12 @@ function mondayDialogue() {
       showMenu = true;
       switch (monChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I can make food or nap at home.", 40, 510);
           text("Which one should I do?", 40, 540);
           break;
         case 1:
+          image(fairy, 0, 0, 360, 640);
           text("I'll just close my eyes... only for a minute.", 40, 510);
           break;
         case 20:
@@ -579,8 +586,8 @@ function mondayDialogue() {
           text("right?", 40, 540); // squirrel
           break;
         case 10:
-          text("As I prepare breakfast, I see a squirrel", 40, 510);
-          text("approach me!", 40, 540);
+          text("As the fairy prepares breakfast, they see a", 40, 510);
+          text("squirrel approach them!", 40, 540);
           break;
         case 30:
           image(squirrel, 0, 0, 360, 640);
@@ -614,9 +621,11 @@ function mondayDialogue() {
       }
     } else if (waterClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("Every drop of water counts!", 40, 510);
     } else if (gardenClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("These sprouts look so proud of", 40, 510);
       text("themselves.", 40, 540);
     }
@@ -626,13 +635,16 @@ function mondayDialogue() {
       showMenu = true;
       switch(mon2ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I can make food or nap at home.", 40, 510);
           text("Which one should I do?", 40, 540);
           break;
         case 1:
+          image(fairy, 0, 0, 360, 640);
           text("I will take a tiny sleep.", 40, 510);
           break;
         case 10:
+          image(fairy, 0, 0, 360, 640);
           text("I'll hum a little tune while I cook.", 40, 510);
           break;
         default:
@@ -643,12 +655,14 @@ function mondayDialogue() {
       }
     } else if (waterClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("Ah, I love how the water cools my hands.", 40, 510);
       
     } else if (gardenClick) {
       change = false;
       switch(mon3ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("Looks like my carrots are ready!", 40, 510);
           break;
         case 1:
@@ -681,13 +695,16 @@ function mondayDialogue() {
       showMenu = true;
       switch(mon4ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I can make food or nap at home.", 40, 510);
           text("Which one should I do?", 40, 540);
           break;
         case 1:
+          image(fairy, 0, 0, 360, 640);
           text("The pillow's calling my name again.", 40, 510);
           break;
         case 10:
+          image(fairy, 0, 0, 360, 640);
           text("Maybe I'll make a warm soup to", 40, 510);
           text("end the day off with.", 40, 540);
           break;
@@ -701,6 +718,7 @@ function mondayDialogue() {
       change = false;
       switch(mon5ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("Oof, I put a lot of water in this bucket", 40, 510);
           text("by accident.", 40, 540);
           break;
@@ -714,7 +732,7 @@ function mondayDialogue() {
           text("If you say so.", 40, 510);
           break;
         default:
-          text("After making sure you get the water", 40, 510);
+          text("After making sure the fairy gets the water", 40, 510);
           text("inside, the fox disappears into the night.", 40, 540);
           chatEvent = false;
           change = true;
@@ -723,6 +741,7 @@ function mondayDialogue() {
       
     } else if (gardenClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("Weeds are very evil.", 40, 510);
     }
   }
@@ -734,13 +753,16 @@ function tuesdayDialogue() {
       showMenu = true;
       switch (tuesChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I can make food or nap at home.", 40, 510);
           text("Which one should I do?", 40, 540);
           break;
         case 1:
+          image(fairy, 0, 0, 360, 640);
           text("I love sleeping to the sound of rain.", 40, 510);
           break;
         case 10:
+          image(fairy, 0, 0, 360, 640);
           text("Soup and rain sounds so pleasant!", 40, 510);
           break;
         default:
@@ -752,12 +774,14 @@ function tuesdayDialogue() {
       }
     } else if (waterClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("There's extra water in my bucket because", 40, 510);
       text("of the rain. Free water!", 40, 540);
     } else if (gardenClick) {
       change = false;
       switch(tues3ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I love the smell of the earth when it rains.", 40, 510);
           break;
         case 1:
@@ -783,6 +807,7 @@ function tuesdayDialogue() {
           text("We're on the same wavelength!", 40, 510); // bunny
           break;
         default:
+          image(fairy, 0, 0, 360, 640);
           text("Haha, let's water the flowers together!", 40, 510);
           chatEvent = false;
           change = true;
@@ -795,13 +820,16 @@ function tuesdayDialogue() {
       showMenu = true;
       switch (tues4ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I can make food or nap at home.", 40, 510);
           text("Which one should I do?", 40, 540);
           break;
         case 1:
+          image(fairy, 0, 0, 360, 640);
           text("Time for some sweet dreams.", 40, 510);
           break;
         case 10:
+          image(fairy, 0, 0, 360, 640);
           text("I'll make a sandwich today!", 40, 510);
           break;
         case 20:
@@ -822,10 +850,12 @@ function tuesdayDialogue() {
       }
     } else if (waterClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("The stream always sings the same song.", 40, 510);
       text("It's comforting.", 40, 540);
     } else if (gardenClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("My lovely little flowers are growing!", 40, 510);
     }
   }
@@ -835,10 +865,12 @@ function tuesdayDialogue() {
       showMenu = true;
       switch (tues2ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I can make food or nap at home.", 40, 510);
           text("Which one should I do?", 40, 540);
           break;
         case 1:
+          image(fairy, 0, 0, 360, 640);
           text("I'll sleep a little early tonight.", 40, 510);
           break;
         case 2:
@@ -848,12 +880,14 @@ function tuesdayDialogue() {
           text("...Can't argue with that.", 40, 510); // fox
           break;
         case 4:
+          image(fairy, 0, 0, 360, 640);
           text("...", 40, 510); // fairy
           break;
         case 12:
           text("Then rest well.", 40, 510);
           break;
         case 10:
+          image(fairy, 0, 0, 360, 640);
           text("I'll have some hot curry under", 40, 510);
           text("the moon.", 40, 540);
           break;
@@ -865,9 +899,11 @@ function tuesdayDialogue() {
       }
     } else if (waterClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("I wonder if I woke the fishies up.", 40, 510);
     } else if (gardenClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("The flowers change so much during the", 40, 510);
       text("day.", 40, 540);
     }
@@ -880,13 +916,16 @@ function wednesdayDialogue() {
       showMenu = true;
       switch (wedChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I can make food or nap at home.", 40, 510);
           text("Which one should I do?", 40, 540);
           break;
         case 1:
+          image(fairy, 0, 0, 360, 640);
           text("I'm gonna sleep in, as good as a bear.", 40, 510);
           break;
         case 10:
+          image(fairy, 0, 0, 360, 640);
           text("Gonna start my day right with breakfast!", 40, 510);
           break;
         default:
@@ -899,6 +938,7 @@ function wednesdayDialogue() {
       change = false;
       switch (wed2ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I'll head to the stream and fetch some", 40, 510);
           text("water to be prepared for the day.", 40, 540);
           break;
@@ -913,6 +953,7 @@ function wednesdayDialogue() {
           text("Fish love yummy things, you know.", 40, 540);
           break;
         case 3:
+          image(fairy, 0, 0, 360, 640);
           text("...Do they really?", 40, 510); // fairy
           break;
         case 4:
@@ -932,6 +973,7 @@ function wednesdayDialogue() {
       }
     } else if (gardenClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("Now, you guys can grow as tall as me!", 40, 510);
     }
   }
@@ -940,14 +982,17 @@ function wednesdayDialogue() {
       showMenu = true;
       switch (wed3ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I can make food or nap at home.", 40, 510);
           text("Which one should I do?", 40, 540);
           break;
         case 1:
+          image(fairy, 0, 0, 360, 640);
           text("I'm pretty sleepy...I'll just take", 40, 510);
           text("a quick nap!", 40, 540);
           break;
         case 10:
+          image(fairy, 0, 0, 360, 640);
           text("I'll make a delicious lunch!", 40, 510);
           break;
         case 2:
@@ -975,10 +1020,12 @@ function wednesdayDialogue() {
       }
     } else if (waterClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("I've always loved how sparkly water", 40, 510);
       text("is under the sun.", 40, 540);
     } else if (gardenClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("When I hum, the flowers dance along!", 40, 510);
     }
   }
@@ -987,14 +1034,17 @@ function wednesdayDialogue() {
       showMenu = true;
       switch (wed4ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I can make food or nap at home.", 40, 510);
           text("Which one should I do?", 40, 540);
           break;
         case 1:
+          image(fairy, 0, 0, 360, 640);
           text("I'm sure the forest will protect", 40, 510);
           text("me while I sleep.", 40, 540);
           break;
         case 10:
+          image(fairy, 0, 0, 360, 640);
           text("Mmm, smells like home. Even if it's", 40, 510);
           text("just me here.", 40, 540);
           break;
@@ -1018,9 +1068,11 @@ function wednesdayDialogue() {
       }
     } else if (waterClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("I love the sound of water at night especially.", 40, 510);
     } else if (gardenClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("This garden is my pride and joy.", 40, 510);
     }
   }
@@ -1032,13 +1084,16 @@ function thursdayDialogue() {
       showMenu = true;
       switch (thursChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I can make food or nap at home.", 40, 510);
           text("Which one should I do?", 40, 540);
           break;
         case 1:
+          image(fairy, 0, 0, 360, 640);
           text("Maybe I'll dream of pancakes.", 40, 510);
           break;
         case 10:
+          image(fairy, 0, 0, 360, 640);
           text("I'll make some pancakes this morning.", 40, 510); // fairy
           break;
         case 20:
@@ -1051,6 +1106,7 @@ function thursdayDialogue() {
           text("for us.", 40, 540); // squirrel
           break;
         case 40:
+          image(fairy, 0, 0, 360, 640);
           text("Aww, thanks! I'm excited! I know it'll be", 40, 510);
           text("super delicious.", 40, 540); // fairy
           break;
@@ -1076,10 +1132,12 @@ function thursdayDialogue() {
       }
     } else if (waterClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("My flowers will be so happy when they", 40, 510);
       text("get a taste of this fresh water!", 40, 540);
     } else if (gardenClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("I wonder what kind of flowers the animals", 40, 510);
       text("like.", 40, 540);
     }
@@ -1089,13 +1147,16 @@ function thursdayDialogue() {
       showMenu = true;
       switch (thurs2ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I can make food or nap at home.", 40, 510);
           text("Which one should I do?", 40, 540);
           break;
         case 1:
+          image(fairy, 0, 0, 360, 640);
           text("The sandman has arrived.", 40, 510);
           break;
         case 10:
+          image(fairy, 0, 0, 360, 640);
           text("This pot feels like a little cauldron", 40, 510);
           text("of happiness.", 40, 540);
           break;
@@ -1109,6 +1170,7 @@ function thursdayDialogue() {
       change = false;
       switch (thurs3ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("Oops, I'll go refill my watering can.", 40, 510); // fairy
           break;
         case 1:
@@ -1122,6 +1184,7 @@ function thursdayDialogue() {
           text("I'll go if you go!", 40, 510); // bunny
           break;
         case 3:
+          image(fairy, 0, 0, 360, 640);
           text("Okay! Let's go on an adventure!", 40, 510); // fairy
           break;
         default:
@@ -1132,6 +1195,7 @@ function thursdayDialogue() {
       }
     } else if (gardenClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("I love everything about my garden.", 40, 510);
     }
   }
@@ -1140,14 +1204,17 @@ function thursdayDialogue() {
       showMenu = true;
       switch (thurs4ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I can make food or nap at home.", 40, 510);
           text("Which one should I do?", 40, 540);
           break;
         case 1:
+          image(fairy, 0, 0, 360, 640);
           text("My pillows and blankets look so", 40, 510);
           text("cozy!", 40, 540);
           break;
         case 10:
+          image(fairy, 0, 0, 360, 640);
           text("Bread, butter, soup, and all things", 40, 510);
           text("delicious!", 40, 540);
           break;
@@ -1159,15 +1226,18 @@ function thursdayDialogue() {
       }
     } else if (waterClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("The fish are especially frisky tonight.", 40, 510);
     } else if (gardenClick) {
       change = false;
       switch (thurs5ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("The fox is already at the garden, for some", 40, 510);
-          text("reason.", 40, 540);
+          text("reason!", 40, 540);
           break;
         case 1:
+          image(fairy, 0, 0, 360, 640);
           text("My flowers are drooping a little today.", 40, 510);
           text("I wonder why.", 40, 540); // fairy
           break;
@@ -1175,6 +1245,7 @@ function thursdayDialogue() {
           text("It does. If you stop, the garden will die.", 40, 510); // fox
           break;
         case 3:
+          image(fairy, 0, 0, 360, 640);
           text("That's true.", 40, 510); // fairy
           break;
         case 4:
@@ -1200,14 +1271,17 @@ function fridayDialogue() {
       showMenu = true;
       switch (friChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I can make food or nap at home.", 40, 510);
           text("Which one should I do?", 40, 540);
           break;
         case 1:
+          image(fairy, 0, 0, 360, 640);
           text("I'll sleep in today. I'm more sleepy than", 40, 510);
           text("usual.", 40, 540); // fairy
           break;
         case 10:
+          image(fairy, 0, 0, 360, 640);
           text("The pan always makes such cheerful", 40, 510);
           text("little sizzles", 40, 540);
           break;
@@ -1228,6 +1302,7 @@ function fridayDialogue() {
           text("then, we should both be out the door!", 40, 540); // squirrel
           break;
         case 4:
+          image(fairy, 0, 0, 360, 640);
           text("Well, that's not much time now, is it?", 40, 510); // fairy
           break;
         case 5:
@@ -1235,6 +1310,7 @@ function fridayDialogue() {
           text("It's enough time for me!", 40, 510); // squirrel
           break;
         case 6:
+          image(fairy, 0, 0, 360, 640);
           text("Oh, alright!", 40, 510); // fairy
           break;
         default:
@@ -1247,10 +1323,12 @@ function fridayDialogue() {
       }
     } else if (waterClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("Gotta be careful...I have to make sure I", 40, 510);
       text("don't get wet!", 40, 540);
     } else if (gardenClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("Gardening feels like taking care of the", 40, 510);
       text("forest too.", 40, 540);
     }
@@ -1260,13 +1338,16 @@ function fridayDialogue() {
       showMenu = true;
       switch (fri2ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I can make food or nap at home.", 40, 510);
           text("Which one should I do?", 40, 540);
           break;
         case 1:
+          image(fairy, 0, 0, 360, 640);
           text("I want to feel as cozy as a bunny!", 40, 510);
           break;
         case 10:
+          image(fairy, 0, 0, 360, 640);
           text("I'll probably make some salad.", 40, 510); // fairy
           break;
         case 20:
@@ -1293,10 +1374,12 @@ function fridayDialogue() {
       }
     } else if (waterClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("Sitting and listening to water is really", 40, 510);
       text("relaxing.", 40, 540);
     } else if (gardenClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("The soil feels ever so soft!", 40, 510);
     }
   }
@@ -1305,14 +1388,17 @@ function fridayDialogue() {
       showMenu = true;
       switch (fri3ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I can make food or nap at home.", 40, 510);
           text("Which one should I do?", 40, 540);
           break;
         case 1:
+          image(fairy, 0, 0, 360, 640);
           text("I'll sleep early. Maybe I'll catch a nice", 40, 510);
           text("dream!", 40, 540); // fairy
           break;
         case 10:
+          image(fairy, 0, 0, 360, 640);
           text("Ooh, I hope this isn't overcooked!", 40, 510); // fairy
           break;
         case 2:
@@ -1334,11 +1420,13 @@ function fridayDialogue() {
       }
     } else if (waterClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("I'd love to learn a spell to control water", 40, 510);
       text("one day, so I don't have to collect water with", 40, 540);
       text("a bucket every time.", 40, 570);
     } else if (gardenClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("I love the color my garden brings.", 40, 510);
     }
   }
@@ -1350,14 +1438,17 @@ function saturdayDialogue() {
       showMenu = true;
       switch (satChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I can make food or nap at home.", 40, 510);
           text("Which one should I do?", 40, 540);
           break;
         case 1:
+          image(fairy, 0, 0, 360, 640);
           text("I'm going to tuck back into", 40, 510);
           text("my pillows...", 40, 540);
           break;
         case 10:
+          image(fairy, 0, 0, 360, 640);
           text("Ooh, I think I made too much. I'll", 40, 510);
           text("share it with the critters.", 40, 540);
           break;
@@ -1369,6 +1460,7 @@ function saturdayDialogue() {
       }
     } else if (waterClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("Water is so beautiful!", 40, 510);
     } else if (gardenClick) {
       change = false;
@@ -1396,6 +1488,7 @@ function saturdayDialogue() {
           text("You're so mean, Bunbun!!", 40, 510); // squirrel
           break;
         case 5:
+          image(fairy, 0, 0, 360, 640);
           text("Now, now. You can have some too, Mr.", 40, 510); // fairy
           text("Bunny.", 40, 540); // fairy
           break;
@@ -1416,13 +1509,16 @@ function saturdayDialogue() {
       showMenu = true;
       switch (sat3ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I can make food or nap at home.", 40, 510);
           text("Which one should I do?", 40, 540);
           break;
         case 1:
+          image(fairy, 0, 0, 360, 640);
           text("My bed just looks so comfortable.", 40, 510);
           break;
         case 10:
+          image(fairy, 0, 0, 360, 640);
           text("Food makes me so happy!", 40, 510);
           break;
         default:
@@ -1446,6 +1542,7 @@ function saturdayDialogue() {
           text("You don't mind us bickering all the time?", 40, 510); // bunny
           break;
         case 3:
+          image(fairy, 0, 0, 360, 640);
           text("Not at all! I love your friendship.", 40, 510); // fairy
           text("It makes me happy to see you two.", 40, 540); // fairy
           break;
@@ -1469,6 +1566,7 @@ function saturdayDialogue() {
       }
     } else if (gardenClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("Each petal is just so soft!", 40, 510);
     }
   }
@@ -1477,11 +1575,14 @@ function saturdayDialogue() {
       showMenu = true;
       switch (sat5ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I can make food or nap at home.", 40, 510);
           text("Which one should I do?", 40, 540);
           break;
         case 1:
-          text("I nap.", 40, 510);
+          image(fairy, 0, 0, 360, 640);
+          text("I hope I get some sweet dreams", 40, 510);
+          text("tonight.", 40, 540);
           break;
         case 10:
           text("Your food smells good.", 40, 510); // fox
@@ -1493,6 +1594,7 @@ function saturdayDialogue() {
           text("It is special.", 40, 510); // fox
           break;
         case 30:
+          image(fairy, 0, 0, 360, 640);
           text("You can try it, if you'd like!", 40, 510); // fairy
           break;
         case 40:
@@ -1510,10 +1612,12 @@ function saturdayDialogue() {
       }
     } else if (waterClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("I love the feeling of the water", 40, 510);
       text("when I dip my hands in.", 40, 540);
     } else if (gardenClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("Sometimes, I think my flowers perk", 40, 510);
       text("up a little whenever they see me.", 40, 540);
     }
@@ -1526,14 +1630,17 @@ function sundayDialogue() {
       showMenu = true;
       switch (sunChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I can make food or nap at home.", 40, 510);
           text("Which one should I do?", 40, 540);
           break;
         case 1:
+          image(fairy, 0, 0, 360, 640);
           text("The forest will keep me safe", 40, 510);
           text("while I sleep in.", 40, 540);
           break;
         case 10:
+          image(fairy, 0, 0, 360, 640);
           text("Hmm, what should I make for", 40, 510);
           text("breakfast today, I wonder?", 40, 540);
           break;
@@ -1547,6 +1654,7 @@ function sundayDialogue() {
       change = false;
       switch (sun2ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("Oh, the squirrel and the fox are here!", 40, 510); // fairy
           break;
         case 1:
@@ -1585,6 +1693,7 @@ function sundayDialogue() {
       }
     } else if (gardenClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("A sip of water for you, a sip of water", 40, 510);
       text("for you. All done!", 40, 540);
     }
@@ -1594,13 +1703,16 @@ function sundayDialogue() {
       showMenu = true;
       switch (sun3ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I can make food or nap at home.", 40, 510);
           text("Which one should I do?", 40, 540);
           break;
         case 1:
+          image(fairy, 0, 0, 360, 640);
           text("Today's definitely a lazy Sunday.", 40, 510);
           break;
         case 10:
+          image(fairy, 0, 0, 360, 640);
           text("Lunch is ready! I have enough for", 40, 510); // fairy
           text("the three of us.", 40, 540); // fairy
           break;
@@ -1617,6 +1729,7 @@ function sundayDialogue() {
           text("wasn't.", 40, 540); // fox
           break;
         case 40:
+          image(fairy, 0, 0, 360, 640);
           text("Yes! There's enough for all of us, don't", 40, 510); // fairy
           text("worry!", 40, 540); // fairy
           break;
@@ -1634,10 +1747,12 @@ function sundayDialogue() {
       }
     } else if (waterClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("The stream always sings the same song, it's", 40, 510);
       text("comforting.", 40, 540);
     } else if (gardenClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("I'll plant something new today.", 40, 510);
     }
   }
@@ -1646,14 +1761,17 @@ function sundayDialogue() {
       showMenu = true;
       switch (sun4ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("I can make food or nap at home.", 40, 510);
           text("Which one should I do?", 40, 540);
           break;
         case 1:
+          image(fairy, 0, 0, 360, 640);
           text("I'll sleep early. I'm feeling", 40, 510);
           text("pretty sleepy.", 40, 540);
           break;
         case 10:
+          image(fairy, 0, 0, 360, 640);
           text("Hmm, what should I make for", 40, 510);
           text("dinner?", 40, 540);
           break;
@@ -1666,6 +1784,7 @@ function sundayDialogue() {
       change = false;
       switch (sun5ChatState) {
         case 0:
+          image(fairy, 0, 0, 360, 640);
           text("The stars look like they're swimming", 40, 510);
           text("in the water.", 40, 540); // fairy
           break;
@@ -1688,6 +1807,7 @@ function sundayDialogue() {
       }
     } else if (gardenClick) {
       change = true;
+      image(fairy, 0, 0, 360, 640);
       text("I love my garden and my garden loves", 40, 510);
       text("me.", 40, 540);
     }
