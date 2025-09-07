@@ -477,15 +477,31 @@ function dialogueText() {
     event = true;
     switch (introState) {
       case 0:
-        text("I've been on my own for so long. I really", 40, 510);
-        text("miss my friends and family.", 40, 540);
+        text("Welcome to My Fairy Wings! This game is", 40, 510);
+        text("a visual novel and point and click game.", 40, 540);
         break;
       case 1:
+        text("You will select a task to do and get a", 40, 510);
+        text("chance to encounter a friend. This is your", 40, 540);
+        text("goal.", 40, 570);
+        break;
+      case 2:
+        text("If you would like this experience to be", 40, 510);
+        text("easier, please turn on hints down below.", 40, 540);
+        break;
+      case 3:
+        text("Enjoy!", 40, 510);
+        break;
+      case 4:
+        text("I've been on my own for so long. I really", 40, 510);
+        text("miss my friends and family.", 40, 540); // fairy
+        break;
+      case 5:
         text("But maybe this week will be different.", 40, 510);
         text("Seven days and just three small steps", 40, 540);
         text("each day.", 40, 570);
         break;
-      case 2:
+      case 6:
         text("If I can just take care of myself, maybe", 40, 510);
         text("I'll meet some new friends. I think my", 40, 540);
         text("heart could really use that.", 40, 570);
