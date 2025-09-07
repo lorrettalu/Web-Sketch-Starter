@@ -1557,13 +1557,15 @@ function sundayDialogue() {
           text("Which one should I do?", 40, 540);
           break;
         case 1:
-          text("I nap.", 40, 510);
+          text("I'll sleep early. I'm feeling", 40, 510);
+          text("pretty sleepy.", 40, 540);
           break;
         case 10:
-          text("I make food.", 40, 510);
+          text("Hmm, what should I make for", 40, 510);
+          text("dinner?", 40, 540);
           break;
         default:
-          text("I finish my task.", 40, 510);
+          text("The fairy finished her task.", 40, 510);
           change = true;
           event = false;
       }
@@ -1571,20 +1573,30 @@ function sundayDialogue() {
       change = false;
       switch (sun5ChatState) {
         case 0:
-          text("It is Sunday night and I got water.", 40, 510);
+          text("The stars look like they're swimming", 40, 510);
+          text("in the water.", 40, 540); // fairy
           break;
         case 1:
-          text("Which option will you choose?", 40, 510);
+          text("...Or the water's stealing the sky.", 40, 510); // fox
+          break;
+        case 11:
+          text("...Doesn't matter. It looks the same", 40, 510); // fox
+          text("either way.", 40, 540); // fox
+          break;
+        case 2:
+          text("True.", 40, 510); // fox
           break;
         default:
-          text("I chose this option", 40, 510);
+          text("The fairy and the fox admired the", 40, 510);
+          text("water and the stars together.", 40, 540);
           chatEvent = false;
           change = true;
           event = false;
       }
     } else if (gardenClick) {
       change = true;
-      text("It is Sunday night and I garden.", 40, 510);
+      text("I love my garden and my garden loves", 40, 510);
+      text("me.", 40, 540);
     }
   }
 }
@@ -2027,7 +2039,7 @@ function clicks() {
       if (sundayMorning && sun2ChatState != 1) {
         sun2ChatState++;
       }
-      if (sundayNight) {
+      if (sundayNight && sun5ChatState != 1) {
         sun5ChatState++;
       }
     }
@@ -2325,12 +2337,12 @@ function clicks() {
   if (sundayNight) {
     if (sun5ChatState == 1) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
-        sun5ChatState++;
+        sun5ChatState += 10;
         plop.play();
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         sun5ChatState++;
-        plop.play();
+        chime.play();
       }
     }
   }
@@ -2686,8 +2698,9 @@ function dialogueChoices() {
       rect(48, 97, 270, 100, 8);
       rect(48, 220, 270, 100, 8);
       fill(0);
-      text("Option 1", 120, 150);
-      text("Option 2", 120, 260);
+      text("That doesn't even make any sense.", 60, 150);
+      text("Hmm. Depends on how you see it, I", 60, 260);
+      text("guess.", 160, 290);
     }
   }
   
@@ -3105,14 +3118,15 @@ function dialogueHover() {
         noStroke();
         rect(48, 97, 270, 100, 8);
         fill(0);
-        text("Option 1", 120, 150);
+        text("That doesn't even make any sense.", 60, 150);
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("Option 2", 120, 260);
+        text("Hmm. Depends on how you see it, I", 60, 260);
+        text("guess.", 160, 290);
       }
     }
   }
