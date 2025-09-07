@@ -1505,26 +1505,47 @@ function sundayDialogue() {
           text("Which one should I do?", 40, 540);
           break;
         case 1:
-          text("I nap.", 40, 510);
+          text("Today's definitely a lazy Sunday.", 40, 510);
           break;
         case 10:
-          text("I make food.", 40, 510);
+          text("Lunch is ready! I have enough for", 40, 510); // fairy
+          text("the three of us.", 40, 540); // fairy
           break;
         case 20:
-          text("Something special happens.", 40, 510);
+          text("It smells really good! Are you sure", 40, 510);
+          text("there's enough for me?", 40, 540);
+          break;
+        case 21:
+          text("Oh no! You better make sure you have", 40, 510);
+          text("enough for yourself first.", 40, 540); // bunny
+          break;
+        case 30:
+          text("They wouldn't have said so if there", 40, 510); // fox
+          text("wasn't.", 40, 540); // fox
+          break;
+        case 40:
+          text("Yes! There's enough for all of us, don't", 40, 510); // fairy
+          text("worry!", 40, 540); // fairy
+          break;
+        case 50:
+          text("Thank you!! I'll enjoy this.", 40, 510); // bunny
+          break;
+        case 60:
+          text("As will I.", 40, 510); // fox
           break;
         default:
-          text("I finish my task.", 40, 510);
+          text("Eventually, the sun began to set.", 40, 510);
           change = true;
           event = false;
           showMenu = false;
       }
     } else if (waterClick) {
       change = true;
-      text("It is Sunday afternoon and I got water.", 40, 510);
+      text("The stream always sings the same song, it's", 40, 510);
+      text("comforting.", 40, 540);
     } else if (gardenClick) {
       change = true;
-      text("It is Sunday afternoon and I garden.", 40, 510);
+      text("I'll plant something new today.", 40, 510);
     }
   }
   if (sundayNight) {
@@ -1871,7 +1892,7 @@ function mousePressed() {
       }
 
       // Sunday Afternoon
-      if (sundayAfternoon) {
+      if (sundayAfternoon && sun3ChatState != 20) {
         sun3ChatState += 10;
       }
 
@@ -1937,7 +1958,7 @@ function mousePressed() {
       if (sundayMorning) {
         sunChatState++;
       }
-      if (sundayAfternoon) {
+      if (sundayAfternoon && sun3ChatState != 20) {
         sun3ChatState++;
       }
       if (sundayNight) {
@@ -2295,8 +2316,8 @@ function clicks() {
         plop.play();
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
-        sun3ChatState++;
-        plop.play();
+        sun3ChatState += 10;
+        chime.play();
       }
     }
   }
@@ -2651,8 +2672,9 @@ function dialogueChoices() {
       rect(48, 97, 270, 100, 8);
       rect(48, 220, 270, 100, 8);
       fill(0);
-      text("Option 1", 120, 150);
-      text("Option 2", 120, 260);
+      text("Hmm...actually, I'm not sure.", 90, 150);
+      text("Yes, of course! There's enough for", 65, 260);
+      text("all of us!", 140, 290);
     }
   }
 
@@ -3063,14 +3085,15 @@ function dialogueHover() {
         noStroke();
         rect(48, 97, 270, 100, 8);
         fill(0);
-        text("Option 1", 120, 150);
+        text("Hmm...actually, I'm not sure.", 90, 150);
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("Option 2", 120, 260);
+        text("Yes, of course! There's enough for", 65, 260);
+        text("all of us!", 140, 290);
       }
     }
   }
