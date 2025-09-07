@@ -163,7 +163,7 @@ function preload() {
   nightGarden = loadImage("assets/Untitled_Artwork 11.png");
   cursor = loadImage("assets/butterflyahh.png");
   timeImage = loadImage("assets/Untitled_Artwork 7.png");
-  dialogue = loadImage("assets/Untitled_Artwork 6.png");
+  dialogue = loadImage("assets/Untitled_Artwork 17.png");
   
   font = loadFont("assets/IndieFlower-Regular.ttf");
   
