@@ -2241,6 +2241,7 @@ function clicks() {
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         thurs5ChatState++;
+        foxCount++;
         chime.play();
       }
     }
@@ -2280,6 +2281,7 @@ function clicks() {
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fri3ChatState++;
+        foxCount++;
         chime.play();
       }
     }
@@ -2319,6 +2321,7 @@ function clicks() {
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         sat5ChatState += 10;
+        foxCount++;
         chime.play();
       }
     }
@@ -2332,6 +2335,7 @@ function clicks() {
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         sun2ChatState++;
+        foxCount++;
         chime.play();
       }
     }
@@ -2345,6 +2349,7 @@ function clicks() {
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         sun3ChatState += 10;
+        foxCount++;
         chime.play();
       }
     }
@@ -2358,6 +2363,7 @@ function clicks() {
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         sun5ChatState++;
+        foxCount++;
         chime.play();
       }
     }
