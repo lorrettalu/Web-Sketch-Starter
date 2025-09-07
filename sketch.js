@@ -3194,13 +3194,13 @@ function cottageHover(x, y) {
   if ((x > 41 && x < 170) && (y > 299 && y < 429)) {
     if (morning) {
       image(cottage, 0, 0, 360, 640);
-      cottage.filter(GRAY);
+      cottage.filter(POSTERIZE, 15);
     } else if (afternoon) {
       image(afternoonCottage, 0, 0, 360, 640);
-      afternoonCottage.filter(GRAY);
+      afternoonCottage.filter(POSTERIZE, 10);
     } else if (night) {
       image(nightCottage, 0, 0, 360, 640);
-      nightCottage.filter(GRAY);
+      nightCottage.filter(POSTERIZE, 10);
     }
   }
   pop();
@@ -3211,13 +3211,13 @@ function gardenHover(x, y) {
   if ((x > 20 && x < 129) && (y > 441 && y < 615)) {
     if (morning) {
       image(garden, 0, 0, 360, 640);
-      garden.filter(GRAY);
+      garden.filter(POSTERIZE, 11);
     } else if (afternoon) {
       image(afternoonGarden, 0, 0, 360, 640);
-      afternoonGarden.filter(GRAY);
+      afternoonGarden.filter(POSTERIZE, 10);
     } else if (night) {
       image(nightGarden, 0, 0, 360, 640);
-      nightGarden.filter(GRAY);
+      nightGarden.filter(POSTERIZE, 10);
     }
   }
   pop();
@@ -3228,10 +3228,10 @@ function waterHover(x, y) {
   if ((x > 221 && x < 317) && (y > 173 && y < 411)) {
     if (morning || afternoon) {
       image(water, 0, 0, 360, 640);
-      water.filter(GRAY);
+      water.filter(POSTERIZE, 10);
     } else if (night) {
       image(nightWater, 0, 0, 360, 640);
-      nightWater.filter(GRAY);
+      nightWater.filter(POSTERIZE, 10);
     }
   }
   pop();
