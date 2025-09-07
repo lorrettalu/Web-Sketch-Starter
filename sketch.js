@@ -1394,23 +1394,38 @@ function saturdayDialogue() {
           text("I nap.", 40, 510);
           break;
         case 10:
-          text("I make food.", 40, 510);
+          text("Your food smells good.", 40, 510); // fox
+          break;
+        case 11:
+          text("I've noticed it before, but yes.", 40, 510); // fox
           break;
         case 20:
-          text("Something special happens.", 40, 510);
+          text("It is special.", 40, 510); // fox
+          break;
+        case 30:
+          text("You can try it, if you'd like!", 40, 510); // fairy
+          break;
+        case 40:
+          text("I'd like to.", 40, 510); // fox
+          break;
+        case 50:
+          text("This is delicious.", 40, 510); // fo
           break;
         default:
-          text("I finish my task.", 40, 510);
+          text("The fairy and the fox eat together", 40, 510);
+          text("very happily.", 40, 540);
           change = true;
           event = false;
           showMenu = false;
       }
     } else if (waterClick) {
       change = true;
-      text("It is Saturday night and I got water.", 40, 510);
+      text("I love the feeling of the water", 40, 510);
+      text("when I dip my hands in.", 40, 540);
     } else if (gardenClick) {
       change = true;
-      text("It is Saturday night and I garden.", 40, 510);
+      text("Sometimes, I think my flowers perk", 40, 510);
+      text("up a little whenever they see me.", 40, 540);
     }
   }
 }
@@ -1820,7 +1835,7 @@ function mousePressed() {
       }
 
       // Saturday Night
-      if (saturdayNight) {
+      if (saturdayNight && sat5ChatState != 10) {
         sat5ChatState += 10;
       }
 
@@ -1890,7 +1905,7 @@ function mousePressed() {
       if (saturdayAfternoon) {
         sat3ChatState++;
       }
-      if (saturdayNight) {
+      if (saturdayNight && sat5ChatState != 10) {
         sat5ChatState++;
       }
       if (sundayMorning) {
@@ -2222,14 +2237,14 @@ function clicks() {
   }
 
   if (saturdayNight) {
-    if (sat5ChatState == 20) {
+    if (sat5ChatState == 10) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
         sat5ChatState++;
         plop.play();
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
-        sat5ChatState++;
-        plop.play();
+        sat5ChatState += 10;
+        chime.play();
       }
     }
   }
@@ -2577,14 +2592,15 @@ function dialogueChoices() {
 
   // Saturday Night Chat Event
   if (saturdayNight) {
-    if (sat5ChatState == 20) {
+    if (sat5ChatState == 10) {
       fill(200, 220, 255);
       noStroke();
       rect(48, 97, 270, 100, 8);
       rect(48, 220, 270, 100, 8);
       fill(0);
-      text("Option 1", 120, 150);
-      text("Option 2", 120, 260);
+      text("You've finally noticed my cooking", 70, 140);
+      text("skills.", 160, 170);
+      text("It's nothing special.", 110, 270);
     }
   }
 
@@ -2976,20 +2992,21 @@ function dialogueHover() {
   }
 
   if (saturdayNight) {
-    if (sat5ChatState == 20) {
+    if (sat5ChatState == 10) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 97, 270, 100, 8);
         fill(0);
-        text("Option 1", 120, 150);
+        text("You've finally noticed my cooking", 70, 140);
+        text("skills.", 160, 170);
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("Option 2", 120, 260);
+        text("It's nothing special.", 110, 270);
       }
     }
   }
