@@ -1440,13 +1440,16 @@ function sundayDialogue() {
           text("Which one should I do?", 40, 540);
           break;
         case 1:
-          text("I nap.", 40, 510);
+          text("The forest will keep me safe", 40, 510);
+          text("while I sleep in.", 40, 540);
           break;
         case 10:
-          text("I make food.", 40, 510);
+          text("Hmm, what should I make for", 40, 510);
+          text("breakfast today, I wonder?", 40, 540);
           break;
         default:
-          text("I finish my task.", 40, 510);
+          text("The fairy finished her task and the", 40, 510);
+          text("day went on.", 40, 540);
           change = true;
           event = false;
       }
@@ -1454,20 +1457,43 @@ function sundayDialogue() {
       change = false;
       switch (sun2ChatState) {
         case 0:
-          text("It is Sunday morning and I got water.", 40, 510);
+          text("Oh, the squirrel and the fox are here!", 40, 510); // fairy
           break;
         case 1:
-          text("Which option will you choose?", 40, 510);
+          text("Do you think fish tastes like pancakes?", 40, 510); // squirrel
+          break;
+        case 11:
+          text("Yeah, fish don't taste like pancakes.", 40, 510); // fox
+          text("Trust me.", 40, 540); // fox
+          break;
+        case 2:
+          text("...Probably shouldn't.", 40, 510); // fox
+          break;
+        case 3:
+          text("I think I'll try it! Pancake fishies, here", 40, 510);
+          text("I come!", 40, 540); // squirrel
+          break;
+        case 4:
+          text("...Let me help you.", 40, 510); // fox
+          break;
+        case 5:
+          text("Aww, thanks fox!", 40, 510); // squirrel
+          break;
+        case 6:
+          text("The fox brings the squirrel a fish for", 40, 510);
+          text("them to try.", 40, 540);
           break;
         default:
-          text("I chose this option", 40, 510);
+          text("The fairy, fox, and squirrel sit by the", 40, 510);
+          text("water together.", 40, 540);
           chatEvent = false;
           change = true;
           event = false;
       }
     } else if (gardenClick) {
       change = true;
-      text("It is Sunday morning and I garden.", 40, 510);
+      text("A sip of water for you, a sip of water", 40, 510);
+      text("for you. All done!", 40, 540);
     }
   }
   if (sundayAfternoon) {
@@ -1977,7 +2003,7 @@ function clicks() {
       if (saturdayAfternoon && sat4ChatState != 1) {
         sat4ChatState++;
       }
-      if (sundayMorning) {
+      if (sundayMorning && sun2ChatState != 1) {
         sun2ChatState++;
       }
       if (sundayNight) {
@@ -2252,12 +2278,12 @@ function clicks() {
   if (sundayMorning) {
     if (sun2ChatState == 1) {
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
-        sun2ChatState++;
+        sun2ChatState += 10;
         plop.play();
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         sun2ChatState++;
-        plop.play();
+        chime.play();
       }
     }
   }
@@ -2612,8 +2638,8 @@ function dialogueChoices() {
       rect(48, 97, 270, 100, 8);
       rect(48, 220, 270, 100, 8);
       fill(0);
-      text("Option 1", 120, 150);
-      text("Option 2", 120, 260);
+      text("Probably not.", 130, 150);
+      text("Try it!", 150, 270);
     }
   }
 
@@ -3018,14 +3044,14 @@ function dialogueHover() {
         noStroke();
         rect(48, 97, 270, 100, 8);
         fill(0);
-        text("Option 1", 120, 150);
+        text("Probably not.", 130, 150);
       }
       if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
         fill(80, 100, 255);
         noStroke();
         rect(48, 220, 270, 100, 8);
         fill(0);
-        text("Option 2", 120, 260);
+        text("Try it!", 150, 270);
       }
     }
   }
