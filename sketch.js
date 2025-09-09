@@ -15,6 +15,7 @@ let timeImage;
 let dialogue;
 let squirrel;
 let fairy;
+let fox;
 
 // Font
 let font;
@@ -173,6 +174,7 @@ function preload() {
   dialogue = loadImage("assets/Untitled_Artwork 17.png");
   squirrel = loadImage("assets/Untitled_Artwork 19.png");
   fairy = loadImage("assets/Untitled_Artwork 20.png");
+  fox = loadImage("assets/Untitled_Artwork 21.png");
   
   font = loadFont("assets/IndieFlower-Regular.ttf");
   
@@ -723,12 +725,15 @@ function mondayDialogue() {
           text("by accident.", 40, 540);
           break;
         case 1:
-          text("Be careful with that.", 40, 510); // fox
+          image(fox, 0, 0, 360, 640);
+          text("Be careful with that!", 40, 510); // fox
           break;
         case 2:
+          image(fox, 0, 0, 360, 640);
           text("Maybe.", 40, 510);
           break;
         case 11:
+          image(fox, 0, 0, 360, 640);
           text("If you say so.", 40, 510);
           break;
         default:
@@ -874,9 +879,11 @@ function tuesdayDialogue() {
           text("I'll sleep a little early tonight.", 40, 510);
           break;
         case 2:
+          image(fox, 0, 0, 360, 640);
           text("Sleeping early?", 40, 510); // fox
           break;
         case 3:
+          image(fox, 0, 0, 360, 640);
           text("...Can't argue with that.", 40, 510); // fox
           break;
         case 4:
@@ -884,6 +891,7 @@ function tuesdayDialogue() {
           text("...", 40, 510); // fairy
           break;
         case 12:
+          image(fox, 0, 0, 360, 640);
           text("Then rest well.", 40, 510);
           break;
         case 10:
@@ -1049,13 +1057,16 @@ function wednesdayDialogue() {
           text("just me here.", 40, 540);
           break;
         case 20:
+          image(fox, 0, 0, 360, 640);
           text("Home doesn't have to be crowded to", 40, 510);
           text("mean something.", 40, 540); // fox
           break;
         case 21:
+          image(fox, 0, 0, 360, 640);
           text("Fair enough.", 40, 510); // fox
           break;
         case 30:
+          image(fox, 0, 0, 360, 640);
           text("If you'd like.", 40, 510);
           break;
         default:
@@ -1242,6 +1253,7 @@ function thursdayDialogue() {
           text("I wonder why.", 40, 540); // fairy
           break;
         case 2:
+          image(fox, 0, 0, 360, 640);
           text("It does. If you stop, the garden will die.", 40, 510); // fox
           break;
         case 3:
@@ -1249,9 +1261,11 @@ function thursdayDialogue() {
           text("That's true.", 40, 510); // fairy
           break;
         case 4:
+          image(fox, 0, 0, 360, 640);
           text("You care for it. That matters.", 40, 510); // fox
           break;
         case 11:
+          image(fox, 0, 0, 360, 640);
           text("...Really?", 40, 510); // fox
           break;
         default:
@@ -1402,12 +1416,15 @@ function fridayDialogue() {
           text("Ooh, I hope this isn't overcooked!", 40, 510); // fairy
           break;
         case 2:
+          image(fox, 0, 0, 360, 640);
           text("...I'm a dreamcatcher. I can help.", 40, 510); // fox
           break;
         case 12:
-          text("You're a talented fairy, it seems.", 40, 510); // fox
+          image(fox, 0, 0, 360, 640);
+          text("You're a talented fairy, it seems!", 40, 510); // fox
           break;
         case 3:
+          image(fox, 0, 0, 360, 640);
           text("Then, of course. I hope you enjoy your", 40, 510);
           text("dream. Good night.", 40, 540); // fox
           break;
@@ -1585,12 +1602,15 @@ function saturdayDialogue() {
           text("tonight.", 40, 540);
           break;
         case 10:
+          image(fox, 0, 0, 360, 640);
           text("Your food smells good.", 40, 510); // fox
           break;
         case 11:
+          image(fox, 0, 0, 360, 640);
           text("I've noticed it before, but yes.", 40, 510); // fox
           break;
         case 20:
+          image(fox, 0, 0, 360, 640);
           text("It is special.", 40, 510); // fox
           break;
         case 30:
@@ -1598,9 +1618,11 @@ function saturdayDialogue() {
           text("You can try it, if you'd like!", 40, 510); // fairy
           break;
         case 40:
+          image(fox, 0, 0, 360, 640);
           text("I'd like to.", 40, 510); // fox
           break;
         case 50:
+          image(fox, 0, 0, 360, 640);
           text("This is delicious.", 40, 510); // fo
           break;
         default:
@@ -1662,10 +1684,12 @@ function sundayDialogue() {
           text("Do you think fish tastes like pancakes?", 40, 510); // squirrel
           break;
         case 11:
+          image(fox, 0, 0, 360, 640);
           text("Yeah, fish don't taste like pancakes.", 40, 510); // fox
           text("Trust me.", 40, 540); // fox
           break;
         case 2:
+          image(fox, 0, 0, 360, 640);
           text("...Probably shouldn't.", 40, 510); // fox
           break;
         case 3:
@@ -1674,6 +1698,7 @@ function sundayDialogue() {
           text("I come!", 40, 540); // squirrel
           break;
         case 4:
+          image(fox, 0, 0, 360, 640);
           text("...Let me help you.", 40, 510); // fox
           break;
         case 5:
@@ -1725,6 +1750,7 @@ function sundayDialogue() {
           text("enough for yourself first.", 40, 540); // bunny
           break;
         case 30:
+          image(fox, 0, 0, 360, 640);
           text("They wouldn't have said so if there", 40, 510); // fox
           text("wasn't.", 40, 540); // fox
           break;
@@ -1737,6 +1763,7 @@ function sundayDialogue() {
           text("Thank you!! I'll enjoy this.", 40, 510); // bunny
           break;
         case 60:
+          image(fox, 0, 0, 360, 640);
           text("As will I.", 40, 510); // fox
           break;
         default:
@@ -1789,13 +1816,16 @@ function sundayDialogue() {
           text("in the water.", 40, 540); // fairy
           break;
         case 1:
+          image(fox, 0, 0, 360, 640);
           text("...Or the water's stealing the sky.", 40, 510); // fox
           break;
         case 11:
+          image(fox, 0, 0, 360, 640);
           text("...Doesn't matter. It looks the same", 40, 510); // fox
           text("either way.", 40, 540); // fox
           break;
         case 2:
+          image(fox, 0, 0, 360, 640);
           text("True.", 40, 510); // fox
           break;
         default:
