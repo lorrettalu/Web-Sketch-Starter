@@ -64,6 +64,7 @@ let clickedFood = false;
 let chatEvent = false;
 let ending1 = false;
 let ending2 = false;
+let doubleClick = false;
 
 // Integer Variables
 let eventNum = 0;
@@ -116,6 +117,9 @@ let foxCount = 0;
 
 let ending1ChatState = 0;
 let ending2ChatState = 0;
+
+let lastClickTime = 0;
+let cooldown = 200;
 
 // Array Variables
 let particles = []; // Array to hold all particles
@@ -777,6 +781,7 @@ function mondayDialogue() {
       }
     } else if (waterClick) {
       change = false;
+      doubleClick = true;
       switch(mon5ChatState) {
         case 0:
           image(fairy, 0, 0, 360, 640);
@@ -786,6 +791,7 @@ function mondayDialogue() {
         case 1:
           image(fox, 0, 0, 360, 640);
           text("Be careful with that!", 40, 510); // fox
+          doubleClick = false;
           break;
         case 2:
           image(fox, 0, 0, 360, 640);
@@ -801,6 +807,7 @@ function mondayDialogue() {
           chatEvent = false;
           change = true;
           event = false;
+          doubleClick = false;
       }
       
     } else if (gardenClick) {
@@ -1010,6 +1017,7 @@ function wednesdayDialogue() {
       }
     } else if (waterClick) {
       change = false;
+      doubleClick = true;
       switch (wed2ChatState) {
         case 0:
           image(fairy, 0, 0, 360, 640);
@@ -1017,6 +1025,7 @@ function wednesdayDialogue() {
           text("water to be prepared for the day.", 40, 540);
           break;
         case 1:
+          doubleClick = false;
           image(squirrel, 0, 0, 360, 640);
           text("Careful, if you lean in too far, the", 40, 510);
           text("fish can steal your reflection.", 40, 540); // squirrel
@@ -1044,6 +1053,7 @@ function wednesdayDialogue() {
           chatEvent = false;
           change = true;
           event = false;
+          doubleClick = false;
       }
     } else if (gardenClick) {
       change = true;
@@ -1247,12 +1257,14 @@ function thursdayDialogue() {
       }
     } else if (waterClick) {
       change = false;
+      doubleClick = true;
       switch (thurs3ChatState) {
         case 0:
           image(fairy, 0, 0, 360, 640);
           text("Oops, I'll go refill my watering can.", 40, 510); // fairy
           break;
         case 1:
+          doubleClick = false;
           image(bunny, 0, 0, 360, 640);
           text("Hi Miss Fairy! Do you think there are", 40, 510);
           text("secret caves behind the waterfall?", 40, 540); // bunny
@@ -1274,6 +1286,7 @@ function thursdayDialogue() {
           chatEvent = false;
           change = true;
           event = false;
+          doubleClick = false;
       }
     } else if (gardenClick) {
       change = true;
@@ -1621,12 +1634,14 @@ function saturdayDialogue() {
       }
     } else if (waterClick) {
       change = false;
+      doubleClick = true;
       switch (sat4ChatState) {
         case 0:
           image(bunny, 0, 0, 360, 640);
           text("...It feels peaceful here.", 40, 510); // bunny
           break;
         case 1:
+          doubleClick = false;
           image(squirrel, 0, 0, 360, 640);
           text("Peaceful? It feels so alive! Look at all", 40, 510);
           text("the water ripples!", 40, 540); // squirrel
@@ -1658,6 +1673,7 @@ function saturdayDialogue() {
           chatEvent = false;
           change = true;
           event = false;
+          doubleClick = false;
       }
     } else if (gardenClick) {
       change = true;
@@ -1752,12 +1768,14 @@ function sundayDialogue() {
       }
     } else if (waterClick) {
       change = false;
+      doubleClick = true;
       switch (sun2ChatState) {
         case 0:
           image(fairy, 0, 0, 360, 640);
           text("Oh, the squirrel and the fox are here!", 40, 510); // fairy
           break;
         case 1:
+          doubleClick = false;
           image(squirrel, 0, 0, 360, 640);
           text("Do you think fish tastes like pancakes?", 40, 510); // squirrel
           break;
@@ -1793,6 +1811,7 @@ function sundayDialogue() {
           chatEvent = false;
           change = true;
           event = false;
+          doubleClick = false;
       }
     } else if (gardenClick) {
       change = true;
@@ -1890,6 +1909,7 @@ function sundayDialogue() {
       }
     } else if (waterClick) {
       change = false;
+      doubleClick = true;
       switch (sun5ChatState) {
         case 0:
           image(fairy, 0, 0, 360, 640);
@@ -1897,6 +1917,7 @@ function sundayDialogue() {
           text("in the water.", 40, 540); // fairy
           break;
         case 1:
+          doubleClick = false;
           image(fox, 0, 0, 360, 640);
           text("...Or the water's stealing the sky.", 40, 510); // fox
           break;
@@ -1915,6 +1936,7 @@ function sundayDialogue() {
           chatEvent = false;
           change = true;
           event = false;
+          doubleClick = false;
       }
     } else if (gardenClick) {
       change = true;
@@ -2353,6 +2375,7 @@ function clicks() {
       eventNum = eventNum;
       cottageClick = cottageClick;
       event = event;
+      plop.play();
     }
   }
   
@@ -2366,6 +2389,7 @@ function clicks() {
       eventNum = eventNum;
       waterClick = waterClick;
       event = event;
+      plop.play();
       if (mondayNight && mon5ChatState != 1) {
         mon5ChatState++;
       }
@@ -2397,6 +2421,7 @@ function clicks() {
       eventNum = eventNum;
       gardenClick = gardenClick;
       event = event;
+      plop.play();
       if (mondayAfternoon && mon3ChatState != 1) {
         mon3ChatState++;
       }
@@ -2446,7 +2471,7 @@ function clicks() {
         foxCount++;
         chime.play();
       }
-      if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320) && doubleClick == false) {
         mon5ChatState += 10;
         plop.play();
       }
@@ -2499,7 +2524,7 @@ function clicks() {
         wed2ChatState++;
         chime.play();
       }
-      if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320) && doubleClick == false) {
         wed2ChatState += 10;
         plop.play();
       }
@@ -2552,7 +2577,7 @@ function clicks() {
         thurs3ChatState++;
         chime.play();
       }
-      if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320) && doubleClick == false) {
         thurs3ChatState += 10;
         plop.play();
       }
@@ -2628,11 +2653,11 @@ function clicks() {
 
   if (saturdayAfternoon) {
     if (sat4ChatState == 1) {
-      if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197) && doubleClick == false) {
         sat4ChatState += 10;
         plop.play();
       }
-      if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320) && doubleClick == false) {
         sat4ChatState++;
         chime.play();
       }
@@ -2655,11 +2680,11 @@ function clicks() {
 
   if (sundayMorning) {
     if (sun2ChatState == 1) {
-      if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197) && doubleClick == false) {
         sun2ChatState += 10;
         plop.play();
       }
-      if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320) && doubleClick == false) {
         sun2ChatState++;
         foxCount++;
         chime.play();
@@ -2683,11 +2708,11 @@ function clicks() {
 
   if (sundayNight) {
     if (sun5ChatState == 1) {
-      if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197)) {
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 97 && mouseY < 197) && doubleClick == false) {
         sun5ChatState += 10;
         plop.play();
       }
-      if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320)) {
+      if ((mouseX > 48 && mouseX < 318) && (mouseY > 220 && mouseY < 320) && doubleClick == false) {
         sun5ChatState++;
         foxCount++;
         chime.play();
