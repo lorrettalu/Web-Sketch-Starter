@@ -251,6 +251,7 @@ function draw() {
       sparkleEvent(assets[0]);
     } else if (mondayAfternoon) {
       food = false;
+      nap = true;
       sparkleEvent(assets[1]);
     } else if (mondayNight) {
       sparkleEvent(assets[2]);
@@ -258,7 +259,58 @@ function draw() {
       sparkleEvent(assets[1]);
     } else if (tuesdayAfternoon) {
       food = true;
+      nap = false;
       sparkleEvent(assets[0]);
+    } else if (tuesdayNight) {
+      food = false;
+      nap = true;
+      sparkleEvent(assets[0]);
+    } else if (wednesdayMorning) {
+      sparkleEvent(assets[2]);
+    } else if (wednesdayAfternoon) {
+      food = false;
+      nap = true;
+      sparkleEvent(assets[0]);
+    } else if (wednesdayNight) {
+      food = true;
+      nap = false;
+      sparkleEvent(assets[0]);
+    } else if (thursdayMorning) {
+      food = true;
+      nap = false;
+      sparkleEvent(assets[0]);
+    } else if (thursdayAfternoon) {
+      sparkleEvent(assets[2]);
+    } else if (thursdayNight) {
+      sparkleEvent(assets[1]);
+    } else if (fridayMorning) {
+      food = false;
+      nap = true;
+      sparkleEvent(assets[0]);
+    } else if (fridayAfternoon) {
+      food = true;
+      nap = false;
+      sparkleEvent(assets[0]);
+    } else if (fridayNight) {
+      food = false;
+      nap = true;
+      sparkleEvent(assets[0]);
+    } else if (saturdayMorning) {
+      sparkleEvent(assets[1]);
+    } else if (saturdayAfternoon) {
+      sparkleEvent(assets[2]);
+    } else if (saturdayNight) {
+      food = true;
+      nap = false;
+      sparkleEvent(assets[0]);
+    } else if (sundayMorning) {
+      sparkleEvent(assets[2]);
+    } else if (sundayAfternoon) {
+      food = true;
+      nap = false;
+      sparkleEvent(assets[0]);
+    } else if (sundayNight) {
+      sparkleEvent(assets[2]);
     }
   } else {
     showHint = false;
@@ -1347,9 +1399,7 @@ function fridayDialogue() {
           text("Oh, alright!", 40, 510); // fairy
           break;
         default:
-          text("The fairy and the squirrel have a short", 40, 510);
-          text("adventure together outside and find", 40, 540);
-          text("some maple syrup together!", 40, 570);
+          text("Time went by quickly!", 40, 510);
           change = true;
           event = false;
           showMenu = false;
@@ -3598,7 +3648,7 @@ class Sparkle {
     } else if (nap) {
       fill(0, 0, 255, a * 0.35);
     } else {
-      fill(255, 215, 0, a * 0.35);
+      fill(255, 200, 203, a * 0.35);
     }
     ellipse(this.pos.x, this.pos.y, this.size * 3, this.size * 3);
     if (food) {
@@ -3606,7 +3656,7 @@ class Sparkle {
     } else if (nap) {
       fil(0, 0, 255, a);
     } else {
-      fill(218, 165, 32, 100, a);
+      fill(255, 192, 203, 100, a);
     }
     ellipse(this.pos.x, this.pos.y, this.size, this.size);
     pop();
