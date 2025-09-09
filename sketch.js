@@ -180,7 +180,7 @@ function preload() {
   squirrel = loadImage("assets/Untitled_Artwork 19.png");
   fairy = loadImage("assets/Untitled_Artwork 20.png");
   fox = loadImage("assets/Untitled_Artwork 21.png");
-  bunny = loadImage("assets/Untitled_Artwork 22.png");
+  bunny = loadImage("assets/Untitled_Artwork 23.png");
   
   font = loadFont("assets/IndieFlower-Regular.ttf");
   
@@ -1214,7 +1214,7 @@ function thursdayDialogue() {
           text("Oh well.", 40, 540); // squirrel
           break;
         default:
-          text("After the squirrel left, time passed by.", 40, 510);
+          text("Time passed by.", 40, 510);
           change = true;
           event = false;
           showMenu = false;
@@ -1719,9 +1719,12 @@ function saturdayDialogue() {
           image(fox, 0, 0, 360, 640);
           text("This is delicious.", 40, 510); // fo
           break;
-        default:
+        case 60:
           text("The fairy and the fox eat together", 40, 510);
           text("very happily.", 40, 540);
+          break;
+        default:
+          text("Time passed by.", 40, 510);
           change = true;
           event = false;
           showMenu = false;
@@ -2167,11 +2170,11 @@ function mousePressed() {
         mon2ChatState += 10;
       }
       // Monday Night
-      if (mondayNight) {
+      if (mondayNight && change == false) {
         mon4ChatState += 10;
       }
       // Tuesday Morning
-      if (tuesdayMorning) {
+      if (tuesdayMorning && change == false) {
         tuesChatState += 10;
       }
       
@@ -2181,82 +2184,82 @@ function mousePressed() {
       }
       
       // Tuesday Night
-      if (tuesdayNight) {
+      if (tuesdayNight && change == false) {
         tues2ChatState += 10;
       }
 
       // Wednesday Morning
-      if (wednesdayMorning) {
+      if (wednesdayMorning && change == false) {
         wedChatState += 10;
       }
 
       // Wednesday Afternoon
-      if (wednesdayAfternoon && wed3ChatState != 3) {
+      if (wednesdayAfternoon && wed3ChatState != 3 && change == false) {
         wed3ChatState += 10;
       }
 
       // Wednesday Night
-      if (wednesdayNight && wed4ChatState != 20) {
+      if (wednesdayNight && wed4ChatState != 20 && change == false) {
         wed4ChatState += 10;
       }
 
       // Thursday Morning
-      if (thursdayMorning && thursChatState != 20) {
+      if (thursdayMorning && thursChatState != 20 && change == false) {
         thursChatState += 10;
       }
 
       // Thursday Afternoon
-      if (thursdayAfternoon) {
+      if (thursdayAfternoon && change == false) {
         thurs2ChatState += 10;
       }
 
       // Thursday Night
-      if (thursdayNight) {
+      if (thursdayNight && change == false) {
         thurs4ChatState += 10;
       }
 
       // Friday Morning
-      if (fridayMorning && friChatState != 2) {
+      if (fridayMorning && friChatState != 2 && change == false) {
         friChatState += 10;
       }
 
       // Friday Afternoon
-      if (fridayAfternoon && fri2ChatState != 20) {
+      if (fridayAfternoon && fri2ChatState != 20 && change == false) {
         fri2ChatState += 10;
       }
 
       // Friday Night
-      if (fridayNight && fri3ChatState != 2) {
+      if (fridayNight && fri3ChatState != 2 && change == false) {
         fri3ChatState += 10;
       }
 
       // Saturday Morning
-      if (saturdayMorning) {
+      if (saturdayMorning && change == false) {
         satChatState += 10;
       }
 
       // Saturday Afternoon
-      if (saturdayAfternoon) {
+      if (saturdayAfternoon && change == false) {
         sat3ChatState += 10;
       }
 
       // Saturday Night
-      if (saturdayNight && sat5ChatState != 10) {
+      if (saturdayNight && sat5ChatState != 10 && change == false) {
         sat5ChatState += 10;
       }
 
       // Sunday Morning
-      if (sundayMorning) {
+      if (sundayMorning && change == false) {
         sunChatState += 10;
       }
 
       // Sunday Afternoon
-      if (sundayAfternoon && sun3ChatState != 20) {
+      if (sundayAfternoon && sun3ChatState != 20 && change == false) {
         sun3ChatState += 10;
       }
 
       // Sunday Night
-      if (sundayNight) {
+      if (sundayNight && change == false) {
         sun4ChatState += 10;
       }
   
@@ -2267,10 +2270,10 @@ function mousePressed() {
       if (mondayAfternoon) {
         mon2ChatState++;
       }
-      if (mondayNight) {
+      if (mondayNight && change == false) {
         mon4ChatState++;
       }
-      if (tuesdayMorning) {
+      if (tuesdayMorning && change == false) {
         tuesChatState++;
       }
       if (tuesdayAfternoon) {
@@ -2282,7 +2285,7 @@ function mousePressed() {
       if (wednesdayMorning) {
         wedChatState++;
       }
-      if (wednesdayAfternoon && wed3ChatState != 3) {
+      if (wednesdayAfternoon && wed3ChatState != 3 && change == false) {
         wed3ChatState++;
       }
       if (wednesdayNight && wed4ChatState != 20) {
@@ -2294,34 +2297,34 @@ function mousePressed() {
       if (thursdayAfternoon) {
         thurs2ChatState++;
       }
-      if (thursdayNight) {
+      if (thursdayNight && change == false) {
         thurs4ChatState++;
       }
-      if (fridayMorning && friChatState != 2) {
+      if (fridayMorning && friChatState != 2 && change == false) {
         friChatState++;
       }
-      if (fridayAfternoon && fri2ChatState != 20) {
+      if (fridayAfternoon && fri2ChatState != 20 && change == false) {
         fri2ChatState++;
       }
-      if (fridayNight && fri3ChatState != 2) {
+      if (fridayNight && fri3ChatState != 2 && change == false) {
         fri3ChatState++;
       }
-      if (saturdayMorning) {
+      if (saturdayMorning && change == false) {
         satChatState++;
       }
-      if (saturdayAfternoon) {
+      if (saturdayAfternoon && change == false) {
         sat3ChatState++;
       }
-      if (saturdayNight && sat5ChatState != 10) {
+      if (saturdayNight && sat5ChatState != 10 && change == false) {
         sat5ChatState++;
       }
-      if (sundayMorning) {
+      if (sundayMorning && change == false) {
         sunChatState++;
       }
-      if (sundayAfternoon && sun3ChatState != 20) {
+      if (sundayAfternoon && sun3ChatState != 20 && change == false) {
         sun3ChatState++;
       }
-      if (sundayNight) {
+      if (sundayNight && change == false) {
         sun4ChatState++;
       }
     }
