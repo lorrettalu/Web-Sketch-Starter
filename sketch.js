@@ -155,9 +155,9 @@ let isPaused = false;
 let showHint = false;
 let sparkles = [];
 const assets = [
-  {id: 'cottage', x: 41, w: 170, y: 299, h: 150},
+  {id: 'cottage', x: 90, w: 170, y: 299, h: 150},
   {id: 'garden', x: 20, w: 129, y: 441, h: 615},
-  {id: 'water', x: 221, w: 300, y: 173, h: 200}
+  {id: 'water', x: 270, w: 300, y: 200, h: 200}
 ];
 let food = false;
 let nap = false;
@@ -196,7 +196,7 @@ function preload() {
 function setup() {
   const c = createCanvas(360, 640);
   c.parent('sketch');
-  noCursor();
+  //noCursor();
   
   // Ambience
   timeSound();
@@ -206,7 +206,16 @@ function setup() {
   //document.getElementById('muteBtn').addEventListener('click', toggleMute);
   document.getElementById('playBtn').addEventListener('click', togglePause);
   //document.getElementById('suppBtn').addEventListener('click', openSupport);
-  document.getElementById('hintBtn').addEventListener('click', showHints);
+  document.getElementById('hintBtn').addEventListener('click', () => {
+    showHint = !showHint;
+    const btn = document.getElementById('hintBtn');
+
+    if (showHint) {
+      btn.textContent = 'Turn Off Hints';
+    } else {
+      btn.textContent = 'Turn On Hints';
+    }
+  });
 
 }
 
@@ -242,12 +251,13 @@ function draw() {
   }
 
   // Hints
-  for (let i = sparkles.length - 1; i >= 0; i--) {
-    const s = sparkles[i];
-    s.update();
-    s.display();
-    if (s.isDead()) sparkles.splice(i, 1);
-  }
+  // for (let i = sparkles.length - 1; i >= 0; i--) {
+  //   sparkles[i].update();
+  //   sparkles[i].display();
+  //   if (sparkles[i].isDead()) {
+  //     sparkles.splice(i, 1);
+  //   }
+  // }
   
   if (showHint) {
     if (mondayMorning) {
@@ -365,12 +375,6 @@ function draw() {
 
   dialogueChoices();
   dialogueHover();
-  
-  // Cursor
-  push();
-  imageMode(CENTER);
-  image(cursor, mouseX, mouseY, 30, 30);
-  pop();
 
   // Floating Text by Cursor
   if (cottageClick) {
@@ -540,7 +544,7 @@ function dialogueText() {
     sundayDialogue();
   } else if (sundayNight) {
     sundayDialogue();
-  } else {
+  }
     /*// Default Dialogue
     change = true;
     if (waterClick) {
@@ -579,7 +583,6 @@ function dialogueText() {
       default:
         text("The End! Please restart the game.", 40, 510);
     }
-  }
   }
 
   // Intro Dialogue
@@ -2344,19 +2347,19 @@ function mousePressed() {
   }
 
   // Intro Dialogue
-  if (intro) {
+  if (intro && (mouseX >= 0 && mouseX <= 360) && (mouseY >= 0 && mouseY < 580)) {
     introState++;
     plop.play();
   }
 
   // Ending Dialogue
-  if (ending1) {
+  if (ending1 && (mouseX >= 0 && mouseX <= 360) && (mouseY >= 0 && mouseY < 580)) {
     ending1ChatState++;
     if (ending1ChatState <= 1) {
       plop.play();
     }
   }
-  if (ending2) {
+  if (ending2 && (mouseX >= 0 && mouseX <= 360) && (mouseY >= 0 && mouseY < 580)) {
     ending2ChatState++;
     if (ending2ChatState <= 1) {
       plop.play();
@@ -3684,7 +3687,7 @@ class Sparkle {
     } else if (nap) {
       fil(0, 0, 255, a);
     } else {
-      fill(255, 192, 203, 100, a);
+      fill(255, 192, 203, a);
     }
     ellipse(this.pos.x, this.pos.y, this.size, this.size);
     pop();
@@ -3707,15 +3710,22 @@ function showHints() {
 }
 
 function sparkleEvent(a) {
-  for (let i = 0; i < 1; i++) {
-    const px = a.x + random(-8, a.w + 8);
-    const py = a.y + random(-8, a.h + 8);
-    const ang = random(TWO_PI);
-    const speed = random(0.4, 1.6);
-    const vx = cos(ang) * speed * 0.8;
-    const vy = sin(ang) * speed * 0.3 - random(0.2, 0.6);
-    sparkles.push(new Sparkle(px, py, vx, vy));
-  }
+  // push();
+  // for (let i = 0; i < 1; i++) {
+  //   const px = a.x + random(-8, a.w + 8);
+  //   const py = a.y + random(-8, a.h + 8);
+  //   const ang = random(TWO_PI);
+  //   const speed = random(0.4, 1.6);
+  //   const vx = cos(ang) * speed * 0.8;
+  //   const vy = sin(ang) * speed * 0.3 - random(0.2, 0.6);
+  //   sparkles.push(new Sparkle(px, py, vx, vy));
+  // }
+  // pop();
+  push();
+  let arrowY = 10 * sin(frameCount * 0.1);
+  imageMode(CENTER);
+  image(cursor, a.x, a.y + arrowY, 40, 40);
+  pop();
 }
 
 // Other HTML Buttons
