@@ -710,7 +710,7 @@ function dialogueText() {
         break;
       case 4:
         image(squirrel, 0, 0, 360, 640);
-        text("Especially since your fod is", 40, 510);
+        text("Especially since your food is", 40, 510);
         text("sooooooo yummy!", 40, 540);
         break;
       case 5:
@@ -2548,15 +2548,11 @@ function mousePressed() {
   // Ending Dialogue
   if (ending1 && (mouseX >= 0 && mouseX <= 360) && (mouseY >= 0 && mouseY < 600)) {
     ending1ChatState++;
-    if (ending1ChatState <= 1) {
-      plop.play();
-    }
+    plop.play();
   }
   if (ending2 && (mouseX >= 0 && mouseX <= 360) && (mouseY >= 0 && mouseY < 600)) {
     ending2ChatState++;
-    if (ending2ChatState <= 1) {
-      plop.play();
-    }
+    plop.play();
   }
 
 }
