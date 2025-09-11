@@ -11,6 +11,7 @@ let garden;
 let afternoonGarden;
 let nightGarden;
 let cursor;
+let butterfly;
 let timeImage;
 let dialogue;
 let squirrel;
@@ -181,6 +182,7 @@ function preload() {
   fairy = loadImage("assets/Untitled_Artwork 20.png");
   fox = loadImage("assets/Untitled_Artwork 21.png");
   bunny = loadImage("assets/Untitled_Artwork 23.png");
+  cursor = loadImage("assets/flower.png");
   
   font = loadFont("assets/IndieFlower-Regular.ttf");
   
@@ -379,7 +381,7 @@ function draw() {
   // Cursor
   push();
   imageMode(CENTER);
-  image(butterfly, mouseX, mouseY, 40, 40);
+  image(cursor, mouseX, mouseY, 40, 40);
   pop();
 
   // Floating Text by Cursor
