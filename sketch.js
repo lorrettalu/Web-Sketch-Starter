@@ -155,9 +155,9 @@ let isPaused = false;
 let showHint = false;
 let sparkles = [];
 const assets = [
-  {id: 'cottage', x: 90, w: 170, y: 299, h: 150},
-  {id: 'garden', x: 20, w: 129, y: 441, h: 615},
-  {id: 'water', x: 270, w: 300, y: 200, h: 200}
+  {id: 'cottage', x: 90, w: 170, y: 270, h: 150},
+  {id: 'garden', x: 90, w: 129, y: 470, h: 615},
+  {id: 'water', x: 210, w: 300, y: 200, h: 200}
 ];
 let food = false;
 let nap = false;
@@ -174,7 +174,7 @@ function preload() {
   garden = loadImage("assets/Untitled_Artwork 4.png");
   afternoonGarden = loadImage("assets/Untitled_Artwork 13.png");
   nightGarden = loadImage("assets/Untitled_Artwork 11.png");
-  cursor = loadImage("assets/butterflyahh.png");
+  butterfly = loadImage("assets/butterflyahh.png");
   timeImage = loadImage("assets/Untitled_Artwork 7.png");
   dialogue = loadImage("assets/Untitled_Artwork 17.png");
   squirrel = loadImage("assets/Untitled_Artwork 19.png");
@@ -196,7 +196,7 @@ function preload() {
 function setup() {
   const c = createCanvas(360, 640);
   c.parent('sketch');
-  //noCursor();
+  noCursor();
   
   // Ambience
   timeSound();
@@ -375,6 +375,12 @@ function draw() {
 
   dialogueChoices();
   dialogueHover();
+
+  // Cursor
+  push();
+  imageMode(CENTER);
+  image(butterfly, mouseX, mouseY, 40, 40);
+  pop();
 
   // Floating Text by Cursor
   if (cottageClick) {
@@ -2347,19 +2353,19 @@ function mousePressed() {
   }
 
   // Intro Dialogue
-  if (intro && (mouseX >= 0 && mouseX <= 360) && (mouseY >= 0 && mouseY < 580)) {
+  if (intro && (mouseX >= 0 && mouseX <= 360) && (mouseY >= 0 && mouseY < 600)) {
     introState++;
     plop.play();
   }
 
   // Ending Dialogue
-  if (ending1 && (mouseX >= 0 && mouseX <= 360) && (mouseY >= 0 && mouseY < 580)) {
+  if (ending1 && (mouseX >= 0 && mouseX <= 360) && (mouseY >= 0 && mouseY < 600)) {
     ending1ChatState++;
     if (ending1ChatState <= 1) {
       plop.play();
     }
   }
-  if (ending2 && (mouseX >= 0 && mouseX <= 360) && (mouseY >= 0 && mouseY < 580)) {
+  if (ending2 && (mouseX >= 0 && mouseX <= 360) && (mouseY >= 0 && mouseY < 600)) {
     ending2ChatState++;
     if (ending2ChatState <= 1) {
       plop.play();
@@ -3724,7 +3730,11 @@ function sparkleEvent(a) {
   push();
   let arrowY = 10 * sin(frameCount * 0.1);
   imageMode(CENTER);
-  image(cursor, a.x, a.y + arrowY, 40, 40);
+  if (nap) {
+    image(butterfly, a.x + 50, a.y + arrowY, 40, 40);
+  } else {
+    image(butterfly, a.x, a.y + arrowY, 40, 40);
+  }
   pop();
 }
 
