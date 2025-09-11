@@ -18,6 +18,8 @@ let squirrel;
 let fairy;
 let fox;
 let bunny;
+let ending2pic;
+let rainbowpic;
 
 // Font
 let font;
@@ -183,6 +185,8 @@ function preload() {
   fox = loadImage("assets/Untitled_Artwork 21.png");
   bunny = loadImage("assets/Untitled_Artwork 23.png");
   cursor = loadImage("assets/flower.png");
+  ending2pic = loadImage("assets/Untitled_Artwork 24.png");
+  rainbowpic = loadImage("assets/Untitled_Artwork 25.png");
   
   font = loadFont("assets/IndieFlower-Regular.ttf");
   
@@ -231,8 +235,12 @@ function draw() {
     image(afternoonBg, 0, 0, 360, 640);
   } else if (mondayNight || tuesdayNight || wednesdayNight || thursdayNight || fridayNight || saturdayNight || sundayNight) {
     image(nightBg, 0, 0, 360, 640);
-  } else if (ending1 || ending2) {
-    image(morningBg, 0, 0, 360, 640); // changeEnding
+  } else if (ending1) {
+    image(afternoonBg, 0, 0, 360, 640);
+  } else if (ending2 && ending2ChatState < 10) {
+    image(ending2pic, 0, 0, 360, 640);
+  } else if (ending2 && ending2ChatState >= 10) {
+    image(rainbowpic, 0, 0, 360, 640);
   }
 
   // Day States
@@ -569,10 +577,109 @@ function dialogueText() {
     event = true;
     switch (ending1ChatState) {
       case 0:
-        text("Test 1", 40, 510);
+        text("The next day arrived.", 40, 510);
         break;
       case 1:
-        text("Test 2", 40, 510);
+        text("The fairy was lounging around the", 40, 510);
+        text("river with the squirrel and the bunny.", 40, 540);
+        break;
+      case 2:
+        image(fairy, 0, 0, 360, 640);
+        text("Ahh...I suddenly have a craving for", 40, 510);
+        text("candy.", 40, 540);
+        break;
+      case 3:
+        image(bunny, 0, 0, 360, 640);
+        text("Why?", 40, 510);
+        break;
+      case 4:
+        image(fairy, 0, 0, 360, 640);
+        text("Just saying.", 40, 510);
+        break;
+      case 5:
+        image(squirrel, 0, 0, 360, 640);
+        text("...", 40, 510);
+        break;
+      case 6:
+        image(squirrel, 0, 0, 360, 640);
+        text("Ah! Bunbun, come with me.", 40, 510);
+        break;
+      case 7:
+        image(bunny, 0, 0, 360, 640);
+        text("Why??", 40, 510);
+        break;
+      case 8:
+        image(squirrel, 0, 0, 360, 640);
+        text("Just come with me!", 40, 510);
+        break;
+      case 9:
+        image(squirrel, 0, 0, 360, 640);
+        text("Miss Fairy, we'll be right back!", 40, 510);
+        break;
+      case 10:
+        image(fairy, 0, 0, 360, 640);
+        text("...They're gone.", 40, 510);
+        break;
+      case 11:
+        image(fairy, 0, 0, 360, 640);
+        text("...", 40, 510);
+        break;
+      case 12:
+        image(fairy, 0, 0, 360, 640);
+        text("I wonder where they went.", 40, 510);
+        break;
+      case 13:
+        image(bunny, 0, 0, 360, 640);
+        text("Miss Fairy! You didn't wait long,", 40, 510);
+        text("did you?", 40, 540);
+        break;
+      case 14:
+        image(fairy, 0, 0, 360, 640);
+        text("Nope!", 40, 510);
+        break;
+      case 15:
+        image(squirrel, 0, 0, 360, 640);
+        text("Give me your hand!", 40, 510);
+        break;
+      case 16:
+        image(fairy, 0, 0, 360, 640);
+        text("Oh! It's a strawberry, I love these!", 40, 510);
+        break;
+      case 17:
+        image(squirrel, 0, 0, 360, 640);
+        text("Yay! I knew you'd like nature candy.", 40, 510);
+        text("See, we're the best of friends!", 40, 540);
+        break;
+      case 18:
+        image(bunny, 0, 0, 360, 640);
+        text("And I helped find that, so we're even", 40, 510);
+        text("better friends!", 40, 540);
+        break;
+      case 19:
+        image(fairy, 0, 0, 360, 640);
+        text("Oh, thank you! I'll treasure this.", 40, 510);
+        break;
+      case 20:
+        image(squirrel, 0, 0, 360, 640);
+        text("No, silly! You should eat it. We'll", 40, 510);
+        text("keep finding you more!", 40, 540);
+        break;
+      case 21:
+        image(bunny, 0, 0, 360, 640);
+        text("Yup.", 40, 510);
+        break;
+      case 22:
+        image(fairy, 0, 0, 360, 640);
+        text("Thank you, you two.", 40, 510);
+        break;
+      case 23:
+        text("Thank you for playing My Fairy Wings!", 40, 510);
+        text("I really appreciate it. I had a lot of fun", 40, 540);
+        text("making this game.", 40, 570);
+        break;
+      case 24:
+        text("This is the first ending out of two.", 40, 510);
+        text("Keep playing to find the true ending!", 40, 540);
         break;
       default:
         text("The End! Please restart the game.", 40, 510);
@@ -583,10 +690,86 @@ function dialogueText() {
     event = true;
     switch (ending2ChatState) {
       case 0:
-        text("Test Ending 1", 40, 510);
+        text("The next day, the fairy, squirrel,", 40, 510);
+        text("bunny, and fox were all together.", 40, 540);
         break;
       case 1:
-        text("Test Ending 2", 40, 510);
+        image(fairy, 0, 0, 360, 640);
+        text("The food the three of you made", 40, 510);
+        text("was so delicious!", 40, 540);
+        break;
+      case 2:
+        image(fox, 0, 0, 360, 640);
+        text("It was the least we could do.", 40, 510);
+        text("After all, you're always cooking", 40, 540);
+        text("for us.", 40, 570);
+        break;
+      case 3:
+        image(bunny, 0, 0, 360, 640);
+        text("It's true.", 40, 510);
+        break;
+      case 4:
+        image(squirrel, 0, 0, 360, 640);
+        text("Especially since your fod is", 40, 510);
+        text("sooooooo yummy!", 40, 540);
+        break;
+      case 5:
+        image(fairy, 0, 0, 360, 640);
+        text("You guys...", 40, 510);
+        break;
+      case 6:
+        image(squirrel, 0, 0, 360, 640);
+        text("Hehe.", 40, 510);
+        break;
+      case 7:
+        text("The fairy got emotional and", 40, 510);
+        text("her friends comforted her.", 40, 540);
+        break;
+      case 8:
+        image(bunny, 0, 0, 360, 640);
+        text("Oh! Oh! Did you guys see that?", 40, 510);
+        break;
+      case 9:
+        image(fox, 0, 0, 360, 640);
+        text("See what?", 40, 510);
+        break;
+      case 10:
+        image(bunny, 0, 0, 360, 640);
+        text("There! Do you see it?", 40, 510);
+        break;
+      case 11:
+        image(squirrel, 0, 0, 360, 640);
+        text("Ohh!!! It's a rainbow!", 40, 510);
+        break;
+      case 12:
+        image(fox, 0, 0, 360, 640);
+        text("Wow, how did I miss that?", 40, 510);
+        break;
+      case 13:
+        image(fairy, 0, 0, 360, 640);
+        text("Haha, I'm glad I get to spend", 40, 510);
+        text("with you guys.", 40, 540);
+        break;
+      case 14:
+        image(squirrel, 0, 0, 360, 640);
+        text("Once the rainbow disappears,", 40, 510);
+        text("do you guys want to play hide and seek?", 40, 540);
+        break;
+      case 15:
+        image(bunny, 0, 0, 360, 640);
+        text("Yes!", 40, 510);
+        break;
+      case 16:
+        text("Thank you for playing My Fairy Wings!", 40, 510);
+        text("I really appreciate it. I had a lot of fun", 40, 540);
+        text("making this game.", 40, 570);
+        break;
+      case 17:
+        text("You've also reached the true ending!", 40, 510);
+        text("I'm so glad. You did it!", 40, 540);
+        break;
+      case 18:
+        text("I hope you've enjoyed playing this game!", 40, 510);
         break;
       default:
         text("The End! Please restart the game.", 40, 510);
@@ -1918,6 +2101,7 @@ function sundayDialogue() {
           break;
         default:
           text("The fairy finished her task.", 40, 510);
+          text("And then...", 40, 540);
           change = true;
           event = false;
       }
@@ -1946,7 +2130,8 @@ function sundayDialogue() {
           break;
         default:
           text("The fairy and the fox admired the", 40, 510);
-          text("water and the stars together.", 40, 540);
+          text("water and the stars together. And", 40, 540);
+          text("then...", 40, 570);
           chatEvent = false;
           change = true;
           event = false;
@@ -1956,7 +2141,7 @@ function sundayDialogue() {
       change = true;
       image(fairy, 0, 0, 360, 640);
       text("I love my garden and my garden loves", 40, 510);
-      text("me.", 40, 540);
+      text("me. ...Hmm, oh right. Tomorrow...", 40, 540);
     }
   }
 }
